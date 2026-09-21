@@ -12,7 +12,8 @@
     "area": "agents",
     "topics": [
       ["Agent 概览", "/docs/agents/overview"],
-      ["会话与任务", "/docs/agents/sessions"]
+      ["会话与任务", "/docs/agents/sessions"],
+      ["Advisor 顾问", "/docs/agents/advisor"]
     ]
   },
   {
