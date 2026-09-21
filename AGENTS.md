@@ -1,3 +1,0 @@
-- 参考`../vscode-docs`写
-- 禁止使用docs-site skills
-- 参考源码为 `../zeta`
