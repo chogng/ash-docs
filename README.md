@@ -1,12 +1,12 @@
-# Zeta Docs
+# Ash Docs
 
-This repository owns the public Zeta documentation and the lightweight site that previews it. Product source code and engineering architecture remain in [chogng/zeta](https://github.com/chogng/zeta).
+This repository owns the public Ash documentation and the lightweight site that previews it. Product source code and engineering architecture remain in [chogng/ash](https://github.com/chogng/ash).
 
 ## Repository layout
 
 * `docs/` contains task-oriented Markdown articles and the explicit `toc.json` navigation.
 * `index.html` configures the Docsify browser-side Markdown renderer.
-* `build/` contains the Docsify navigation generator and Zeta-specific validation and publishing helpers.
+* `build/` contains the Docsify navigation generator and Ash-specific validation and publishing helpers.
 * [`CONTRIBUTING.md`](CONTRIBUTING.md) describes the single-maintainer workflow for maintaining and publishing the site.
 
 ## Local development
@@ -40,8 +40,8 @@ Or run the complete suite with:
 npm run verify
 ```
 
-Every published page must appear in `docs/toc.json` and include `ContentId`, `DateApproved`, and `MetaDescription` frontmatter. The checks reject unlisted pages, duplicate content IDs, broken local links, and missing article structure. Docsify strips the frontmatter in the browser before rendering the article.
+Every published page must appear in `docs/toc.json` and include `ContentId`, `DateApproved`, `MetaDescription`, and `MetaSocialImage` frontmatter. The checks reject unlisted pages, duplicate content IDs, broken local links, and missing article structure. Docsify strips the frontmatter in the browser before rendering the article.
 
 ## Content ownership
 
-Write for people using Zeta. Keep implementation contracts, crate responsibilities, migration plans, and internal architecture in the Zeta source repository. When product behavior changes, update the source implementation and this repository in the same change window without copying internal design documents into the public site.
+Write for people using Ash. Keep implementation contracts, crate responsibilities, migration plans, and internal architecture in the Ash source repository. When product behavior changes, update the source implementation and this repository in the same change window without copying internal design documents into the public site.

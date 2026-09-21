@@ -1,10 +1,10 @@
-# Contributing to Zeta Docs
+# Contributing to Ash Docs
 
 ## Repository model
 
 This repository is maintained by one developer. `main` is the working branch, so normal documentation changes can be made and committed directly on `main`. Pull requests are not required.
 
-The public documentation source lives in `docs/`. The site entry point is `index.html`, and the Docsify navigation generator lives in `build/generate-sidebar.js`. Product implementation and internal engineering contracts remain in the Zeta source repository.
+The public documentation source lives in `docs/`. The site entry point is `index.html`, and the Docsify navigation generator lives in `build/generate-sidebar.js`. Product implementation and internal engineering contracts remain in the Ash source repository.
 
 Do not commit generated or local runtime directories such as `.build/`, `dist/`, or `.wrangler/`.
 
@@ -17,10 +17,11 @@ Every article must have the required frontmatter:
 ```yaml
 ---
 ContentId: <unique UUID>
-DateApproved: 8/27/2026
+DateApproved: 9/21/2026
 MetaDescription: <description no longer than 160 characters>
+MetaSocialImage: ../../og.png
 Keywords:
-  - Zeta
+  - Ash
   - Agent
 ---
 # Article title

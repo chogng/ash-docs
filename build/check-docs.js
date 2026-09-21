@@ -1,4 +1,4 @@
-// Validates the Zeta documentation structure and local links.
+// Validates the Ash documentation structure and local links.
 
 const fs = require("node:fs");
 const path = require("node:path");

@@ -66,7 +66,7 @@ function buildSidebar() {
   fs.writeFileSync(path.join(ROOT, "_sidebar.md"), sidebar, "utf8");
   fs.writeFileSync(
     path.join(ROOT, "_navbar.md"),
-    "* [文档](/docs/getstarted/overview.md)\n* [GitHub ↗](https://github.com/chogng/zeta-docs)\n",
+    "* [文档](/docs/getstarted/overview.md)\n* [GitHub ↗](https://github.com/chogng/ash-docs)\n",
     "utf8",
   );
 

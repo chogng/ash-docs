@@ -2,9 +2,9 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <title>Zeta 文档</title>
+    <title>Ash 文档</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="学习如何使用、配置和扩展 Zeta。" />
+    <meta name="description" content="学习如何使用、配置和扩展 Ash。" />
     <link rel="icon" href="/favicon.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/themes/vue.css" />
     <style>
@@ -147,8 +147,8 @@
 
     <script>
       window.$docsify = {
-        name: "Zeta 文档",
-        repo: "https://github.com/chogng/zeta-docs",
+        name: "Ash 文档",
+        repo: "https://github.com/chogng/ash-docs",
         homepage: "docs/getstarted/overview.md",
         loadSidebar: true,
         loadNavbar: true,
@@ -246,7 +246,7 @@
 
             hook.doneEach(function () {
               var title = document.querySelector(".markdown-section h1");
-              if (title && title.textContent) document.title = title.textContent.trim() + " · Zeta 文档";
+              if (title && title.textContent) document.title = title.textContent.trim() + " · Ash 文档";
 
               if (pageDescription) {
                 var description = document.querySelector('meta[name="description"]');
@@ -327,7 +327,7 @@
                 var container = document.createElement("div");
                 container.className = "flow-diagram";
                 var source = code.textContent || "";
-                var id = "zeta-diagram-" + Date.now() + "-" + index;
+                var id = "ash-diagram-" + Date.now() + "-" + index;
                 code.parentElement.replaceWith(container);
 
                 window.mermaid.render(id, source).then(function (result) {

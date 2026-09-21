@@ -3,7 +3,7 @@
     "name": "开始使用",
     "area": "getstarted",
     "topics": [
-      ["Zeta 概览", "/docs/getstarted/overview"],
+      ["Ash 概览", "/docs/getstarted/overview"],
       ["从源码运行", "/docs/getstarted/run-from-source"]
     ]
   },
