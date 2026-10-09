@@ -52,7 +52,7 @@ test("publishes a keyboard-accessible reading shell with reduced motion", () => 
   const js = readDist("docs-shell.js");
   assert.match(html, /<dialog id="docs-search" aria-label="搜索文档">/);
   assert.match(html, /aria-haspopup="dialog"/);
-  assert.match(html, /src="\.\/docs-shell\.js"/);
+  assert.match(html, /src="\.\/docs-shell\.js\?v=[a-f0-9]{12}"/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(css, /data-theme="dark"/);
   assert.match(js, /dialog\.showModal\(\)/);
