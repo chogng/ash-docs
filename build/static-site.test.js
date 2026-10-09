@@ -58,3 +58,11 @@ test("publishes a keyboard-accessible reading shell with reduced motion", () => 
   assert.match(js, /dialog\.showModal\(\)/);
   assert.match(js, /priorFocus\.focus\(\)/);
 });
+
+
+test("published search content excludes metadata and uses a content-versioned cache", () => {
+  assert.doesNotMatch(readDist("docs/getstarted/overview.md"), /^---/);
+  assert.doesNotMatch(readDist("docs/getstarted/overview.md"), /MetaDescription:/);
+  assert.match(readDist("index.html"), /window\.__ashDocDescriptions =/);
+  assert.match(readDist("index.html"), /namespace: "ash-docs-[a-f0-9]{12}"/);
+});

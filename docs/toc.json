@@ -18,6 +18,20 @@
     ]
   },
   {
+    "name": "编辑与搜索",
+    "area": "editing",
+    "topics": [
+      [
+        "编辑与导航",
+        "/docs/editing/editing-and-navigation"
+      ],
+      [
+        "项目搜索与替换",
+        "/docs/editing/search-and-replace"
+      ]
+    ]
+  },
+  {
     "name": "Agent",
     "area": "agents",
     "topics": [
@@ -32,6 +46,26 @@
       [
         "Advisor 顾问",
         "/docs/agents/advisor"
+      ]
+    ]
+  },
+  {
+    "name": "源代码管理",
+    "area": "sourcecontrol",
+    "topics": [
+      [
+        "Git 更改与提交",
+        "/docs/sourcecontrol/overview"
+      ]
+    ]
+  },
+  {
+    "name": "终端",
+    "area": "terminal",
+    "topics": [
+      [
+        "使用集成终端",
+        "/docs/terminal/basics"
       ]
     ]
   },
@@ -54,6 +88,18 @@
     "area": "configure",
     "topics": [
       [
+        "模型与账号",
+        "/docs/configure/models"
+      ],
+      [
+        "设置",
+        "/docs/configure/settings"
+      ],
+      [
+        "键盘快捷方式",
+        "/docs/configure/keyboard-shortcuts"
+      ],
+      [
         "权限与批准",
         "/docs/configure/permissions"
       ]
@@ -66,6 +112,16 @@
       [
         "工具",
         "/docs/reference/tools"
+      ]
+    ]
+  },
+  {
+    "name": "遇到问题",
+    "area": "support",
+    "topics": [
+      [
+        "故障排查",
+        "/docs/support/troubleshooting"
       ]
     ]
   }

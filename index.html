@@ -32,6 +32,7 @@
         subMaxLevel: 0,
         auto2top: true,
         search: {
+          namespace: "ash-docs",
           placeholder: "搜索文档…",
           noData: "没有找到相关文档。",
           depth: 3,
@@ -64,6 +65,11 @@
                   return prefix + '<span class="alert-title" data-alert-type="' + type.toLowerCase() + '">' + (icons[type] || "") + " " + label + "</span>";
                 },
               );
+
+              if (!pageDescription && window.__ashDocDescriptions) {
+                var descriptionKey = (vm.route.file || "").split("?")[0].replace(/^\/+/, "");
+                pageDescription = window.__ashDocDescriptions[descriptionKey] || "";
+              }
 
               // Keep /docs/... Markdown links intact: Docsify's router resolves
               // these from the project root, including on the homepage.

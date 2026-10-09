@@ -26,7 +26,7 @@ ash
 
 ## 2. 选择模型并让它理解项目
 
-配置模型供应商并选择可用模型。发送一个只读任务：
+按[配置模型与账号](/docs/configure/models.md)连接服务并选择模型，先完成一次最小连接验证。然后发送一个只读任务：
 
 ```text
 解释这个项目如何启动，主要功能在哪里，以及怎样运行测试。
@@ -67,3 +67,5 @@ ash
 - [管理会话与任务](/docs/agents/sessions.md)
 - [查看工具活动](/docs/reference/tools.md)
 - [使用 Skills](/docs/customize/skills.md)
+- [检查 Git 更改并提交](/docs/sourcecontrol/overview.md)
+- [排查常见问题](/docs/support/troubleshooting.md)

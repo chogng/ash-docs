@@ -39,8 +39,18 @@ Keywords:
 
 [开始第一个任务](/docs/getstarted/first-task.md)
 
+## 在项目中继续工作
+
+- [编辑文件与导航代码](/docs/editing/editing-and-navigation.md)：打开、保存、查找文本，使用多光标和定义导航。
+- [搜索与替换项目内容](/docs/editing/search-and-replace.md)：限制文件范围，检查预览，再应用替换。
+- [使用 Git 管理更改](/docs/sourcecontrol/overview.md)：检查差异、暂存、提交，并处理远端更新。
+- [使用集成终端](/docs/terminal/basics.md)：运行项目命令，管理多个终端并查找输出。
+
 ## 配置你的工作方式
 
+- [配置模型与账号](/docs/configure/models.md)：连接服务、选择模型并验证请求。
+- [调整设置](/docs/configure/settings.md)：找到选项、查看已修改项和编辑 JSON。
+- [设置键盘快捷方式](/docs/configure/keyboard-shortcuts.md)：查找命令并配置自己的绑定。
 - [管理会话与任务](/docs/agents/sessions.md)：继续已有工作，或把无关目标放到新会话。
 - [使用 Skills](/docs/customize/skills.md)：复用项目的工作方法。
 - [连接 MCP 服务器](/docs/customize/mcp-servers.md)：让 Agent 使用外部工具。
@@ -49,3 +59,7 @@ Keywords:
 ## 还没有运行 Ash？
 
 当前仓库提供[从源码运行指南](/docs/getstarted/run-from-source.md)。公开安装包和支持的平台应以实际发布内容为准。本指南不会把本地浏览器开发入口描述成托管在线服务。
+
+## 遇到问题
+
+先按[故障排查](/docs/support/troubleshooting.md)定位失败的步骤，再查看对应功能指南。提交问题时附上版本、复现步骤和脱敏后的错误信息。
