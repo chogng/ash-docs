@@ -34,8 +34,9 @@
       if (event.target.closest('.matching-post a')) dialog.close();
     });
     document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && dialog.open) { event.preventDefault(); dialog.close(); return; }
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); openSearch(); }
-    });
+    }, true);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeShell);
   else initializeShell();
