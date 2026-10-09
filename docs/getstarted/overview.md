@@ -19,6 +19,8 @@ Keywords:
 
 - [开始第一个任务](/docs/getstarted/first-task.md)：打开项目、准备模型，完成一次可检查的修改。
 - [继续已有工作](/docs/agents/sessions.md)：恢复会话、补充要求，或为新目标创建会话。
+- [认识界面和调整布局](/docs/getstarted/user-interface.md)：找到编辑器、Agents 窗口和常用面板。
+- [打开和管理项目](/docs/editing/workspaces.md)：打开文件夹、选择目录权限和使用多根工作区。
 - [从源码运行](/docs/getstarted/run-from-source.md)：准备开发环境，启动桌面应用或 Ash Code。
 
 ## 选择适合你的入口
@@ -52,6 +54,7 @@ Keywords:
 - [调整设置](/docs/configure/settings.md)：找到选项、查看已修改项和编辑 JSON。
 - [设置键盘快捷方式](/docs/configure/keyboard-shortcuts.md)：查找命令并配置自己的绑定。
 - [管理会话与任务](/docs/agents/sessions.md)：继续已有工作，或把无关目标放到新会话。
+- [设置项目指令](/docs/customize/instructions.md)：保存项目约定，按文件范围加载规则。
 - [使用 Skills](/docs/customize/skills.md)：复用项目的工作方法。
 - [连接 MCP 服务器](/docs/customize/mcp-servers.md)：让 Agent 使用外部工具。
 - [理解权限与批准](/docs/configure/permissions.md)：知道 Agent 正在请求什么访问。
@@ -61,5 +64,7 @@ Keywords:
 当前仓库提供[从源码运行指南](/docs/getstarted/run-from-source.md)。公开安装包和支持的平台应以实际发布内容为准。本指南不会把本地浏览器开发入口描述成托管在线服务。
 
 ## 遇到问题
+
+需要复查已保存的执行过程时，使用[执行 Trace](/docs/agents/trace.md)检查事件、正文和关联证据。
 
 先按[故障排查](/docs/support/troubleshooting.md)定位失败的步骤，再查看对应功能指南。提交问题时附上版本、复现步骤和脱敏后的错误信息。

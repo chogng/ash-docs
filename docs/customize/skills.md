@@ -1,6 +1,7 @@
 ---
 ContentId: 04b3a201-fbf7-4302-acd4-151bdfe4c4ee
-DateApproved: 9/21/2026
+DateApproved: 10/9/2026
+SourceRevision: 2e6f27585f3fe1676eb1f5ec32c140bed175697c
 MetaDescription: 在 Ash 中通过 $name 选择 Skill，创建项目 SKILL.md，并管理来源、启用状态和按需加载的参考资料。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -13,6 +14,8 @@ Keywords:
 # 使用 Skills 扩展工作流
 
 Skill 把一类任务的工作方法、验证步骤和参考资料组织在一起。需要反复执行代码检查、编写文档或生成特定产物时，你可以选择已有 Skill，也可以为项目创建自己的 Skill。
+
+持续适用的项目约定使用[指令](/docs/customize/instructions.md)；“这类任务应按哪些步骤完成”使用 Skill。当前 Ash 没有独立的 `.prompt.md` 提示词文件机制，可复用任务可以保存为 Skill。
 
 ## 选择已有 Skill
 
@@ -28,11 +31,30 @@ Skill 把一类任务的工作方法、验证步骤和参考资料组织在一�
 $code-review 检查当前改动，重点关注取消操作、错误处理和测试遗漏。
 ```
 
-Skill 使用 `$name` 选择器。`/` 用于产品命令；Ash Code 的 `/skills` 用于浏览、启用、禁用和查看诊断，不会直接执行 Skill。运行中的任务不能通过补充消息换用另一项 Skill，等待下一轮再选择。
+Skill 使用 `$name` 选择器。`/` 用于产品命令；不要把上面的例子改成 `/code-review`。运行中的任务不能通过补充消息换用另一项 Skill，需要在下一轮选择。
+
+## 查看正文与管理启用状态
+
+桌面工作台和终端界面使用同一份技能目录，但管理入口的操作不同。
+
+桌面工作台：
+
+1. 输入 `/skills`，或在命令面板运行 **Open skills**。
+2. 选择一个 Skill，打开它的只读 `SKILL.md` 快照。
+3. 要修改启用状态，选择 **Manage skill enablement…**，进入 Skills 设置。
+4. 根据名称和来源选中条目，再选择 **Enable skill** 或 **Disable skill**。这里也显示诊断信息，并提供 **Refresh**。
+
+Ash Code 终端界面：
+
+1. 输入 `/skills`，按名称搜索。
+2. 在 **All / On / Off** 页签中选择技能。
+3. 用左右键展开或收起描述，按 Enter 或 Space 切换启用状态。
+
+启用技能不等于立即执行它。需要在当前任务中明确使用时，仍用 `$name` 选择。安装更多技能可从 `/marketplace` 进入；桌面 Skills 设置也提供 **Get skills from Marketplace**。
 
 ## 创建项目 Skill
 
-在项目根目录创建以下结构：
+1. 在项目根目录创建以下结构：
 
 ```text
 .ash/skills/code-review/
@@ -41,13 +63,14 @@ Skill 使用 `$name` 选择器。`/` 用于产品命令；Ash Code 的 `/skills`
     └── checklist.md
 ```
 
-`SKILL.md` 是必需的入口文件。目录名要与 `name` 一致，名称使用小写字母、数字和连字符。
+2. 在 `SKILL.md` 中填写名称、描述和工作步骤：
 
-````markdown
+```markdown
 ---
 name: code-review
 description: 检查代码改动中的正确性问题和测试遗漏，在审查 diff 或合并前检查时使用。
 ---
+
 ## 代码检查
 
 1. 阅读当前 diff 和受影响的调用方。
@@ -55,15 +78,37 @@ description: 检查代码改动中的正确性问题和测试遗漏，在审查 
 3. 按需要读取 references/checklist.md。
 4. 报告问题位置、触发条件和建议的验证方式。
 5. 用户只要求审查时，不直接修改文件。
-````
+```
 
-保存后，在 Ash 中打开该项目。目录需要具备读取 Skill 来源的权限。等候选刷新后，输入 `$code-review` 开始任务；未出现时，按本页的排查表检查。
+3. 在 `references/checklist.md` 中写入更详细的项目检查清单。不需要参考文件时，删除目录结构和正文中对它的引用。
+4. 保存后，在 Ash 中打开该项目，确认会话有权读取该目录的 Skill 来源。
+5. 等候选刷新后，输入 `$code-review` 和一项小任务，核对实际结果。
 
-按需要添加 `scripts/`、`references/` 或 `assets/`。在入口中说明什么时候使用它们，避免把全部参考资料塞入每次任务。脚本仍通过普通工具执行，不会因为位于 Skill 目录就自动运行。
+也可以使用内置的 `$skill-creator` 辅助创建，再检查它生成的文件和步骤。
+
+目录名必须与 `name` 一致，名称为 1–64 个小写字母、数字或连字符，不能以连字符开头或结尾，也不能包含连续的 `--`。`description` 必须说明做什么和何时使用，长度为 1–1024 个字符。
+
+每个 Skill 都是来源目录下的直接子目录，不要再套一层团队分类文件夹。`SKILL.md` 使用 UTF-8 文本；不要用符号链接或硬链接代替入口文件。
+
+## 添加参考资料和脚本
+
+按需要添加 `references/`、`scripts/` 或 `assets/`。在 `SKILL.md` 中说明何时读取哪些文件，路径相对于该 Skill 的目录。
+
+例如：
+
+```markdown
+- 检查异步流程时，先读取 references/async-checklist.md。
+- 需要生成报告时，参考 assets/review-template.md。
+- 只有当前任务确实需要、且具备相应执行权限时，才通过普通工具运行 scripts/check.sh。
+```
+
+发现 Skill 时不会把所有资料加载到上下文，也不会递归展开每个引用。读取脚本不等于运行脚本；Skill 本身没有自动执行脚本的专用入口，执行仍走普通工具和批准流程。
+
+当前完整 `SKILL.md` 上限为 1 MiB，YAML 文件头上限为 16 KiB，单个按需读取的包内资源上限为 256 KiB。把较大的背景资料拆成任务真正需要的小文件。
 
 ## 在多个项目复用个人 Skill
 
-个人 Skill 来源在用户配置中注册。默认配置文件是用户主目录下的 `.ash/config.toml`；设置了 `ASH_HOME` 时，使用该目录中的 `config.toml`。
+个人 Skill 来源在用户配置中注册。默认配置文件是用户主目录下的 `.ash/config.toml`；设置了 `ASH_HOME` 时，使用该目录中的 `config.toml`。远程会话以当前连接的运行环境为准。
 
 在现有文件中添加以下内容，保留原来的 `schemaVersion` 和其他配置：
 
@@ -74,9 +119,9 @@ rootReference = "/absolute/path/to/skills"
 enablement = "enabled"
 ```
 
-将 `rootReference` 替换为实际的绝对目录，该目录下放置各个 Skill 文件夹。Windows 可以使用 `C:/Users/<user>/skills` 形式。Ash 不会把所有其他开发工具的 Skill 目录自动注册进来。
+将 `rootReference` 替换为实际的绝对目录，该目录下放置各个 Skill 文件夹。Windows 可以使用 `C:/Users/<user>/skills` 形式。配置表中的来源 ID 与 `id` 必须一致；不要把个人来源声明放进项目配置并期待它自动生效。
 
-要共享团队流程，把项目的 `.ash/skills/` 提交到版本控制。个人来源配置和凭据不应随项目提交。
+Ash 不会自动注册其他开发工具的所有 Skill 目录。要共享团队流程，把项目的 `.ash/skills/` 提交到版本控制；个人来源配置和凭据不应随项目提交。
 
 ## 了解加载时机
 
@@ -87,22 +132,30 @@ enablement = "enabled"
 | 模型按需选用 Skill | 先查看元数据，再读取选中的正文 |
 | 任务需要详细资料 | 按需读取引用的参考文件或资源 |
 
-启用表示 Skill 可以被选择，不表示每轮都会执行。已经开始的任务使用固定版本；中途修改该版本的文件可能使继续读取失败，不能依赖编辑文件来悄悄改变当前任务的要求。
+Ash 还可以依据任务文字，高置信且唯一地自动选择受信任的内置 Skill。个人、项目、Plugin 和 Marketplace 来源不走这条内置自动选择路径；模型仍可按需读取合适的 Skill。希望确定使用某项流程时，请显式使用 `$name`。
 
-Skill 只提供工作方法。它不能授予文件、网络或凭据权限，也不能覆盖上层规则。相关说明见[权限与批准](/docs/configure/permissions.md)。
+启用表示 Skill 可以被选择，不表示每轮都会执行。已经开始的任务使用固定版本；中途修改该版本的文件可能使继续读取失败，不能依赖编辑文件来改变运行中的要求。禁用后的技能也不会因此撤回已经开始的任务。
+
+Skill 只提供工作方法。它不能授予文件、网络或凭据权限，也不能覆盖适用的用户和项目规则。即使文件头包含 `allowed-tools`，它也只是作者的提示，不是权限授权。相关说明见[权限与批准](/docs/configure/permissions.md)。
 
 ## 排查 Skill 问题
 
 | 现象 | 检查方式 |
 | --- | --- |
-| `$` 中没有候选 | 检查来源是否启用、项目是否允许读取 Skill，以及 `SKILL.md` 的名称和描述 |
-| 同名 Skill 不出现在候选中 | 检查不同来源是否有重名项，禁用不需要的项或为自己维护的 Skill 改名 |
-| 显示不兼容或解析错误 | 在 Ash Code 的 `/skills` 诊断中查看原因，修正文件格式或准备所需环境 |
-| 修改文件后当前任务失败 | 结束当前轮，待目录刷新后重新选择；运行中的任务不会自动改用新版本 |
-| 已启用但没有执行 | 显式使用 `$name` 选择，并在任务中写明需要它完成什么 |
+| `$` 中没有候选 | 检查来源和技能是否启用、项目是否允许读取 Skill，以及文件是否直接位于 `<来源>/<name>/SKILL.md` |
+| 同名 Skill 不出现在候选中 | 查看不同来源是否有同名且已启用、兼容的项；禁用不需要的项，或同时修改自有 Skill 的目录名和 `name` |
+| 显示不兼容或解析错误 | 查看 Skills 管理界面的诊断，核对 YAML、名称、描述和环境要求 |
+| 从其他工具复制后报错 | Ash 严格检查文件头；不要直接添加其他产品专有的调用或权限字段 |
+| 打开的 `SKILL.md` 不能编辑 | `/skills` 打开的是只读快照；到你维护的原始项目目录或个人来源目录修改，再刷新并重新打开 |
+| 修改文件后当前任务失败 | 等当前轮结束或停止后，待目录刷新再重新选择；运行中的任务不会自动改用新版本 |
+| 已启用但没有执行 | 显式使用 `$name`，并在任务中写明需要完成的工作 |
+| 更改启用状态提示配置已变化 | 刷新管理界面后重试，避免用旧状态覆盖另一处的新设置 |
+
+保存 Skill 后，先用一个有明确验收条件的小任务测试。检查它是否读取了正确的参考资料、使用了预期步骤，以及是否如实报告未运行的验证。
 
 ## 下一步
 
-* [用 MCP 添加外部工具](/docs/customize/mcp-servers.md)
-* [了解工具执行与结果](/docs/reference/tools.md)
-* [用 Advisor 检查方案](/docs/agents/advisor.md)
+- [设置项目和个人指令](/docs/customize/instructions.md)
+- [用 MCP 添加外部工具](/docs/customize/mcp-servers.md)
+- [了解工具执行与结果](/docs/reference/tools.md)
+- [用 Advisor 检查方案](/docs/agents/advisor.md)

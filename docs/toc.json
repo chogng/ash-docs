@@ -12,6 +12,10 @@
         "/docs/getstarted/first-task"
       ],
       [
+        "认识界面与布局",
+        "/docs/getstarted/user-interface"
+      ],
+      [
         "从源码运行",
         "/docs/getstarted/run-from-source"
       ]
@@ -21,6 +25,10 @@
     "name": "编辑与搜索",
     "area": "editing",
     "topics": [
+      [
+        "项目与工作区",
+        "/docs/editing/workspaces"
+      ],
       [
         "编辑与导航",
         "/docs/editing/editing-and-navigation"
@@ -46,6 +54,10 @@
       [
         "Advisor 顾问",
         "/docs/agents/advisor"
+      ],
+      [
+        "查看执行 Trace",
+        "/docs/agents/trace"
       ]
     ]
   },
@@ -73,6 +85,10 @@
     "name": "自定义",
     "area": "customize",
     "topics": [
+      [
+        "项目与个人指令",
+        "/docs/customize/instructions"
+      ],
       [
         "Skills",
         "/docs/customize/skills"
