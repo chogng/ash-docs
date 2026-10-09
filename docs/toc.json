@@ -78,6 +78,30 @@
       [
         "使用集成终端",
         "/docs/terminal/basics"
+      ],
+      [
+        "Ash Code 命令行",
+        "/docs/terminal/command-line"
+      ]
+    ]
+  },
+  {
+    "name": "运行与调试",
+    "area": "debugging",
+    "topics": [
+      [
+        "调试程序",
+        "/docs/debugging/overview"
+      ]
+    ]
+  },
+  {
+    "name": "远程开发",
+    "area": "remote",
+    "topics": [
+      [
+        "SSH 远端项目",
+        "/docs/remote/ssh"
       ]
     ]
   },
