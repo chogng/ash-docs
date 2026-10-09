@@ -43,6 +43,11 @@ prepareArticles(path.join(OUTPUT_DIRECTORY, "docs"));
 // Version local UI assets so repeat visitors receive the matching deployed shell.
 const entryPath = path.join(OUTPUT_DIRECTORY, "index.html");
 let entry = fs.readFileSync(entryPath, "utf8");
+// Navigation changes must not remain cached while new articles are already live.
+const sidebar = fs.readFileSync(path.join(OUTPUT_DIRECTORY, "_sidebar.md"));
+const sidebarName = `_sidebar-${crypto.createHash("sha256").update(sidebar).digest("hex").slice(0, 12)}.md`;
+fs.writeFileSync(path.join(OUTPUT_DIRECTORY, sidebarName), sidebar);
+entry = entry.replaceAll('\": \"/_sidebar.md\"', `\": \"/${sidebarName}\"`);
 for (const asset of ["docs-theme.css", "docs-shell.js"]) {
   const digest = crypto.createHash("sha256").update(fs.readFileSync(path.join(OUTPUT_DIRECTORY, asset))).digest("hex").slice(0, 12);
   entry = entry.replace(`./${asset}"`, `./${asset}?v=${digest}"`);
