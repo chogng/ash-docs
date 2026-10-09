@@ -208,20 +208,10 @@
                 },
               );
 
-              // Docsify resolves relative links from the current Markdown file.
-              // Convert the generated root-relative article links accordingly.
+              // Keep /docs/... Markdown links intact: Docsify's router resolves
+              // these from the project root, including on the homepage.
               var file = vm.route.file || "";
               var dir = file.substring(0, file.lastIndexOf("/") + 1);
-              // Hash routes remain rooted at this Pages project, including on the homepage.
-              content = content.replace(
-                /\]\(\/docs\/(.*?)\)/g,
-                function (_match, target) {
-                  var parts = target.split("#");
-                  var route = "#/docs/" + parts[0].replace(/\.md$/, "");
-                  if (parts[1]) route += "?id=" + encodeURIComponent(parts[1]);
-                  return "](" + route + ")";
-                },
-              );
 
               // Resolve relative paths in raw HTML attributes as well. Docsify's
               // relativePath option only handles Markdown images automatically.
