@@ -212,29 +212,14 @@
               // Convert the generated root-relative article links accordingly.
               var file = vm.route.file || "";
               var dir = file.substring(0, file.lastIndexOf("/") + 1);
-              var currentParts = dir.split("/").filter(Boolean);
-
+              // Hash routes remain rooted at this Pages project, including on the homepage.
               content = content.replace(
-                /\]\(\/(docs)\/(.*?)\)/g,
-                function (_match, section, rest) {
-                  var hashIdx = rest.indexOf("#");
-                  var filePath = hashIdx >= 0 ? rest.substring(0, hashIdx) : rest;
-                  var anchor = hashIdx >= 0 ? "#" + rest.substring(hashIdx + 1) : "";
-                  filePath = filePath.replace(/\.md$/, "");
-
-                  var targetParts = (section + "/" + filePath).split("/").filter(Boolean);
-                  var common = 0;
-                  while (common < currentParts.length && common < targetParts.length &&
-                         currentParts[common] === targetParts[common]) {
-                    common++;
-                  }
-
-                  var ups = currentParts.length - common;
-                  var relative = "";
-                  for (var i = 0; i < ups; i++) relative += "../";
-                  relative += targetParts.slice(common).join("/");
-                  if (!relative) relative = ".";
-                  return "](" + relative + anchor + ")";
+                /\]\(\/docs\/(.*?)\)/g,
+                function (_match, target) {
+                  var parts = target.split("#");
+                  var route = "#/docs/" + parts[0].replace(/\.md$/, "");
+                  if (parts[1]) route += "?id=" + encodeURIComponent(parts[1]);
+                  return "](" + route + ")";
                 },
               );
 
