@@ -130,7 +130,7 @@ Kimi Desktop、Kimi Code CLI 的本机登录也与 Ash 的 Kimi 订阅登录分�
 3. 根据端点文档选择 **API format**：**OpenAI Responses**、**OpenAI Chat Completions** 或 **Anthropic Messages**。
 4. 如果服务要求 API key，填写对应输入框。名称和 URL 在离开输入框时保存，协议选择也会保存；确认没有校验错误。
 5. 选择刷新图标 **Refresh models** 读取端点模型列表。
-6. 如果没有返回模型，选择 **Add model**，填写准确的 **Model ID** 和 **Context window (tokens)**，再选择 **Save model**。仅在需要把本地模型名映射到另一上游型号时填写 **Upstream Model ID (optional)**。
+6. 如果没有返回模型，选择 **Add model**，填写准确的 **Model ID** 和 `Context window (tokens)`，再选择 **Save model**。仅在需要把本地模型名映射到另一上游型号时填写 `Upstream Model ID (optional)`。
 7. 打开目标模型的 **Enabled** 开关，再回到聊天模型选择器选择它。
 
 上下文窗口填写供应商明确支持的 token 数。**1M context** 只是配置选项，不会替账号获得长上下文权限，也不会扩大上游模型的真实容量。
