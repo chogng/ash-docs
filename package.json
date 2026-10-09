@@ -8,7 +8,7 @@
   },
   "scripts": {
     "check-docs": "node ./build/check-docs.js",
-    "lint": "eslint build/*.js",
+    "lint": "eslint build/*.js public/*.js",
     "generate-sidebar": "node ./build/generate-sidebar.js",
     "serve": "npm run generate-sidebar && docsify serve .",
     "dev": "npm run serve",

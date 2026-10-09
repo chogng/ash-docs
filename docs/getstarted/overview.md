@@ -9,16 +9,17 @@ Keywords:
   - Desktop
   - TUI
 ---
-# 用 Ash 完成你的下一项开发任务
+# Ash 概览
 
-在同一个工作区里阅读代码、与 Agent 协作并检查结果。你可以使用 Ash 桌面应用，也可以从终端使用 Ash Code。
+在桌面或终端中，与 Agent 一起理解项目、完成修改，并检查结果。Ash 把代码编辑、对话与开发工具放在同一个工作区里。
 
-<div class="doc-cards">
-<a class="doc-card" href="#/docs/getstarted/first-task"><strong>开始第一个任务 →</strong><span>从理解项目开始，再完成一项范围明确的修改。</span></a>
-<a class="doc-card" href="#/docs/agents/sessions"><strong>继续已有的工作 →</strong><span>了解会话、任务状态，以及何时继续或新建会话。</span></a>
-<a class="doc-card" href="#/docs/customize/skills"><strong>让 Agent 遵循你的方法 →</strong><span>用 Skills 保存可复用的工作步骤。</span></a>
-<a class="doc-card" href="#/docs/customize/mcp-servers"><strong>连接工作需要的工具 →</strong><span>配置 MCP 服务器并检查工具是否可用。</span></a>
-</div>
+## 开始使用
+
+初次使用，先从一个范围明确的任务开始。你不需要先理解 Ash 的内部架构。
+
+- [开始第一个任务](/docs/getstarted/first-task.md)：打开项目、准备模型，完成一次可检查的修改。
+- [继续已有工作](/docs/agents/sessions.md)：恢复会话、补充要求，或为新目标创建会话。
+- [从源码运行](/docs/getstarted/run-from-source.md)：准备开发环境，启动桌面应用或 Ash Code。
 
 ## 选择适合你的入口
 

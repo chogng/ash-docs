@@ -18,5 +18,14 @@ export default defineConfig([
       "no-unused-vars": "error",
     },
   },
+  {
+    files: ["public/**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "script",
+      globals: { document: "readonly", window: "readonly", localStorage: "readonly" },
+    },
+    rules: { "no-undef": "error", "no-unused-vars": "error" },
+  },
   globalIgnores(["dist/**", ".build/**", "node_modules/**"]),
 ]);

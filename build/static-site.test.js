@@ -44,3 +44,17 @@ test("article links retain root paths for Docsify routing from home and nested p
     assert.equal(normalize("[步骤](/docs/getstarted/first-task.md#check)"), "[步骤](/docs/getstarted/first-task.md#check)");
   }
 });
+
+
+test("publishes a keyboard-accessible reading shell with reduced motion", () => {
+  const html = readDist("index.html");
+  const css = readDist("docs-theme.css");
+  const js = readDist("docs-shell.js");
+  assert.match(html, /<dialog id="docs-search" aria-label="搜索文档">/);
+  assert.match(html, /aria-haspopup="dialog"/);
+  assert.match(html, /src="\.\/docs-shell\.js"/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  assert.match(css, /data-theme="dark"/);
+  assert.match(js, /dialog\.showModal\(\)/);
+  assert.match(js, /priorFocus\.focus\(\)/);
+});

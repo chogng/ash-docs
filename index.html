@@ -7,172 +7,29 @@
     <meta name="description" content="学习如何使用、配置和扩展 Ash。" />
     <link rel="icon" href="./favicon.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/themes/vue.css" />
-    <style>
-      :root {
-        --theme-color: #a04e38;
-        --link-color: #a04e38;
-        --sidebar-width: 290px;
-        --content-max-width: 920px;
-      }
-
-      body {
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      }
-
-      .app-name-link {
-        font-weight: 700;
-        letter-spacing: -0.02em;
-      }
-
-      .app-nav {
-        margin-right: 32px;
-      }
-
-      .markdown-section {
-        max-width: var(--content-max-width);
-      }
-
-      .markdown-section h1,
-      .markdown-section h2,
-      .markdown-section h3,
-      .markdown-section h4 {
-        font-weight: 700;
-        letter-spacing: -0.02em;
-      }
-
-      .markdown-section img,
-      .markdown-section video {
-        max-width: 100%;
-        height: auto;
-      }
-
-      .markdown-section blockquote {
-        border-left: 4px solid #42b983;
-        padding: 0.5em 1em;
-        background: #f8fafc;
-      }
-
-      .markdown-section blockquote.alert-note {
-        border-left-color: #0969da;
-        background: #ddf4ff;
-      }
-
-      .markdown-section blockquote.alert-tip {
-        border-left-color: #1a7f37;
-        background: #dafbe1;
-      }
-
-      .markdown-section blockquote.alert-warning {
-        border-left-color: #9a6700;
-        background: #fff8c5;
-      }
-
-      .markdown-section blockquote.alert-important {
-        border-left-color: #8250df;
-        background: #fbefff;
-      }
-
-      .markdown-section blockquote.alert-caution {
-        border-left-color: #cf222e;
-        background: #ffebe9;
-      }
-
-      .markdown-section blockquote .alert-title {
-        display: flex;
-        align-items: center;
-        gap: 0.4em;
-        margin-bottom: 0.25em;
-        font-weight: 600;
-      }
-
-      .sidebar-nav li.folder > p,
-      .sidebar-nav li.folder > strong {
-        position: relative;
-        display: block;
-        padding-right: 20px;
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .sidebar-nav li.folder > p::after,
-      .sidebar-nav li.folder > strong::after {
-        content: "\25B6";
-        position: absolute;
-        top: 50%;
-        right: 0;
-        color: #999;
-        font-size: 0.6em;
-        transform: translateY(-50%);
-        transition: transform 0.2s;
-      }
-
-      .sidebar-nav li.folder.open > p::after,
-      .sidebar-nav li.folder.open > strong::after {
-        transform: translateY(-50%) rotate(90deg);
-      }
-
-      .sidebar-nav li.folder > ul {
-        display: none !important;
-        overflow: hidden;
-      }
-
-      .sidebar-nav li.folder.open > ul {
-        display: block !important;
-      }
-
-      .flow-diagram {
-        margin: 1.5rem 0;
-        overflow-x: auto;
-        text-align: center;
-      }
-
-      .flow-diagram svg {
-        max-width: 100%;
-        height: auto;
-      }
-
-      @media (max-width: 768px) {
-        .app-nav {
-          margin-right: 16px;
-        }
-
-        .markdown-section {
-          padding: 24px 20px;
-        }
-      }
-
-      body { color: #292724; background: #fffefa; }
-      .sidebar { background: #f8f7f3; border-right: 1px solid #e9e6df; }
-      .sidebar .app-name { text-align: left; padding: 8px 24px; font-size: 24px; }
-      .sidebar-nav { padding: 12px 24px; }
-      .sidebar-nav li > a { font-size: 14px; }
-      .sidebar-nav li.active > a { color: #a04e38; border-right-color: #a04e38; }
-      .markdown-section { max-width: 860px; padding: 64px 48px 100px; line-height: 1.85; }
-      .markdown-section h1 { font-size: 40px; line-height: 1.25; margin-bottom: 24px; }
-      .markdown-section h2 { margin-top: 44px; font-size: 24px; }
-      .markdown-section a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
-      .markdown-section pre { border: 1px solid #e9e6df; border-radius: 10px; background: #f7f6f2; }
-      .markdown-section blockquote { border-left: 3px solid #a04e38; background: #f6f2eb; color: #4d463e; }
-      .doc-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
-      .doc-card { display: block; border: 1px solid #e4e0d8; border-radius: 12px; padding: 24px; text-decoration: none !important; color: #292724 !important; }
-      .doc-card:hover { background: #f8f5ef; border-color: #b7aa96; }
-      .doc-card strong { display: block; margin-bottom: 8px; font-size: 18px; }
-      .doc-card span { color: #6b655e; font-size: 14px; }
-      @media(max-width: 768px) { .markdown-section { padding: 40px 24px; } .markdown-section h1 { font-size: 32px; } .doc-cards { grid-template-columns: 1fr; } }
-    </style>
+    <link rel="stylesheet" href="./docs-theme.css" />
   </head>
   <body>
+    <header class="docs-header">
+      <a class="docs-brand" href="#/"><img src="./favicon.svg" alt="" width="24" height="24" />Ash Docs</a>
+      <button class="docs-search-trigger" data-search-open aria-haspopup="dialog">搜索文档 <kbd>Ctrl K</kbd></button>
+      <a href="https://github.com/chogng/ash">GitHub</a>
+      <button data-theme-toggle aria-label="切换主题">主题</button>
+    </header>
+    <dialog id="docs-search" aria-label="搜索文档">
+      <div class="docs-dialog-heading">搜索文档<button type="button" aria-label="关闭搜索">Esc</button></div>
+    </dialog>
     <div id="app">正在加载文档…</div>
 
     <script>
       window.$docsify = {
         name: "Ash 文档",
-        repo: "https://github.com/chogng/ash-docs",
+        repo: false,
         homepage: "docs/getstarted/overview.md",
         loadSidebar: true,
-        loadNavbar: true,
+        loadNavbar: false,
         relativePath: true,
-        subMaxLevel: 2,
+        subMaxLevel: 0,
         auto2top: true,
         search: {
           placeholder: "搜索文档…",
@@ -258,58 +115,6 @@
               });
             });
           },
-          function collapsibleSidebar(hook) {
-            function initializeSidebar() {
-              var nav = document.querySelector(".sidebar-nav");
-              if (!nav) return;
-
-              nav.querySelectorAll("li").forEach(function (item) {
-                if (item.classList.contains("folder")) return;
-                var hasChildren = Array.from(item.children).some(function (child) {
-                  return child.tagName === "UL";
-                });
-                if (!hasChildren) return;
-
-                item.classList.add("folder");
-                var toggle = Array.from(item.children).find(function (child) {
-                  return ["P", "A", "STRONG"].includes(child.tagName);
-                });
-                if (toggle) {
-                  toggle.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    item.classList.toggle("open");
-                  });
-                }
-              });
-
-              var active = nav.querySelector("li.active");
-              if (active) {
-                var parent = active.parentElement;
-                while (parent) {
-                  if (parent.tagName === "LI" && parent.classList.contains("folder")) parent.classList.add("open");
-                  parent = parent.parentElement;
-                }
-              }
-
-              var currentPath = (window.location.hash.replace(/^#/, "") || "/").split("?")[0];
-              nav.querySelectorAll("a").forEach(function (link) {
-                var href = (link.getAttribute("href") || "").replace(/^#/, "").split("?")[0];
-                if (href && currentPath.indexOf(href) === 0) {
-                  var folder = link.closest("li.folder");
-                  while (folder) {
-                    folder.classList.add("open");
-                    var parentUl = folder.parentElement;
-                    folder = parentUl ? parentUl.closest("li.folder") : null;
-                  }
-                }
-              });
-            }
-
-            hook.doneEach(function () {
-              window.setTimeout(initializeSidebar, 0);
-            });
-          },
           function renderMermaid(hook) {
             hook.doneEach(function () {
               if (!window.mermaid) return;
@@ -341,5 +146,6 @@
     <script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/docsify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/plugins/search.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/plugins/zoom-image.min.js"></script>
+    <script src="./docs-shell.js"></script>
   </body>
 </html>
