@@ -72,31 +72,21 @@ When product behavior changes, update the product source and the corresponding d
 
 Use a short-lived branch when a change is risky or needs to remain unpublished for a long time. The branch does not need to result in a pull request.
 
-## Publish a release
+## Publish with GitHub Pages
 
-Publishing is a separate, manual step. Pushing `main` does not automatically publish production.
+Publishing uses `.github/workflows/pages.yml`. A push to `main` runs the same
+`npm run verify` suite, uploads `dist/`, and deploys that artifact to GitHub Pages.
+Pull requests run validation without deploying.
 
-1. Start from the latest `main` and run `npm run verify`.
+In the repository settings, set **Pages → Build and deployment → Source** to
+**GitHub Actions**. The workflow uses the `github-pages` environment; preserve
+any review protection configured there. The deployment job reports the live URL.
 
-2. Create the production build:
+Before pushing, preview the site and verify navigation, search, article links,
+and responsive layout. GitHub project Pages may live under `/ash-docs/`, so use
+relative asset paths and test that subpath as well as the domain root.
 
-   ```bash
-   npm run build
-   ```
-
-   The publishing helper copies the same runtime-rendered Docsify site into the deployable `dist/` directory. Vite is not part of the documentation runtime.
-
-3. Publish the build to the configured staging environment and verify the rendered pages, navigation, search, links, and metadata.
-
-4. After staging passes, tag the exact commit that is ready for production:
-
-   ```bash
-   git tag -a docs-release-YYYY-MM-DD -m "Publish docs YYYY-MM-DD"
-   git push origin main --follow-tags
-   ```
-
-5. Manually promote the same build to production and run a smoke test against the public URL.
-
-The repository carries the Sites project handoff in `.openai/hosting.json`, but it does not currently contain a `deploy` script or a production publishing workflow. Use the configured Sites publisher for this project rather than assuming that `wrangler deploy` or `git push` publishes the site.
-
-To roll back, redeploy a previously tagged build after confirming the tag and the corresponding `dist/` artifact.
+After deployment, check the live homepage and a deep article link. Do not report
+a release as published until the workflow and live checks have passed. To roll
+back, revert the source change and let the same workflow deploy the reverted
+commit. Production publishing no longer uses Sites or a separate Sites handoff.

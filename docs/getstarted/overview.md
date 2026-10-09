@@ -1,6 +1,6 @@
 ---
 ContentId: 0d20f0c8-43c1-4c3f-a69a-79f8c9b558e1
-DateApproved: 9/21/2026
+DateApproved: 10/9/2026
 MetaDescription: 选择 Ash 的桌面工作台或终端界面，配置模型并开始第一个开发任务。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -9,53 +9,42 @@ Keywords:
   - Desktop
   - TUI
 ---
-# Ash 概览
+# 用 Ash 完成你的下一项开发任务
 
-Ash 是一个以 Agent 为中心的开发工作区。你可以在桌面工作台中编辑代码、管理会话，也可以在终端中向 Agent 提问和执行任务。本页帮助你选择使用方式，并完成第一次任务。
+在同一个工作区里阅读代码、与 Agent 协作并检查结果。你可以使用 Ash 桌面应用，也可以从终端使用 Ash Code。
 
-## 选择使用方式
+<div class="doc-cards">
+<a class="doc-card" href="#/docs/getstarted/first-task"><strong>开始第一个任务 →</strong><span>从理解项目开始，再完成一项范围明确的修改。</span></a>
+<a class="doc-card" href="#/docs/agents/sessions"><strong>继续已有的工作 →</strong><span>了解会话、任务状态，以及何时继续或新建会话。</span></a>
+<a class="doc-card" href="#/docs/customize/skills"><strong>让 Agent 遵循你的方法 →</strong><span>用 Skills 保存可复用的工作步骤。</span></a>
+<a class="doc-card" href="#/docs/customize/mcp-servers"><strong>连接工作需要的工具 →</strong><span>配置 MCP 服务器并检查工具是否可用。</span></a>
+</div>
 
-| 产品 | 适合什么工作 | 从源码启动 |
-| --- | --- | --- |
-| Ash 桌面工作台 | 同时使用编辑器、聊天、文件和开发工具 | `just ash-desktop` |
-| Ash Code 终端界面 | 在终端中提问、执行任务和管理会话 | `just ash` |
-| Rust 桌面应用 | 使用以终端为主的桌面工作区 | `just app` |
+## 选择适合你的入口
 
-不同产品的界面和可用入口有所区别。本文中的 Agent 操作以桌面工作台和 Ash Code 为主。安装开发依赖和启动步骤见[从源码运行 Ash](/docs/getstarted/run-from-source.md)。
+使用桌面应用时，你可以在编辑器中直接处理文件，也可以打开 Agents 窗口，把工作交给 Agent。搜索、Git、终端和差异视图帮助你检查项目与修改结果。
 
-## 准备模型和工作区
+如果更喜欢终端，使用 Ash Code。安装 CLI 后，在项目目录运行 `ash` 打开交互界面，或使用 `ash ask` 提问。桌面和终端的具体入口可能不同，请按对应指南操作。
 
-1. 打开包含项目代码的工作区。
-2. 配置模型供应商并完成所需登录或凭据设置。Ash Code 可以从 `/config` 的 **Providers** 页开始。
-3. 选择要使用的主模型。桌面工作台使用聊天输入区的模型选择器，Ash Code 使用 `/model`。
-4. 创建一个会话，确认当前目录是要处理的项目。
+## 从一个可以检查结果的任务开始
 
-模型出现在列表中表示你可以选择它。实际请求仍需要有效的供应商配置、访问凭据和服务连接。
+先让 Agent 解释项目，再给出明确的修改目标。例如：
 
-## 开始第一次任务
-
-先选择范围明确、结果可以验证的任务。例如：
-
-```prompt
-检查设置页保存后状态不刷新的原因。只修改设置模块，运行相关测试，并说明修改了什么、测试是否通过。
+```text
+先查清设置页保存后不刷新的原因。说明你找到的依据，暂时不要修改文件。
 ```
 
-发送后，查看 Agent 的读取、搜索和工具活动。出现批准请求时，检查具体动作和目标，再决定是否允许。批准方式见[权限与批准](/docs/configure/permissions.md)。
+确认方向后，再要求它修改并运行相关测试。执行中检查工具活动与批准请求，结束后阅读差异和测试结果。
 
-Agent 完成回复后，检查文件改动与测试结果。需要调整时，在同一会话继续说明要求；要处理无关工作时，创建新会话。
+[开始第一个任务](/docs/getstarted/first-task.md)
 
-## 按任务添加能力
+## 配置你的工作方式
 
-| 你要做什么 | 使用什么 |
-| --- | --- |
-| 复用团队的检查步骤或工作方法 | [Skills](/docs/customize/skills.md) |
-| 读取外部服务的数据或调用其操作 | [MCP 服务器](/docs/customize/mcp-servers.md) |
-| 检查复杂方案、反复失败的假设或完成证据 | [Advisor 顾问](/docs/agents/advisor.md) |
+- [管理会话与任务](/docs/agents/sessions.md)：继续已有工作，或把无关目标放到新会话。
+- [使用 Skills](/docs/customize/skills.md)：复用项目的工作方法。
+- [连接 MCP 服务器](/docs/customize/mcp-servers.md)：让 Agent 使用外部工具。
+- [理解权限与批准](/docs/configure/permissions.md)：知道 Agent 正在请求什么访问。
 
-Skill 提供工作方法，MCP 提供工具，Advisor 提供第二意见。它们都不能代替你对任务结果的检查。
+## 还没有运行 Ash？
 
-## 下一步
-
-* [了解 Agent 如何完成任务](/docs/agents/overview.md)
-* [管理会话与任务](/docs/agents/sessions.md)
-* [查看工具活动](/docs/reference/tools.md)
+当前仓库提供[从源码运行指南](/docs/getstarted/run-from-source.md)。公开安装包和支持的平台应以实际发布内容为准。本指南不会把本地浏览器开发入口描述成托管在线服务。

@@ -5,12 +5,12 @@
     <title>Ash 文档</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="学习如何使用、配置和扩展 Ash。" />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href="./favicon.svg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4.13.1/lib/themes/vue.css" />
     <style>
       :root {
-        --theme-color: #0f766e;
-        --link-color: #0f766e;
+        --theme-color: #a04e38;
+        --link-color: #a04e38;
         --sidebar-width: 290px;
         --content-max-width: 920px;
       }
@@ -140,6 +140,25 @@
           padding: 24px 20px;
         }
       }
+
+      body { color: #292724; background: #fffefa; }
+      .sidebar { background: #f8f7f3; border-right: 1px solid #e9e6df; }
+      .sidebar .app-name { text-align: left; padding: 8px 24px; font-size: 24px; }
+      .sidebar-nav { padding: 12px 24px; }
+      .sidebar-nav li > a { font-size: 14px; }
+      .sidebar-nav li.active > a { color: #a04e38; border-right-color: #a04e38; }
+      .markdown-section { max-width: 860px; padding: 64px 48px 100px; line-height: 1.85; }
+      .markdown-section h1 { font-size: 40px; line-height: 1.25; margin-bottom: 24px; }
+      .markdown-section h2 { margin-top: 44px; font-size: 24px; }
+      .markdown-section a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+      .markdown-section pre { border: 1px solid #e9e6df; border-radius: 10px; background: #f7f6f2; }
+      .markdown-section blockquote { border-left: 3px solid #a04e38; background: #f6f2eb; color: #4d463e; }
+      .doc-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+      .doc-card { display: block; border: 1px solid #e4e0d8; border-radius: 12px; padding: 24px; text-decoration: none !important; color: #292724 !important; }
+      .doc-card:hover { background: #f8f5ef; border-color: #b7aa96; }
+      .doc-card strong { display: block; margin-bottom: 8px; font-size: 18px; }
+      .doc-card span { color: #6b655e; font-size: 14px; }
+      @media(max-width: 768px) { .markdown-section { padding: 40px 24px; } .markdown-section h1 { font-size: 32px; } .doc-cards { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>

@@ -19,11 +19,7 @@ for (const directory of ["docs", "public"]) {
   fs.cpSync(source, destination, { recursive: true });
 }
 
-const hostingConfig = path.join(ROOT, ".openai", "hosting.json");
-if (fs.existsSync(hostingConfig)) {
-  const hostingOutput = path.join(OUTPUT_DIRECTORY, ".openai");
-  fs.mkdirSync(hostingOutput, { recursive: true });
-  fs.copyFileSync(hostingConfig, path.join(hostingOutput, "hosting.json"));
-}
+// GitHub Pages serves the generated static site without Jekyll processing.
+fs.writeFileSync(path.join(OUTPUT_DIRECTORY, ".nojekyll"), "");
 
 console.log("Built the Docsify site in dist/.");

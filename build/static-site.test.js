@@ -23,3 +23,11 @@ test("builds a Docsify entry point and generated navigation", () => {
   assert.ok(fs.existsSync(path.join(DIST_ROOT, "docs", "getstarted", "overview.md")));
   assert.ok(fs.existsSync(path.join(DIST_ROOT, "favicon.svg")));
 });
+
+
+test("ships a Pages artifact without the legacy hosting handoff", () => {
+  assert.ok(fs.existsSync(path.join(DIST_ROOT, ".nojekyll")));
+  assert.ok(!fs.existsSync(path.join(DIST_ROOT, ".openai")));
+  assert.match(readDist("index.html"), /href="\.\/favicon\.svg"/);
+  assert.ok(fs.existsSync(path.join(DIST_ROOT, "docs", "getstarted", "first-task.md")));
+});

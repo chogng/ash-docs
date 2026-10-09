@@ -24,7 +24,7 @@ Open `http://localhost:3000`. Like `vscode-docs`, the serve command generates th
 
 This is a single-maintainer repository. Work directly on `main`; pull requests are not required. Keep commits focused, run the verification suite before pushing, and use a short-lived branch only for risky or long-running work.
 
-The source workflow and the production publishing workflow are separate. A push to `main` updates the source repository but does not by itself publish production. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the maintenance checklist, staging step, release tags, and publishing handoff.
+A push to `main` runs validation and deploys the generated static site to GitHub Pages. Pull requests validate without deploying. Set the repository Pages source to GitHub Actions before the first deployment. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the maintenance and verification checklist.
 
 ## Validate a change
 
