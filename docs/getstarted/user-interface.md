@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/17/2026
-SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
+SourceRevision: 3ca3f4af37dfeb05ebcc27d2ffa769ab742aea84
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -91,6 +91,10 @@ Agents 活动栏还提供与 Chat、Code 分开的入口：
 ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历史，不是本地开发会话列表。搜索只筛选已经加载的历史。具体步骤见[使用 ChatGPT](/docs/agents/chatgpt.md)。
 
 需要重复执行一个任务时，打开[自动化任务](/docs/agents/automations.md)查看时间、执行位置和运行结果。
+
+## 在通话中查看共享文档
+
+当前构建和窗口提供通话服务时，可从命令面板执行 **Open Calls**，打开底部的 **Calls** 面板。已连接的通话中，所有者可以关联正在远程协作的文档，参与者可用独立的文档邀请打开它。具体入口、前提和取消关联的权限边界见[在通话中关联共享文档](/docs/editing/call-documents.md)。
 
 ## 查看 Agent 执行记录
 

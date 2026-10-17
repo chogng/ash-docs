@@ -1,7 +1,7 @@
 ---
 ContentId: e5f4e518-9ec7-43cc-b3a8-3df5f21e60be
-DateApproved: 10/9/2026
-SourceRevision: 2e6f27585f3fe1676eb1f5ec32c140bed175697c
+DateApproved: 10/17/2026
+SourceRevision: 3ca3f4af37dfeb05ebcc27d2ffa769ab742aea84
 MetaDescription: 使用 Ash Code 命令行启动终端或桌面、运行单次问答和非交互任务，保存 JSONL 与执行记录，并按退出码安全续接会话。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -30,6 +30,8 @@ ash exec --help
 帮助和版本查询不会启动后台服务。后续问答、任务执行和会话管理会连接当前配置目录的共享后台；尚未运行时可能启动它。桌面与 CLI 使用同一个配置目录时可以查看同一批会话。
 
 找不到 `ash` 时，先检查已有安装的可执行文件位置和 `PATH`。从源码使用的入口见[从源码运行](/docs/getstarted/run-from-source.md)；`just ash-code` 是源码仓库的启动任务，不是 `ash code` 子命令。本文不保证某个平台或版本已有可下载的安装包。
+
+`PATH` 中的 `ash` 由独立 CLI 的安装和更新流程维护。桌面应用不再提供安装或卸载 `ash` 命令到 `PATH` 的命令；需要从终端打开桌面应用时，使用 `ash app`。
 
 ## 选择交互、桌面或单次执行
 
