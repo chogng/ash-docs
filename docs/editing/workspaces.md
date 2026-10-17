@@ -1,8 +1,8 @@
 ---
 ContentId: 3487a64b-ff9e-4fb2-af02-632691c50d7e
-DateApproved: 10/9/2026
-SourceRevision: 2e6f27585f3fe1676eb1f5ec32c140bed175697c
-MetaDescription: 在 Ash 桌面打开项目文件夹，选择目录权限，返回最近项目，设置窗口恢复，并了解多根工作区的适用范围。
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
+MetaDescription: 在 Ash 桌面打开项目文件夹，选择目录权限，返回最近项目，使用独立编辑器窗口，并了解多根工作区和窗口恢复。
 MetaSocialImage: ../../og.png
 Keywords:
   - Ash
@@ -48,9 +48,25 @@ Keywords:
 2. 在最近项目列表中找到需要的文件夹，核对它显示的路径。
 3. 选择项目，等待文件树更新。
 
-最近项目用于返回已打开过的位置，不保存项目文件的副本。目录被移动或删除后，需要通过 **打开文件夹...** 选择新位置。当前列表最多保留 12 个本地项目位置。
+最近项目用于返回已打开过的位置，不保存项目文件的副本。目录被移动或删除后，需要通过 **打开文件夹...** 选择新位置。当前列表最多保留 12 个项目记录，包括文件夹和工作区文件。桌面窗口共享最近项目记录；浏览器入口保存在相应浏览器配置中。
 
 多根工作区也会留下最近记录，但当前版本从欢迎页重开工作区文件的路径仍有限制。遇到“不是目录”一类错误时，使用下文的桌面工作区启动参数重新打开，或先打开所需的单个目录。
+
+## 把编辑器放到单独窗口
+
+需要在另一块显示器上查看文件时，可以为当前项目打开独立编辑器窗口。
+
+1. 右键要查看的编辑器标签。
+2. 选择 **Move into New Window**（移至新窗口），把该标签移出主窗口。需要在两个窗口都保留标签时，选择 **Copy into New Window**（复制到新窗口）。
+3. 在新窗口继续编辑。要回到原来的布局，关闭这个独立窗口；移出的编辑器会回到主窗口。
+
+命令面板中的对应命令名是 **Move to New Window** 和 **Copy to New Window**。需要一次移出整个编辑器组时，使用 **Move Editor Group into New Window**；**Copy Editor Group into New Window** 保留原组。
+
+复制的是编辑器视图，文件内容和未保存更改仍然共享。它不会生成文件副本，也不会建立新的项目工作区。要保留另一份内容，应显式另存文件。
+
+独立窗口标题栏的 **Turn On Compact Mode**（开启紧凑模式）会隐藏标签栏、状态栏和搜索入口，给正文留出更多空间。选择 **Turn Off Compact Mode** 恢复；主窗口的布局不受影响。桌面上的 **Switch Window...** 可以切换到这些窗口。
+
+浏览器入口可能拦截新窗口。出现相关提示时，检查浏览器是否允许当前站点打开弹出窗口，然后重试。
 
 ## 选择启动时恢复哪些窗口
 
@@ -113,7 +129,6 @@ Keywords:
 
 ## 下一步
 
-- [认识界面和调整布局](/docs/getstarted/user-interface.md)
-- [编辑文件与导航代码](/docs/editing/editing-and-navigation.md)
-- [搜索与替换项目内容](/docs/editing/search-and-replace.md)
-- [使用集成终端](/docs/terminal/basics.md)
+* [认识界面和调整布局](/docs/getstarted/user-interface.md)
+* [编辑文件与导航代码](/docs/editing/editing-and-navigation.md)
+* [使用集成终端](/docs/terminal/basics.md)

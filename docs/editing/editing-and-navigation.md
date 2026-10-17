@@ -1,8 +1,8 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
-DateApproved: 10/9/2026
-SourceRevision: 2ea286048154d769ac465e77b26a5c6112514d77
-MetaDescription: 在 Ash 中打开和保存文件，使用文件内查找、多光标、行号跳转和代码导航完成日常编辑。
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
+MetaDescription: 在 Ash 中编辑和保存文件，查找替换、跳转代码、筛选和复制问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
   - Ash
@@ -12,7 +12,7 @@ Keywords:
 ---
 # 编辑文件与导航代码
 
-在 Ash 桌面工作台中，你可以直接打开文件、修改文本、定位代码，再保存结果。本指南从一次普通编辑开始，介绍文件内查找、多光标、行号跳转和定义导航。
+在 Ash 桌面工作台中，你可以打开文件、修改文本、定位代码，再保存结果。本指南介绍日常编辑、问题定位和 Markdown 预览，也说明 Design 画布的自动保存方式。
 
 ## 开始之前
 
@@ -32,6 +32,16 @@ Keywords:
 保存成功后，当前编辑内容会写入该文件。需要新建文本时，运行 **New Untitled Text Editor**，或按 `Ctrl+N`（macOS：`Cmd+N`）；首次保存时选择文件名和位置。
 
 一次替换或多光标编辑改错了，可以先撤销并检查恢复的内容，再保存。不要把关闭标签页当成确认保存成功的办法。
+
+## 保存 Design 画布
+
+在 Agents 窗口的 **Creator > Design** 中，画布更改会自动保存。未命名草稿也会保存在当前用户配置中；重新进入同一工作区的 Design 时，会恢复上次文档。打开已有设计文件后，修改会自动写回该文件。
+
+需要另存一份可交付文件时，在画布上右键选择 **Save a copy**（保存副本），并选择不同的目标位置。需要在其他应用中查看图形时，使用 **Export SVG**；重新打开设计使用 **Open design**。这些操作在画布右键菜单中，无需寻找顶部的手动保存栏。
+
+如果出现无法保存的提示，当前更改仍保留在画布中。先检查目标文件和权限，再从右键菜单选择 **Retry saving**（重试保存）。桌面关闭流程会等待保存；保存失败时先处理错误，不要强制退出。自动保存不代替独立备份，也不会自动发布组件库。
+
+此行为适用于 **Design**。Creator 的其他画布工作空间仍使用各自的手动保存操作。
 
 ## 按文件名找到项目文件
 
@@ -101,11 +111,46 @@ Keywords:
 
 定义、引用、类型定义和实现跳转取决于当前文件的语言支持。命令不可用或没有结果时，先确认打开的是正确文件，并检查该语言功能是否已经可用；普通文本文件未必有符号导航结果。
 
+语法着色和语言服务是不同能力。内置语言使用 Tree-sitter 提供基础着色；看到颜色不代表该语言已经具备定义、引用或诊断服务。当前高亮不运行 TextMate 语法，旧的 `tokenColors`、`textMateRules` 和 `.tmTheme` 配置不再适用。需要调整代码颜色时，使用当前主题及 `editor.semanticTokenColorCustomizations.rules`，见[调整设置](/docs/configure/settings.md)。
+
+## 从问题面板定位错误
+
+**Problems**（问题）集中显示当前语言功能提供的错误、警告、信息和提示。选择底部面板中的 **Problems**，或选择状态栏的问题计数，打开列表。
+
+1. 在面板标题栏的 **Filter problems**（筛选问题）中输入错误消息、文件名或路径的一部分。
+2. 选择输入框内的 **Filter**（筛选）按钮，勾选要查看的 **Errors**、**Warnings**、**Information** 或 **Hints**。
+3. 展开对应文件，选择问题条目，跳到它的行列位置。
+4. 修改并保存文件，再查看诊断是否更新。
+
+**Collapse All**（全部折叠）收起文件分组。**Copy Problems**（复制问题）将当前筛选结果复制为文本，包含文件路径、行列、严重级别、消息和诊断来源，适合粘贴到问题报告或 Agent 对话中。折叠文件分组不会把其中匹配的问题排除在复制结果之外。
+
+显示没有匹配项时，选择 **Clear Filters**（清除筛选），同时恢复文本和严重级别筛选。**当前没有问题**表示没有收到诊断，不表示已经运行所有测试；没有诊断且尚未打开项目时，列表会提示先打开文件夹。
+
+## 预览 Markdown 和数学公式
+
+打开 Markdown 文件后，可以从命令面板运行 **Open Preview to the Side**，在旁边查看渲染结果。**Reopen as Rich Text** 切换到富文本编辑，**Reopen as Source** 回到源码编辑。预览只用于查看；编辑后仍要保存文件。
+
+内置 **Markdown Math** 扩展为 Markdown 预览、富文本和聊天提供公式渲染。可以先在 Markdown 中试写：
+
+```markdown
+行内公式：$E = mc^2$。
+
+$$
+\frac{a}{b}
+$$
+```
+
+也支持 `\(...\)`、`\[...\]` 和完整的 `math` 围栏代码块。普通代码示例、转义后的分隔符和未完成的公式保持原文显示。
+
+设置 `markdown.math.enabled` 控制公式渲染，默认开启。需要自定义 TeX 宏时，使用 `markdown.math.macros`。扩展被禁用、后端不可用或某条公式无法渲染时，会保留公式源码；这不会阻止 Markdown 源码编辑。浏览器入口的 Markdown 预览和公式功能需要可用且已授权的后端，离线语法着色不等于公式渲染可用。
+
 ## 并排查看两个位置
 
 需要一边阅读调用代码、一边修改实现时，运行 **Split Editor**，或按 `Ctrl+\`（macOS：`Cmd+\`）。在另一个编辑器组打开目标文件后，就能并排阅读和修改。
 
 从搜索结果打开的文件可能处于预览标签页。如果想保留这个标签页，右键标签并选择 **Keep Open**。需要重新打开刚关闭的文件时，使用 **Reopen Closed Editor**，默认快捷键是 `Ctrl+Shift+T`（macOS：`Cmd+Shift+T`）。
+
+需要把文件放到另一块显示器时，可以[把编辑器移至或复制到独立窗口](/docs/editing/workspaces.md#把编辑器放到单独窗口)。复制编辑器窗口仍然编辑同一份文件内容。
 
 ## 常见问题
 
@@ -123,16 +168,16 @@ Keywords:
 
 命令 ID 可用于识别同名命令和配置快捷键。
 
-- **Show All Commands**：`workbench.action.showCommands`
-- **Open File...**：`workbench.action.files.openFile`
-- **Save**：`workbench.action.files.save`
-- **Find**：`actions.find`
-- **Replace**：`editor.action.startFindReplaceAction`
-- **Go to Line/Column...**：`workbench.action.gotoLine`
-- **Go to Definition**：`editor.action.revealDefinition`
-- **Show All Editors**：`workbench.action.showAllEditors`
+* **Show All Commands**：`workbench.action.showCommands`
+* **Open File...**：`workbench.action.files.openFile`
+* **Save**：`workbench.action.files.save`
+* **Find**：`actions.find`
+* **Replace**：`editor.action.startFindReplaceAction`
+* **Go to Line/Column...**：`workbench.action.gotoLine`
+* **Go to Definition**：`editor.action.revealDefinition`
+* **Show All Editors**：`workbench.action.showAllEditors`
 
 ## 下一步
 
-- [跨文件搜索与替换](/docs/editing/search-and-replace.md)
-- [让 Agent 协助完成第一个任务](/docs/getstarted/first-task.md)
+* [跨文件搜索与替换](/docs/editing/search-and-replace.md)
+* [让 Agent 协助完成第一个任务](/docs/getstarted/first-task.md)

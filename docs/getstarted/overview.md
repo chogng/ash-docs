@@ -1,6 +1,7 @@
 ---
 ContentId: 0d20f0c8-43c1-4c3f-a69a-79f8c9b558e1
-DateApproved: 10/9/2026
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
 MetaDescription: 选择 Ash 的桌面工作台或终端界面，配置模型并开始第一个开发任务。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -26,6 +27,8 @@ Keywords:
 ## 选择适合你的入口
 
 使用桌面应用时，你可以在编辑器中直接处理文件，也可以打开 Agents 窗口，把工作交给 Agent。搜索、Git、终端和差异视图帮助你检查项目与修改结果。
+
+Agents 窗口还提供[独立的 ChatGPT 页面](/docs/agents/chatgpt.md)，用于继续 ChatGPT 历史对话、管理项目和使用语音。需要按时间重复执行任务时，使用[自动化任务](/docs/agents/automations.md)。
 
 如果更喜欢终端，使用 Ash Code。安装 CLI 后，在项目目录运行 `ash` 打开交互界面，或使用 `ash ask` 提问。桌面和终端的具体入口可能不同，请按对应指南操作。
 
@@ -61,7 +64,7 @@ Keywords:
 
 ## 还没有运行 Ash？
 
-当前仓库提供[从源码运行指南](/docs/getstarted/run-from-source.md)。公开安装包和支持的平台应以实际发布内容为准。本指南不会把本地浏览器开发入口描述成托管在线服务。
+当前仓库提供[从源码运行指南](/docs/getstarted/run-from-source.md)。本次文档更新依据 2026 年 10 月 17 日的主分支实现；公开安装包的功能和支持平台以实际发布版本为准。本指南不会把本地浏览器开发入口描述成托管在线服务。
 
 ## 遇到问题
 

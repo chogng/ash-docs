@@ -1,7 +1,7 @@
 ---
 ContentId: 81a4a2f0-cf0d-45c4-8f2b-6cc245c8b7b4
-DateApproved: 10/9/2026
-SourceRevision: 2ea286048154d769ac465e77b26a5c6112514d77
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
 MetaDescription: 查找和修改 Ash 键盘快捷方式，录制组合键，编辑 JSON，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -49,6 +49,21 @@ Ash 可按顺序记录最多四段组合键。例如先按一组键，再松开�
 不熟悉格式时，先在图形界面添加一条绑定，再打开 JSON 查看生成的内容。保留其他绑定和注释，修改后保存。不要把普通设置的 `"设置键": 值` 片段粘贴进这个文件。
 
 上下文条件决定绑定在什么界面状态下生效。如果命令只能在特定编辑器或视图中使用，应在对应位置测试，而不是只在快捷键页里按键。
+
+## 设置截图快捷键
+
+在快捷键页中搜索 **聊天：添加截图**（Chat: Add Screenshot），或输入 `@command:workbench.action.chat.attachScreenshot` 精确定位。
+
+| 平台 | 默认快捷键 |
+| --- | --- |
+| Windows 和 Linux | `Ctrl+Alt+S` |
+| macOS | `Control+Command+A` |
+
+修改这条绑定后，应用内截图和全局截图使用同一组按键。桌面应用的全局截图默认关闭；需要在 Ash 处于后台时使用，先到设置中开启 `screenshot.globalShortcut`。浏览器开发界面不支持此全局快捷键。
+
+全局快捷键必须是系统支持的单组按键，不能使用连续组合键。若系统或其他应用已占用它，Ash 会显示通知。选择通知中的 **修改快捷键** 可直接打开对应命令。修改失败时，通知可能说明之前的快捷键仍可使用；不要把保存了新绑定理解成全局注册成功。
+
+开始截图后的选区移动、标注和确认按键，参见[截图与标注](/docs/editing/screenshots.md)。
 
 ## 保存失败或没有生效
 

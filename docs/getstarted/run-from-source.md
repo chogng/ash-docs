@@ -1,6 +1,7 @@
 ---
 ContentId: 9bf1c576-5af4-43c5-a84b-5a8272c69a2c
-DateApproved: 10/9/2026
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
 MetaDescription: 准备仓库指定的 Rust、Node.js 和 pnpm 环境，从源码启动 Ash 桌面工作台、终端界面或浏览器开发界面。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -26,6 +27,8 @@ cd ash
 ## 准备与源码匹配的环境
 
 核对源码中的 `.nvmrc`、`package.json`、`rust-toolchain.toml` 和构建指南。Windows、macOS、Linux 所需的原生编译工具不同，不能只安装 Node.js 就认为环境已齐全。
+
+Ash 最低要求 **Git 2.40.0**。在运行 Ash 的环境中执行 `git --version` 检查；Desktop、App Server、TUI 和 Agent 使用同一要求。版本过旧时，Git 仓库操作会被阻止。升级 Git 后重启 Ash；配置了 `git.path` 时，也要更新该路径。
 
 首次构建可能需要下载依赖并编译 Rust 后端。出现错误时，优先检查最先失败的步骤，保留完整错误信息。
 

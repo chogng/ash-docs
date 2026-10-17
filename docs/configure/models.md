@@ -1,7 +1,7 @@
 ---
 ContentId: 9672d99a-bb4e-4f5c-bbbc-c7e16f687b21
-DateApproved: 10/9/2026
-SourceRevision: 2ea286048154d769ac465e77b26a5c6112514d77
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
 MetaDescription: 在 Ash 桌面应用和 Ash Code 中配置 API 密钥、连接订阅账号、添加自定义供应商，并选择和验证模型。
 MetaSocialImage: ../../og.png
 ---
@@ -10,6 +10,8 @@ MetaSocialImage: ../../og.png
 使用 Ash 处理任务前，先连接一项你有权使用的模型服务，再选择模型。本页带你完成 API 密钥配置、订阅账号连接和一次最小验证，也说明怎样添加自定义端点、切换模型和排查连接问题。
 
 界面名称以下文括号中的英文为定位参考。模型列表、账号状态和服务权限是三件不同的事：看到某个模型，或已经保存密钥，都不代表该账号一定可以调用它。
+
+Agents 活动栏中的[独立 ChatGPT 页面](/docs/agents/chatgpt.md)使用 ChatGPT 对话和模型，不是本页的 Agent 模型供应商设置。它读取桌面主进程所在机器的 Codex ChatGPT 登录；下文 Ash Code 订阅连接读取的是运行 Ash 后端的主机。使用远端后端时，注意两者可能不是同一台机器。
 
 ## 1. 选择接入方式
 
@@ -54,7 +56,7 @@ BigModel 和 Z.AI 的连接使用统一的 GLM 模型标识。不要因为模型
 
 不同入口的连接方式如下：
 
-* **ChatGPT**：复用运行 Ash 后端的主机上已有且有效的 Codex ChatGPT 登录。先在 Codex 完成登录，再回到 Ash 的 ChatGPT 页面连接。当前这个入口不会替你创建或续期 Codex 登录。
+* **ChatGPT**：复用运行 Ash 后端的主机上已有且有效的 Codex ChatGPT 登录。先在 Codex 完成登录，再回到 Ash Code 的 ChatGPT 订阅连接页。当前这个入口不会替你创建或续期 Codex 登录。
 * **Kimi**：连接 Ash 自己的 Kimi Code 订阅登录。出现授权地址和一次性代码时，在页面指定的网站完成授权。
 * **Super Grok**：连接已有可用的本机 Grok 登录，或按页面给出的设备码授权流程登录。
 * **BigModel** 和 **Z.AI**：订阅分组中的这两个入口连接对应的 Coding Plan。可以只读复用匹配的本机 ZCode 登录；没有可用凭据时，按浏览器授权流程登录。它们与 **API** 分组中的同名入口不同。

@@ -36,6 +36,10 @@
       [
         "项目搜索与替换",
         "/docs/editing/search-and-replace"
+      ],
+      [
+        "截图与标注",
+        "/docs/editing/screenshots"
       ]
     ]
   },
@@ -50,6 +54,14 @@
       [
         "会话与任务",
         "/docs/agents/sessions"
+      ],
+      [
+        "使用 ChatGPT",
+        "/docs/agents/chatgpt"
+      ],
+      [
+        "自动化任务",
+        "/docs/agents/automations"
       ],
       [
         "Advisor 顾问",

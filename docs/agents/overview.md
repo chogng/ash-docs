@@ -1,7 +1,7 @@
 ---
 ContentId: 3e06da13-10bd-45be-9825-72cb4a6bbfd5
-DateApproved: 10/9/2026
-SourceRevision: 2e6f27585f3fe1676eb1f5ec32c140bed175697c
+DateApproved: 10/17/2026
+SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
 MetaDescription: 向 Ash Agent 提交可验证的开发任务，了解上下文、工具调用、权限检查和 Advisor 咨询如何协同工作。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -14,6 +14,13 @@ Keywords:
 # Agent 概览
 
 Ash Agent 根据你的要求读取代码、调用工具、修改文件并验证结果。你可以查看工具活动、补充要求，并在需要批准时决定是否执行。本页帮助你提交清楚的任务，并判断结果是否满足要求。
+
+## 选择聊天入口
+
+* **Chat**：让 Ash Agent 在项目中读取代码、使用工具并完成开发任务。本文介绍这个入口。
+* **ChatGPT**：在桌面 Agents 窗口中打开已有 ChatGPT 会话、管理项目分组，或使用附件和语音聊天。它有独立的历史、模型选择和输入区，操作见[使用 ChatGPT](/docs/agents/chatgpt.md)。
+
+在 Agent 的模型选择器中选择 OpenAI 模型，不会切换到 ChatGPT 页面。开始前先确认自己正在使用哪个入口。
 
 ## 开始一项任务
 
@@ -101,6 +108,8 @@ Ash Code 使用 `/model`，选择会写入当前连接的默认模型配置。�
 ## 调整方向和检查结果
 
 任务进行中可以补充要求。工作台在模式不变且未选择新 Skill 时，发送消息会补充当前可接收输入的任务；切换模式或选择 Skill 会把消息排队为新一轮。Ash Code 运行中按 `Enter` 排队，按 `Ctrl+Enter` 单次补充当前任务。补充输入不能改换当前任务的模型、模式或工具选择；完整条件、停止与重试步骤见[会话与任务](/docs/agents/sessions.md)。
+
+需要快速检查执行情况时，在 Agents 窗口的对话菜单中选择**显示 Agent 输出**（**Show Agent Output**）。输出面板显示所选会话的执行摘要，记录中的链接可以打开对应的[执行 Trace](/docs/agents/trace.md)。切换聊天后，要再次执行该命令才会切换正在查看的输出。
 
 收到完成回复后，检查：
 
