@@ -1,7 +1,7 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
 DateApproved: 10/18/2026
-SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
+SourceRevision: c44bf155db312f4a2e1847988ea247b1699de8e5
 MetaDescription: 在 Ash 中编辑和保存文件，在差异视图修改工作文件，查找替换、跳转代码、筛选问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -30,6 +30,8 @@ Keywords:
 4. 检查有没有保存失败提示，再继续下一项修改。
 
 保存成功后，当前编辑内容会写入该文件。需要新建文本时，运行 **New Untitled Text Editor**，或按 `Ctrl+N`（macOS：`Cmd+N`）；首次保存时选择文件名和位置。
+
+需要使用结构化文档时，运行 **新建文档**，保存为 `.ash-doc`。从 Markdown 或纯文本转换，以及导出为其他文本格式的步骤，见[创建和转换文档](/docs/editing/documents.md)。
 
 一次替换或多光标编辑改错了，可以先撤销并检查恢复的内容，再保存。不要把关闭标签页当成确认保存成功的办法。
 
