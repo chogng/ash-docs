@@ -24,7 +24,7 @@ Keywords:
 
 ## 打开文件并保存一次修改
 
-1. 在文件资源管理器中打开目标文件。也可以运行 **Open File...**，或按 `Ctrl+O`（macOS：`Cmd+O`）选择文件。
+1. 在文件资源管理器中打开目标文件。也可以运行 **Open File...** ，或按 `Ctrl+O`（macOS：`Cmd+O`）选择文件。
 2. 在正文中单击，让输入焦点进入编辑器，然后修改需要调整的文本。
 3. 按 `Ctrl+S`（macOS：`Cmd+S`），或运行 **Save**。
 4. 检查有没有保存失败提示，再继续下一项修改。
@@ -108,7 +108,7 @@ Keywords:
 编译错误、日志或同事给出的行号，可以直接用于定位。
 
 1. 打开对应文件并单击编辑器。
-2. 运行 **Go to Line/Column...**，或按 `Ctrl+G`（macOS：`Cmd+G`）。
+2. 运行 **Go to Line/Column...** ，或按 `Ctrl+G`（macOS：`Cmd+G`）。
 3. 输入行号，例如 `42`；需要指定列时输入 `42:8`。
 4. 查看预览位置，按 `Enter` 确认跳转。
 
@@ -186,11 +186,11 @@ $$
 命令 ID 可用于识别同名命令和配置快捷键。
 
 * **Show All Commands**：`workbench.action.showCommands`
-* **Open File...**：`workbench.action.files.openFile`
+* **Open File...** ：`workbench.action.files.openFile`
 * **Save**：`workbench.action.files.save`
 * **Find**：`actions.find`
 * **Replace**：`editor.action.startFindReplaceAction`
-* **Go to Line/Column...**：`workbench.action.gotoLine`
+* **Go to Line/Column...** ：`workbench.action.gotoLine`
 * **Go to Definition**：`editor.action.revealDefinition`
 * **Show All Editors**：`workbench.action.showAllEditors`
 
