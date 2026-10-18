@@ -42,6 +42,10 @@
         "/docs/editing/screenshots"
       ],
       [
+        "协作频道与共享笔记",
+        "/docs/editing/channels"
+      ],
+      [
         "通话中的共享文档",
         "/docs/editing/call-documents"
       ]
@@ -94,6 +98,10 @@
       [
         "使用集成终端",
         "/docs/terminal/basics"
+      ],
+      [
+        "运行和配置任务",
+        "/docs/terminal/tasks"
       ],
       [
         "Ash Code 命令行",
@@ -150,6 +158,10 @@
       [
         "设置",
         "/docs/configure/settings"
+      ],
+      [
+        "语言服务器",
+        "/docs/configure/language-servers"
       ],
       [
         "键盘快捷方式",

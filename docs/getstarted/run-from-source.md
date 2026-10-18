@@ -1,7 +1,7 @@
 ---
 ContentId: 9bf1c576-5af4-43c5-a84b-5a8272c69a2c
-DateApproved: 10/17/2026
-SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
+DateApproved: 10/18/2026
+SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
 MetaDescription: 准备仓库指定的 Rust、Node.js 和 pnpm 环境，从源码启动 Ash 桌面工作台、终端界面或浏览器开发界面。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -31,6 +31,8 @@ cd ash
 Ash 最低要求 **Git 2.40.0**。在运行 Ash 的环境中执行 `git --version` 检查；Desktop、App Server、TUI 和 Agent 使用同一要求。版本过旧时，Git 仓库操作会被阻止。升级 Git 后重启 Ash；配置了 `git.path` 时，也要更新该路径。
 
 首次构建可能需要下载依赖并编译 Rust 后端。出现错误时，优先检查最先失败的步骤，保留完整错误信息。
+
+运行 `just check-build-tools` 可以检查 Rust 和当前宿主平台的符号工具，列出工具路径及缺失或不可执行的项目。`just install` 和全量构建工具测试会先执行同一检查。Windows 可以使用 Visual Studio 的 C++ Clang tools；自定义 LLVM 安装可通过 `ASH_LLVM_BIN` 指定 `bin` 目录。其他平台的工具要求见源码[构建指南的初始化部分](https://github.com/chogng/ash/blob/main/docs/build.md#初始化)。
 
 ## 启动桌面或终端
 

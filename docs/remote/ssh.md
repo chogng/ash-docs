@@ -1,17 +1,17 @@
 ---
 ContentId: 695572bd-c6d6-4a83-9710-404000344b25
-DateApproved: 10/9/2026
-SourceRevision: 2e6f27585f3fe1676eb1f5ec32c140bed175697c
-MetaDescription: 使用 Ash 的 SSH 连接打开远端项目，配置 OpenSSH 别名、保存连接、核对远端路径，并了解重连、桌面入口和端口转发的限制。
+DateApproved: 10/18/2026
+SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
+MetaDescription: 使用 Ash SSH 连接 Linux、macOS 或 Windows 项目，准备远端组件，组织同一主机的多个目录，并了解桌面入口、重连和端口转发的限制。
 MetaSocialImage: ../../og.png
 ---
 # 通过 SSH 连接远端项目
 
-Ash 使用你电脑上的 OpenSSH 连接已有的服务器或开发机。你可以保存主机别名和项目目录，再用 `ash remote connect` 打开远端终端界面。本指南介绍准备、连接、退出和故障排查。
+Ash 使用你电脑上的 OpenSSH 连接已有的服务器或开发机。你可以保存主机别名和项目目录，从桌面端打开远端编辑器窗口，或用 `ash remote connect` 打开远端终端界面。本指南介绍准备、连接、退出和故障排查。
 
 连接需要你已有一台可访问的远端主机。保存连接不会创建服务器，也不会复制本机项目。
 
-> 当前版本的桌面 SSH 保存与连接入口存在兼容问题。首次连接请使用本文的命令行流程。桌面入口及其限制见[桌面中的 SSH 入口](#桌面中的-ssh-入口)。
+> 本文依据 2026 年 10 月 18 日的源码行为编写。源码支持不表示你的已安装版本或下载渠道已经提供对应发行包。自动准备远端组件还要求本机安装包绑定可用且兼容的可信组件来源。
 
 ## 连接前的准备
 
@@ -20,18 +20,26 @@ Ash 使用你电脑上的 OpenSSH 连接已有的服务器或开发机。你可�
 * 本机可以运行 `ash` 和 OpenSSH 的 `ssh` 命令。
 * 你有权使用目标主机，远端已启用 SSH，并能访问项目目录。
 * 在本机 OpenSSH 配置中有一个主机别名，例如 `work-server`。用户名、SSH 端口、跳板机和密钥选择都由 OpenSSH 配置或 `ssh-agent` 管理。
-* 远端使用受支持的 POSIX 环境。当前目标包括 Linux 和 macOS，Windows SSH 主机尚不支持。
+* 远端使用受支持的 Linux、macOS 或 Windows 环境。Windows 源码构建支持 x64 和 ARM64 MSVC 目标，预编译发行包的范围见下文。
 * 远端已有兼容的 Ash 运行组件，或者你使用的 Ash 安装包提供了可信的远端组件来源，并且远端账户有安装权限。项目所需的 Git、编译器和其他工具也需要在远端可用。
 
 Ash 使用非交互 SSH，不会弹出密码输入框。首次连接主机时，先在系统终端按你的组织要求完成登录准备，向管理员核对主机指纹。不要为了连接成功而关闭主机密钥检查。
 
-可以在本机终端验证别名是否支持无提示连接：
+可以在本机终端验证别名是否支持无提示连接。Linux 或 macOS 主机使用：
 
 ```bash
 ssh -o BatchMode=yes work-server true
 ```
 
-将 `work-server` 替换成你的别名。命令应成功退出，不要求输入密码。如果失败，先解决 SSH 登录问题，再连接 Ash。
+Windows 主机使用：
+
+```bash
+ssh -o BatchMode=yes windows-dev "powershell.exe -NoProfile -NonInteractive -Command exit 0"
+```
+
+将 `work-server` 或 `windows-dev` 替换成你的别名。命令应成功退出，不要求输入密码。如果失败，先解决 SSH 登录问题，再连接 Ash。
+
+通过 Tailscale 访问主机时，也使用同一个 OpenSSH 别名，在 SSH 配置的 `HostName` 中填写目标的 Tailscale 地址或 MagicDNS 名称。先确认该别名可以非交互登录，再保存 Ash 连接。
 
 保存的 Ash 连接只包含名称、主机别名和远端目录。不要在这些字段中填写密码、私钥内容或 `user@host`。SSH 私钥和认证过程继续由本机 OpenSSH 管理。
 
@@ -43,7 +51,13 @@ ssh -o BatchMode=yes work-server true
 * `work-server`：本机 OpenSSH 配置中的主机别名。
 * `/home/dev/project`：目标主机上的项目目录。
 
-目录必须是远端的完整 POSIX 绝对路径。使用 `/home/dev/project`，不要填写 `~/project`、相对路径或本机的 `C:\project`。路径末尾不要加 `/`，也不要包含 `//`、`/./` 或 `/../`。路径中有空格时，在命令行中用引号包住整个路径。
+目录必须是目标主机上的完整绝对路径，与本机操作系统无关：
+
+* Linux 或 macOS：例如 `/home/dev/project`。不要填写 `~/project` 或相对路径；非根目录末尾不要加 `/`，路径中不能有重复分隔符、`.` 或 `..` 段。
+* Windows 盘符路径：例如 `C:/work/project` 或 `C:\work\project`。Ash 会统一保存为正斜杠，并将盘符转成大写。`C:project` 不是绝对路径。
+* Windows UNC 路径：例如 `//server/share/project` 或 `\\server\share\project`。需要完整的服务器名和共享名，并且远端 SSH 账户有访问权限。
+
+Windows 路径不能包含空路径段、`.` 或 `..` 段、以点或空格结尾的名称、保留设备名或替代数据流语法，也不接受 `\\?\`、`\\.\` 设备路径。项目目录末尾不要添加分隔符。路径中有空格时，在命令行中用引号包住整个路径；跨平台命令示例推荐使用正斜杠。
 
 保存连接不会上传项目。连接前，确认项目已经存在于该远端目录中。
 
@@ -79,13 +93,30 @@ ssh -o BatchMode=yes work-server true
 ash remote connect --host work-server --dir /home/dev/project
 ```
 
+连接 Windows 项目时，改用远端 Windows 路径，例如：
+
+```bash
+ash remote connections save --name windows --host windows-dev --dir "C:/work/my project"
+ash remote connect --name windows
+```
+
 `--name` 与 `--host`、`--dir` 不能混用。要改用另一个目录，更新保存的连接，或使用直接连接命令。
 
 ### 首次连接和运行组件
 
-连接时，Ash 优先使用该目标上次验证过的运行组件。没有保存的选择时，当前命令行入口会在远端查找 `ash-remote-server`。
+连接时，Ash 优先使用该目标上次验证过的运行组件。没有保存的选择时，当前命令行入口会在远端查找 `ash-remote-server`。已安装且兼容的组件可以直接使用，不要求本机安装包额外绑定下载目录；只有需要自动安装或替换组件时，才要求可信组件来源。
 
-如果组件缺失或协议不兼容，Ash 可以从安装包绑定的可信来源准备兼容组件，再尝试连接。此过程可能下载文件并在远端安装组件。没有可信来源的构建不会自动猜测下载地址。
+远端运行组件独立于桌面应用分发，目标主机不需要安装桌面界面。如果组件缺失或协议不兼容，并且本机安装包绑定了可用的可信组件来源，Ash 会按以下顺序准备连接：
+
+1. 探测远端的操作系统和架构，选择兼容组件。
+2. 在本机下载并校验组件，再通过 SSH 上传到远端。
+3. 完成远端安装和协议检查后，保存已验证的组件路径。之后连接同一目标时优先复用它。
+
+下载、上传或协议检查失败时，Ash 不会启用未完成验证的组件。下载发生在本机，远端不需要为取得运行组件访问互联网。项目和 Agent 自身的网络要求仍需另行满足。
+
+当前源码中的默认发布配置覆盖 macOS ARM64、macOS x64、Linux glibc ARM64 和 Linux glibc x64。Windows x64、Windows ARM64 和 Linux musl 不在默认预编译发布范围内。Windows 支持 MSVC 源码构建；Linux musl 构建还需要提供兼容的 Node 可执行文件。实际能自动安装哪些平台，以你使用的安装包绑定的组件目录为准。
+
+源码构建或旧安装包可能没有可信组件来源，不会自动猜测下载地址。不要只凭版本名称判断组件是否兼容。
 
 若管理员已在特定位置安装了兼容组件，可以明确指定其远端路径：
 
@@ -94,6 +125,20 @@ ash remote connect --name work --runtime /opt/ash/bin/ash-remote-server
 ```
 
 将示例路径替换成实际路径。显式指定的 `--runtime` 不会被自动替换；路径错误或版本不兼容时，需要先修正它。
+
+### Windows 主机的额外准备
+
+Windows 远端需要可用的 Windows PowerShell 5.1（`powershell.exe`）。Ash 会显式调用它执行探测、安装和启动，不要求修改 OpenSSH 的默认 Shell。安装运行组件还需要系统 `tar.exe`。只安装 PowerShell 7 的 `pwsh` 不等于满足这项要求。
+
+默认安装目录为 `%LOCALAPPDATA%\Ash\remote`，其下按目标平台、版本和摘要保存独立组件。SSH 账户需要可用的 `LOCALAPPDATA` 和写入权限。首次初始化可能需要为该账户准备完整组件，客户端为 SSH 初始握手预留最长三分钟；后续连接会校验并复用已有安装。
+
+Windows 组件中的可执行文件带 `.exe` 后缀。如果管理员已经准备好完整组件，可以指定实际远端路径：
+
+```bash
+ash remote connect --name windows --runtime "C:/Ash/remote/bin/ash-remote-server.exe"
+```
+
+[Windows SSH 的验收记录](https://github.com/chogng/ash/commit/a3b1ab4171632814103645fd8f86920a753cead7)覆盖 x64 主机的握手、文件操作、PowerShell 终端和重连。ARM64 已列为源码构建目标，但尚未记录实机验收；不要将目标声明视为预编译包已发布或所有 Windows 环境都已验证。
 
 ### 只检查连接而不打开终端界面
 
@@ -133,11 +178,30 @@ ash remote connections remove --name work
 
 桌面端可以按 `F1` 打开命令面板，搜索以下英文名称；即使界面使用其他语言，也可以用英文标题搜索。
 
-* **Remote: Manage Saved SSH Hosts**：管理连接。**Add SSH Host** 依次询问连接名、OpenSSH 主机别名和远端绝对路径。已有记录时还提供 **Edit SSH Host** 和 **Remove SSH Host**。
+* **Remote: Manage Saved SSH Hosts**：管理连接。**Add SSH Host** 依次询问连接名、OpenSSH 主机别名和远端绝对路径。目录提示同时提供 `/srv/project` 和 `C:/work/project` 示例，中文界面也使用这组路径提示。已有记录时还提供 **Edit SSH Host** 和 **Remove SSH Host**。
 * **Remote: Connect to Saved SSH Host**：选择保存的连接。选择器显示名称、主机和目录，并在打开远端窗口前显示 **Open Remote Window** 确认。
 * 欢迎页的 **Connect via SSH**：进入同一个已保存连接选择器。
 
-本页对应版本的这些图形入口与连接管理命令尚未完全兼容，可能在保存、读取记录或准备连接时失败。在命令行保存成功，也不代表桌面选择器能够读取它。遇到 `unknown ... --workspace` 或 `invalid record` 一类错误时，使用上面的命令行入口继续，不要反复修改 SSH 密钥来排查这类错误。
+桌面端与命令行共用本机 Ash 配置中的保存连接。使用同一配置时，在命令行保存的连接可以出现在桌面选择器中。确认连接前核对主机和目录；如果记录在确认后被修改或删除，Ash 会拒绝按旧选择打开窗口，请重新选择。
+
+需要安装兼容组件时，桌面端会先显示准备窗口，展示下载、校验和上传等进度。你可以在准备阶段取消。完成准备后，Ash 打开独立的远端编辑器窗口。
+
+如果旧安装包仍提示未知的 `--workspace` 参数或 `invalid record`，检查桌面应用及随包组件是否来自同一个兼容版本。临时改用上面的命令行入口，不要为了这类参数或记录错误更换 SSH 密钥。
+
+## 组织同一主机的多个目录
+
+桌面 SSH 窗口支持多根工作区，可以在一个窗口中查看同一主机上的前端、后端或共享目录。先连接第一个远端项目，再执行以下操作：
+
+1. 从 **文件** 菜单或命令面板选择 **将文件夹添加到工作区...**（**Add Folder to Workspace...**）。
+2. 输入当前 SSH 主机上的完整绝对路径，核对目录权限提示，再确认添加。这里输入远端路径，不是选择本机文件夹。
+3. 在 **Explorer** 中确认各个根目录，再执行 **将工作区另存为...**（**Save Workspace As...**）。系统选择器中的保存位置在本机，例如 `team.ash-workspace`。
+4. 下次在对应 SSH 窗口中执行 **从文件打开工作区...**（**Open Workspace from File...**），选择本机保存的工作区文件。
+
+工作区文件保存主机标识和远端目录 URI，不复制项目，也不自动授予新目录权限。所有根必须属于同一 SSH 主机；不支持跨主机或混合本地目录，也不支持直接将这份配置文件保存在远端。使用 Ash 生成的目录引用，避免把远端 URI 改成本机路径。
+
+可以通过 **从工作区移除文件夹...** 或 Explorer 根节点的右键菜单移除目录。这只改变工作区集合，不删除远端目录。移除会影响未保存文件的目录归属时，先保存或还原文件；其他保留根中的终端仍属于原来的目录。
+
+选择 **关闭工作区** 会清空当前目录集合，并保留窗口的 SSH 主机身份；之后可在同一窗口重新打开工作区。要结束该窗口的远端工作，先保存文件，再关闭窗口。
 
 ## 在正确的机器上工作
 
@@ -147,6 +211,10 @@ ash remote connections remove --name work
 
 项目依赖缺失时，到远端环境检查。不要因为本机已经安装了工具，就假定远端也能运行。
 
+在 SSH 窗口创建或恢复的 Agent 会话仍使用所选远端主机的执行目录。Windows 远端的任务和调试路径按远端盘符或 UNC 路径解释，断点和返回的源码位置也保留远端主机。配置可执行程序和工作目录时，使用远端存在的路径，不要因为桌面运行在 macOS 或 Linux 就改成本机路径。
+
+远端运行组件负责文件、终端和 Agent 工作。桌面远端窗口中的通话、听写和屏幕捕获仍使用本机连接与设备。远端组件不安装音频、语音识别、屏幕捕获或本机通话主持程序，连接远端项目也不会把这些设备功能转移到服务器。
+
 ## 退出和恢复连接
 
 在远端终端界面输入 `/quit` 可以退出。下次运行 `ash remote connect --name work` 可再次打开同一目标。删除保存记录不是断开连接的方式。
@@ -155,13 +223,15 @@ ash remote connections remove --name work
 
 如果自动恢复失败，终端会给出 `Reconnect:` 命令。网络或主机恢复后，优先使用该命令继续；其中可能包含恢复原会话所需的 `--resume` 参数。运行组件缺失、协议不兼容或服务器拒绝连接时，不会无限重试。
 
-在已连接过的桌面远端窗口中，状态栏会显示 **Reconnecting…** 或 **Disconnected**。停在 **Disconnected** 时，可以选择该连接图标，或运行 **Remote: Reconnect to SSH Host**。若再次出现前述桌面兼容错误，改用命令行入口。
+在已连接过的桌面远端窗口中，状态栏会显示 **Reconnecting…** 或 **Disconnected**。停在 **Disconnected** 时，可以选择该连接图标，或运行 **Remote: Reconnect to SSH Host**。
 
 离开桌面远端工作时，先保存文件，再关闭对应窗口。短暂断线恢复不能保证终端进程在远端主机重启、后台服务重启或长期离线后仍然存在。终端提示需要重启时，使用 **Relaunch Terminal**，再确认是否需要重新运行命令。
 
+同一远端账户、同一 Ash 配置中的窗口会共享后台服务。切换运行组件版本会替换该服务，可能中断这些窗口的连接和终端。升级或回滚前，先保存相关窗口中的工作。
+
 ## 查看远端服务的端口
 
-桌面端的 **Ports** 面板用于已经成功连接的 SSH 远端窗口。它不是命令行终端界面的一部分；前述桌面连接兼容问题也不会通过端口转发解决。
+桌面端的 **Ports** 面板用于已经成功连接的 SSH 远端窗口。它不是命令行终端界面的一部分。先完成 SSH 连接，再建立端口转发。
 
 已有可用桌面远端连接时，可以按以下方式访问远端开发服务：
 
@@ -182,11 +252,17 @@ ash remote connections remove --name work
 
 ### 提示未知的 `--workspace` 参数
 
-当前命令行使用 `--dir` 指定远端目录。把旧命令中的 `--workspace` 改成 `--dir`。如果错误来自桌面图形入口，按本页的兼容性提示改用命令行。
+当前命令行使用 `--dir` 指定远端目录。把旧命令中的 `--workspace` 改成 `--dir`。本页对应源码的桌面入口也使用 `--dir`；如果错误来自桌面端，检查是否仍在使用旧版或混装组件，并暂时改用命令行。
 
 ### 提示远端组件缺失，或没有可信的组件来源
 
 确认远端安装位置和你使用的 Ash 安装包。已有兼容组件时，用 `--runtime` 指定其远端可执行文件；否则请由维护该安装包或主机的人提供兼容组件。不要通过关闭校验来绕过下载或版本错误。
+
+### Windows 已经能通过 SSH 登录，为什么仍不能连接 Ash
+
+先确认本机版本包含 Windows SSH 支持，再检查远端是否有匹配架构和协议的完整运行组件。默认发布目录尚未提供 Windows 预编译包，单独安装 App Server 或完成 OpenSSH 设置不能替代 Remote 组件。
+
+检查 `powershell.exe`、安装所需的 `tar.exe`、SSH 账户的 `LOCALAPPDATA` 和安装目录权限。确认 `--dir` 使用目标 Windows 主机的盘符或 UNC 绝对路径；不要套用 `/home/dev/project`。显式指定 `--runtime` 时，填写真实的 `ash-remote-server.exe` 路径。
 
 ### 提示路径无效或找不到文件
 
@@ -194,10 +270,12 @@ ash remote connections remove --name work
 
 ## 当前限制
 
-* 一个 SSH 连接打开一个远端项目目录，不支持远程多根 `.ash-workspace` 工作区。
-* Windows SSH 主机尚未接入当前远端路径和安装流程。
+* 命令行连接以一个远端目录为入口；桌面多根工作区限同一 SSH 主机，配置文件仍保存在本机。
+* Windows 和 Linux 远端多根尚未完成实机验收，已有 macOS 多根验证不覆盖这些平台。
+* Windows x64 和 ARM64 有源码构建支持，但默认预编译发布仍不含 Windows，ARM64 尚未实机验收。
+* Windows 跨机器桌面全流程验收尚未完成，不能把路径处理修复或命令行验收当作 Git、调试等全部桌面功能都已通过实机验证。
 * 连接要求 OpenSSH 可用的非交互认证，Ash 不保存 SSH 密码或私钥。
-* 桌面图形保存与连接在本页对应版本存在兼容问题。命令行连接打开的是终端界面。
+* 桌面连接打开独立编辑器窗口，命令行连接打开终端界面。自动准备组件取决于安装包绑定的可信来源和目标平台。
 * 重连不等于跨主机重启的进程持久化，也不保证断线前的每个操作都未执行。
 
 ## 接下来

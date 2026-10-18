@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
-DateApproved: 10/17/2026
-SourceRevision: 3ca3f4af37dfeb05ebcc27d2ffa769ab742aea84
+DateApproved: 10/18/2026
+SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -23,6 +23,7 @@ Keywords:
 | --- | --- |
 | 活动栏 | 选择 Explorer、搜索和其他功能入口 |
 | 主侧栏 | 显示文件树或当前选择的功能视图 |
+| 辅助侧栏 | 在编辑器旁显示聊天等附加视图 |
 | 编辑器 | 打开文件标签、编辑内容、并排查看文件 |
 | 底部面板 | 使用终端等工具 |
 | 状态栏 | 查看当前状态，包括目录权限提示 |
@@ -30,6 +31,14 @@ Keywords:
 先用[打开文件夹](/docs/editing/workspaces.md)载入项目。点击 Explorer 中的文件，在编辑器中查看；需要并排比较时，右键文件标签，选择 **向右拆分**或**向下拆分**。这些操作增加编辑器分组，文件仍保存在原来的位置。
 
 寻找已经打开的文件时，在 **Go** 菜单中使用 **Show All Editors**。误关标签后，可从 **File** 菜单执行 **Reopen Closed Editor**。更多文件与代码操作见[编辑文件与导航代码](/docs/editing/editing-and-navigation.md)。
+
+## 用命令面板找到操作
+
+按 `Ctrl+Shift+P`（macOS：`Cmd+Shift+P`）或 `F1` 打开命令面板，输入名称筛选命令，按 `Enter` 执行。以 `>` 开头的输入用于查找命令。删除这个前缀可以[按文件名查找文件](/docs/editing/editing-and-navigation.md#按文件名找到项目文件)。
+
+搜索框有内容时，**清空输入** 按钮会清除全部文字，并把焦点留在输入框，方便继续输入。按 `Esc` 关闭面板并返回原来的界面。
+
+命令行右侧的齿轮 **配置快捷键** 会打开快捷键弹窗，并直接筛选该命令，不会执行命令。最近使用的命令还提供 **从命令历史记录中移除**，只移除历史记录。具体修改方式见[设置键盘快捷方式](/docs/configure/keyboard-shortcuts.md)。
 
 ## 调整编辑器布局
 
@@ -50,6 +59,21 @@ Keywords:
 通过标题栏的面板按钮，或 **View** 菜单中的面板显隐操作，展开或收起底部面板。命令面板中的名称为 **Toggle Panel Visibility**；已展开时也提供 **Hide Panel**。
 
 需要更多空间阅读终端输出时，使用 **Maximize Panel**；返回编辑器时使用 **Restore Editor Area**。隐藏面板只改变显示状态，需要结束终端进程时应使用终端自身的关闭操作。
+
+### 显示或放大辅助侧栏
+
+编辑器窗口的标题栏和 **View** 菜单提供辅助侧栏显隐操作。也可以从命令面板按名称查找：
+
+| 操作 | 结果 |
+| --- | --- |
+| **显示辅助侧栏**（**Show Secondary Side Bar**） | 恢复辅助侧栏 |
+| **隐藏辅助侧栏**（**Hide Secondary Side Bar**） | 收起辅助侧栏；侧栏标题中的关闭按钮执行同一操作 |
+| **最大化辅助侧栏**（**Maximize Secondary Side Bar**） | 临时隐藏编辑器、主侧栏和底部面板，把空间留给辅助侧栏 |
+| **还原辅助侧栏**（**Restore Secondary Side Bar**） | 恢复最大化前的布局 |
+
+辅助侧栏自己的标题栏也提供最大化和还原按钮。最大化只是临时布局；隐藏后重新显示，原有视图、未发送草稿和普通宽度仍保留。隐藏侧栏不会停止 Agent 任务或终端进程。
+
+这些操作针对编辑器窗口。Agents 窗口的详情区域和 **Code side panel** 使用下文的独立布局入口。
 
 ### 改变外观
 
@@ -92,9 +116,11 @@ ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历�
 
 需要重复执行一个任务时，打开[自动化任务](/docs/agents/automations.md)查看时间、执行位置和运行结果。
 
-## 在通话中查看共享文档
+## 打开协作频道和通话
 
-当前构建和窗口提供通话服务时，可从命令面板执行 **Open Calls**，打开底部的 **Calls** 面板。已连接的通话中，所有者可以关联正在远程协作的文档，参与者可用独立的文档邀请打开它。具体入口、前提和取消关联的权限边界见[在通话中关联共享文档](/docs/editing/call-documents.md)。
+从活动栏选择 **Collaboration（协作）**，或从命令面板执行 **Open Collaboration**，打开协作侧栏。**Channels（频道）** 用于浏览频道和打开共享笔记，连接与权限说明见[协作频道与共享笔记](/docs/editing/channels.md)。
+
+当前构建和窗口提供通话服务时，协作侧栏中还显示 **Calls（通话）**。命令 **Open Calls** 会打开协作侧栏并聚焦通话视图。已连接的通话中，所有者可以关联正在远程协作的文档，参与者可用独立的文档邀请打开它。具体步骤见[在通话中关联共享文档](/docs/editing/call-documents.md)。
 
 ## 查看 Agent 执行记录
 
