@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/19/2026
-SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
+SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -25,7 +25,7 @@ Keywords:
 | 主侧栏 | 显示文件树或当前选择的功能视图 |
 | 辅助侧栏 | 在编辑器旁显示聊天等附加视图 |
 | 编辑器 | 打开文件标签、编辑内容、并排查看文件 |
-| 底部面板 | 使用终端等工具 |
+| 工具面板 | 使用终端等工具，默认位于底部 |
 | 状态栏 | 查看当前状态，包括目录权限提示 |
 
 先用[打开文件夹](/docs/editing/workspaces.md)载入项目。点击 Explorer 中的文件，在编辑器中查看；需要并排比较时，右键文件标签，选择 **向右拆分**或**向下拆分**。这些操作增加编辑器分组，文件仍保存在原来的位置。
@@ -60,6 +60,8 @@ Keywords:
 
 需要更多空间阅读终端输出时，使用 **Maximize Panel**；返回编辑器时使用 **Restore Editor Area**。隐藏面板只改变显示状态，需要结束终端进程时应使用终端自身的关闭操作。
 
+面板也可以放在左侧、右侧或顶部。在面板标题的右键菜单中选择 **面板位置**（**Panel Position**），或从命令面板执行 **Move Panel Left**、**Move Panel Right**、**Move Panel to Top**、**Move Panel to Bottom**。当前位置会保留。新工作区的默认位置由 [`workbench.panel.defaultLocation`](/docs/configure/settings.md#选择默认面板位置) 决定。
+
 ### 显示或放大辅助侧栏
 
 编辑器窗口的标题栏和 **View** 菜单提供辅助侧栏显隐操作。也可以从命令面板按名称查找：
@@ -74,6 +76,14 @@ Keywords:
 辅助侧栏自己的标题栏也提供最大化和还原按钮。最大化只是临时布局；隐藏后重新显示，原有视图、未发送草稿和普通宽度仍保留。隐藏侧栏不会停止 Agent 任务或终端进程。
 
 这些操作针对编辑器窗口。Agents 窗口的详情区域和 **Code side panel** 使用下文的独立布局入口。
+
+### 把聊天移到编辑器区域
+
+在普通编辑器窗口的聊天更多操作中，或从命令面板执行 **Move Chat to Editor Area**，把当前 Chat 移到编辑器标签中。可以将文件放在旁边的编辑器组，一边查看代码一边继续对话。
+
+这仍是窗口里同一个聊天输入框，保留当前历史、未发送文字和附件。**Move Chat to Side Bar** 或关闭 Chat 标签会让它回到侧栏，不会发送消息或停止任务。Chat 同时只占用一个编辑器组，拆分或复制不会创建第二份独立对话。
+
+重新打开窗口时会尝试恢复选中的对话和草稿；发送前检查[草稿与模式](/docs/agents/sessions.md#继续未发送的草稿)。这项操作不同于打开独立的 Agents 窗口。
 
 ### 改变外观
 
@@ -96,8 +106,8 @@ Keywords:
 
 Agents 窗口的活动栏提供 **Chat** 和 **Code**：
 
-- **Chat** 便于专注对话和会话列表
-- **Code** 在对话旁显示文件编辑、文件列表、更改和底部开发工具
+* **Chat** 便于专注对话和会话列表。
+* **Code** 在对话旁显示文件编辑、文件列表、更改和开发工具面板。
 
 这两个入口共用当前选择的会话、导航历史和未发送草稿。切换布局后可以继续同一任务，不必再次提交消息。**Back** 和 **Forward** 按钮用于返回之前查看的会话；只有存在可返回的记录时才可用。
 
@@ -139,11 +149,11 @@ ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历�
 | **Toggle details** | 显示或隐藏活动内容支持的详情区域 |
 | **Hide editor / Show editor** | 隐藏或恢复文件编辑区域 |
 | **Toggle Code side panel** | 一起收起或恢复文件编辑与详情区域的组合 |
-| **Toggle Code panel** | 显示或隐藏底部工具面板 |
+| **Toggle Code panel** | 显示或隐藏工具面板 |
 
 编辑器标题栏的 **Add tab** 菜单也可以打开 **Files** 和 **Changes**。**Toggle details** 是否可用取决于当前活动内容；没有可显示的详情时，按钮可能不可用。
 
-**Code side panel** 是对话旁的文件与详情区域，**Code panel** 是底部工具区域。需要找回终端时选择后者；需要找回文件时选择前者或 **Open Files tab**。
+**Code side panel** 是对话旁的文件与详情区域，**Code panel** 是默认位于底部的工具区域。需要找回终端时选择后者；需要找回文件时选择前者或 **Open Files tab**。Code 的工具面板也支持上面的面板位置命令，位置与尺寸单独保存在 Agents 窗口中。
 
 收起编辑器或切换 Chat/Code 会保留已打开标签和未保存内容。真正关闭文件或退出窗口时，仍应处理保存提示。布局操作不会撤销 Agent 已完成的文件修改；检查修改内容请阅读[Git 与更改](/docs/sourcecontrol/overview.md)。
 

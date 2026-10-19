@@ -1,7 +1,7 @@
 ---
 ContentId: 8d2ef182-7021-4bf8-a27f-f60ef7a97e71
-DateApproved: 10/18/2026
-SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
+DateApproved: 10/19/2026
+SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
 MetaDescription: 在 Ash 中查看、暂存和提交 Git 更改，按仓库策略拉取和同步分支，查看传输进度，并发布分支或 GitHub 仓库。
 MetaSocialImage: ../../og.png
 ---
@@ -58,6 +58,8 @@ Git 侧栏检查当前仓库的工作文件、暂存区和提交。聊天输入�
 **Conversation Changes** 是固定检查点的只读审阅，后续工作文件变化不会改写已打开的比较。提示对话已变化或 **Changes unavailable** 时，重新打开更改入口重试。工作区增删行数旁的 `*` 表示不包含无法按文本比较的文件，这些文件仍计入文件数。
 
 先确认自己是在检查工作区状态，还是复查对话结果，再选择暂存和提交操作。更多说明见[检查当前对话的文件更改](/docs/agents/sessions.md#检查当前对话的文件更改)。
+
+已关联 GitHub PR 的 Agent 会话还可以查看检查注释、下载作业日志、重新运行作业，或发送修复请求。操作和重试前的注意事项见[查看和处理 CI 检查](/docs/agents/sessions.md#查看和处理-ci-检查)。
 
 ## 选择要提交的内容
 

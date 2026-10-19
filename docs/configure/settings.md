@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
 DateApproved: 10/19/2026
-SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
+SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -158,6 +158,12 @@ MetaSocialImage: ../../og.png
 
 旧键 `dictation.localModel` 会在读取设置时迁移到 `dictation.model`。新旧值相同会清理旧键；值冲突或旧值无效时，Ash 保留原文并报告问题。此时打开用户设置 JSON，将需要的有效模型 ID 保留在 `dictation.model` 中，移除旧键，再保存。不要把旧配置示例中的键继续加回去。
 
+## 选择默认面板位置
+
+在编辑器窗口的设置中搜索 `workbench.panel.defaultLocation`，选择工具面板默认位于 `left`、`right`、`top` 或 `bottom`，默认是底部。它用于新工作区，已有工作区保留保存的位置。
+
+要立即移动当前面板，使用[面板位置命令](/docs/getstarted/user-interface.md#显示或放大底部工具)。Agents 窗口使用自己的面板位置记录，不随编辑器窗口的这个默认设置改变。
+
 ## 调整长行和差异视图
 
 在设置中搜索 `editor.wordWrap`，选择长行的显示方式：
@@ -223,6 +229,8 @@ MetaSocialImage: ../../og.png
 ## 当前配置范围
 
 图形控件通常显示所选层的覆盖或默认值，不是当前文件所有配置层合并后的结果。普通配置按默认值、用户、工作区、文件夹的顺序组合，再应用语言覆盖；管理策略也可能限制最终值。用户设置已保存但某个项目仍有不同表现时，检查项目和语言配置。图形页的 `@modified` 只反映当前目标与语言，不是所有配置层的汇总。
+
+桌面更新设置 `update.policy` 会优先显示系统策略规定的渠道，其次才是用户值。受策略控制时，修改用户设置不能覆盖它；需要变更时联系维护该策略的管理员。
 
 通过命令参数在不同编辑器组打开设置时，各组保留独立的搜索和目标。页内切换 JSON 使用来源组，不会改写另一组的搜索。Agents 窗口的工作区、文件夹及语言查询会转到共享设置编辑器。
 
