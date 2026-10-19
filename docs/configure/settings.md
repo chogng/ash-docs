@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
-DateApproved: 10/18/2026
-SourceRevision: ff00a9e3063613ddde2dc6226aaaa9a86addd983
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -9,7 +9,7 @@ MetaSocialImage: ../../og.png
 
 使用 Ash 设置改变编辑器和界面的工作方式。先选择用户、工作区或文件夹范围，再通过图形界面或对应的 JSON 文件修改普通设置。语言服务器等专用管理页面有各自的配置范围。
 
-本文依据 2026 年 10 月 18 日的主分支源码；公开安装包的功能以实际发布版本为准。
+本文依据 2026 年 10 月 19 日的主分支源码；公开安装包的功能以实际发布版本为准。
 
 ## 打开设置
 
@@ -196,13 +196,29 @@ MetaSocialImage: ../../og.png
 
 ## 设置内置浏览器工具
 
-在设置中搜索 `workbench.browser.enableChatTools` 可控制 Agent 的内置浏览器工具。`workbench.browser.enableCDP` 是独立的高级选项，默认关闭。开启前先了解[浏览器工具](/docs/reference/tools.md)和[权限与批准](/docs/configure/permissions.md)。
+在设置中搜索 `workbench.browser.enableChatTools` 可控制 Agent 的内置浏览器工具。`workbench.browser.enableCDP` 是独立的高级选项，默认关闭。开启前先了解[浏览器工具](/docs/reference/tools.md)和[权限与批准](/docs/configure/permissions.md)。浏览网页、填写表单和管理已保存密码，见[内置浏览器与网站密码](/docs/editing/browser.md)。
 
 ## 配置代码语言支持
 
 在 **编辑器 > 语言服务器** 中，或运行 **配置语言服务器**（**Configure Language Servers**），可以检查语言服务器、启用或停用服务器，以及填写自行安装的可执行程序路径。Rust 的按需准备、日志和高级 JSON 用法见[配置语言服务器](/docs/configure/language-servers.md)。
 
 这份配置保存到所连接 App Server 的 profile，与普通用户设置 JSON 分开。选择 **工作区目录** 只改变服务器检查范围，不创建该文件夹专用的覆盖。
+
+## 刷新账户的托管设置
+
+组织提供的托管设置可能限制部分选项。打开 **Codex 审查** 设置页，查看托管设置状态；它会显示对应账户、最近尝试和已有的成功刷新时间。选择 **刷新托管设置** 可重新获取，刷新期间按钮不可用。
+
+这项操作使用主 GitHub 账户，与同一页用于访问仓库的所选账户无关。不要用“仓库可以访问”判断托管设置已经刷新成功。
+
+* 提示重新连接时，先重新连接 GitHub，再刷新托管设置。
+* 提示限流时，等待后重试。权限或客户端兼容性错误需要联系管理员。
+* 网络或无效响应造成失败时，按提示检查连接后重试。若页面显示 **已保留之前接受的设置**，先前接受的策略仍可能影响当前选项；失败不表示限制已经解除。
+
+## 保存默认日志记录级别
+
+需要在之后的窗口中继续使用某个记录级别时，在 **输出** 面板选择支持记录级别控制的通道，先设置级别，再在同一菜单中选择 **设为默认**。这项偏好属于当前界面 profile 的启动配置，不是普通用户设置 JSON 中的设置键。
+
+扩展通道的默认值只用于该扩展；没有扩展归属的通道保存通用默认值。没有保存值或启动覆盖时，默认级别是 `info`。当前仍沿用旧默认值的日志来源会跟随更新，显式指定级别或已经单独调整为其他级别的来源不会统一改变。如何区分记录级别与显示筛选，见[用输出日志定位问题](/docs/support/troubleshooting.md#用输出日志定位问题)。
 
 ## 当前配置范围
 

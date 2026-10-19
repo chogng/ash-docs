@@ -1,7 +1,7 @@
 ---
 ContentId: 9bf1c576-5af4-43c5-a84b-5a8272c69a2c
-DateApproved: 10/18/2026
-SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 准备仓库指定的 Rust、Node.js 和 pnpm 环境，从源码启动 Ash 桌面工作台、终端界面或浏览器开发界面。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -15,6 +15,8 @@ Keywords:
 
 如果需要自行构建 Ash，先按源码仓库的构建指南准备环境，再选择桌面或终端入口。本文提供入口导航；具体工具版本和平台依赖以你检出的源码版本为准。
 
+macOS 仅支持 Apple Silicon（ARM64），不支持 Intel Mac。源码构建入口不表示已有对应的预编译发行包，平台上的专项测试也不代表所有桌面和远端功能都已完成验收。
+
 ## 获取源码
 
 ```sh
@@ -27,6 +29,8 @@ cd ash
 ## 准备与源码匹配的环境
 
 核对源码中的 `.nvmrc`、`package.json`、`rust-toolchain.toml` 和构建指南。Windows、macOS、Linux 所需的原生编译工具不同，不能只安装 Node.js 就认为环境已齐全。
+
+在 Windows 上构建桌面端时，使用对应目标架构的 **Visual Studio Developer PowerShell**。Dev Container 提供 Linux 开发环境，不能替代 Windows 平台构建。
 
 Ash 最低要求 **Git 2.40.0**。在运行 Ash 的环境中执行 `git --version` 检查；Desktop、App Server、TUI 和 Agent 使用同一要求。版本过旧时，Git 仓库操作会被阻止。升级 Git 后重启 Ash；配置了 `git.path` 时，也要更新该路径。
 

@@ -1,7 +1,7 @@
 ---
 ContentId: f1620609-46e0-4a69-813b-2eaa2030ea92
-DateApproved: 10/18/2026
-SourceRevision: c44bf155db312f4a2e1847988ea247b1699de8e5
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 在 Ash 中创建定时 Agent 任务，预览执行时间，查看结果和文件更改，暂停计划或停止运行，并了解后台运行与离线限制。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -40,7 +40,7 @@ Keywords:
 
 **Conversation** 默认使用 **New conversation for each run**，每次新建对话。需要延续上下文时，展开该选项并选择指定对话。计划保存明确的对话和目录；之后切换活动窗口、项目或聊天不会自动改变执行目标。
 
-对话列表只显示所选宿主的候选对话。新增 SSH 宿主的对话尚未完整接入当前 Agents 窗口的 **Chat**，不能从这些宿主的运行直接跳转到对应聊天。遇到 `This conversation belongs to another Agent host` 提示时，不要通过再次运行计划来尝试打开对话。
+对话列表只显示所选宿主的候选对话。已连接 SSH 宿主的运行已有对应对话时，可以通过 **Open conversation** 打开该宿主中的聊天。宿主断开或对话不可用时，先重新连接原宿主并刷新状态，不要通过再次运行计划来尝试打开对话。
 
 ## 选择执行时间
 

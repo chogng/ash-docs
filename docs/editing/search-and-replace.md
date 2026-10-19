@@ -16,7 +16,7 @@ Keywords:
 
 ## 开始之前
 
-先打开项目文件夹。没有打开文件夹时，搜索会提示 **Open a folder to search files.**。
+先打开项目文件夹。没有打开文件夹时，搜索会显示提示 **Open a folder to search files.**
 
 搜索前保存需要纳入检查的编辑；批量替换前，尤其要检查受影响文件中已有的未保存修改。项目替换会保存受影响文件，这些文件中已有的其他编辑也可能一并保存。建议先确认已有工作，或在版本控制中留下便于比较的基线。
 
@@ -40,7 +40,7 @@ Keywords:
 
 - **Aa / Match Case**：强制区分大小写。
 - **ab / Match Whole Word**：按完整词匹配，减少较长名称中的部分命中。
-- **.* / Use Regular Expression**：把搜索内容解释为正则表达式。
+- **Use Regular Expression**（`.*`）：把搜索内容解释为正则表达式。
 
 默认还开启了 `search.smartCase`：搜索词包含大写字母时，会自动区分大小写，即使 **Aa** 没有开启。如果需要始终忽略大小写，应关闭 **Aa**，并把 `search.smartCase` 设为 `false`，然后重新搜索。
 

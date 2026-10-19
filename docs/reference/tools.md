@@ -1,7 +1,7 @@
 ---
 ContentId: 98ae542b-fdfd-4a30-8952-c7de17f0e705
-DateApproved: 10/17/2026
-SourceRevision: bb040bb5cd00070a375e88fdcc7d05fc01ab6d58
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 在 Ash 中查找与选择聊天工具，查看文件、命令、浏览器、MCP 和 Advisor 的执行结果，并处理权限、连接和工具失败。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -46,11 +46,11 @@ Keywords:
 
 ## 使用浏览器工具
 
-在提供内置浏览器的桌面宿主中，Agent 可以打开任务页面、读取页面状态、截图、导航和操作控件，也可以悬停、拖动、处理页面对话框或运行受限的 Playwright 页面脚本。浏览器工具的截图针对网页；捕获整个桌面请使用[截图与标注](/docs/editing/screenshots.md)。
+在提供内置浏览器的桌面宿主中，Agent 可以打开任务页面、读取页面状态、截图、导航和操作控件，也可以悬停、拖动、处理页面对话框或运行受限的 Playwright 页面脚本。浏览器工具的截图针对网页；捕获整个桌面请使用[截图与标注](/docs/editing/screenshots.md)。 需要手动浏览网页、保存或管理网站账号时，参见[内置浏览器与网站密码](/docs/editing/browser.md)。
 
 * 普通浏览器工具由 `workbench.browser.enableChatTools` 控制，默认开启。关闭后会取消浏览器操作、关闭 Agent 页面并撤销共享页面访问。
 * Playwright 页面脚本在指定页面中运行，没有 Node.js、任意本地文件或其他页面的访问能力。
-* 需要更深入的网页检查时，可在设置中开启 **Allow advanced browser control (CDP)**，对应 `workbench.browser.enableCDP`，默认关闭。
+* 需要更深入的网页检查时，可开启 **Allow advanced browser control (CDP)** 设置，对应 `workbench.browser.enableCDP`，默认关闭。
 
 高级 CDP 工具包括发送协议命令、读取事件和关闭 CDP 连接。它们限定于当前任务的隔离 Agent 页面与上下文，不能用来控制 Ash 工作台或普通用户页面。启用该设置不等于批准每一项动作，网络和文件访问仍受任务权限限制。完整边界见[浏览器控制与文件上传](/docs/configure/permissions.md#浏览器控制与文件上传)。
 
@@ -69,7 +69,7 @@ Keywords:
 
 ## 检查工具活动
 
-在当前会话的工具活动中查看调用参数和结果；需要更完整的执行记录时，打开[执行 Trace](/docs/agents/trace.md)。重点核对：
+在当前会话的工具活动中查看调用参数和结果；需要更完整的执行记录时，打开[Agent 调试日志](/docs/agents/trace.md)。重点核对：
 
 * 文件路径是否属于要处理的项目。
 * 搜索结果是否覆盖关键文件，是否需要继续读取。
@@ -83,7 +83,7 @@ Keywords:
 
 [独立 ChatGPT 页面](/docs/agents/chatgpt.md)把同一轮的工具调用、结果和进度汇总为一条持续更新的执行记录。展开摘要，再展开具体步骤，可查看原始输入和结果；失败步骤会保留标记。
 
-回答开始时，执行记录会自动收起一次。你可以再次展开查看，后续回答更新不会再次关闭手动展开的记录。读取历史聊天时也可查看这些活动。ChatGPT 的活动记录与本地 Agent Trace 分别展示各自的会话。
+回答开始时，执行记录会自动收起一次。你可以再次展开查看，后续回答更新不会再次关闭手动展开的记录。读取历史聊天时也可查看这些活动。ChatGPT 的活动记录与本地 Agent 调试日志 分别展示各自的会话。
 
 ## 查看顾问结果
 

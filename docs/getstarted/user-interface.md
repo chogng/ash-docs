@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
-DateApproved: 10/18/2026
-SourceRevision: 0ef650faaf2e7965821cd6278399991185e94a75
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -124,9 +124,9 @@ ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历�
 
 ## 查看 Agent 执行记录
 
-在开发会话的操作菜单中选择 **查看执行 Trace**（**View Execution Trace**），或从命令面板执行 **查看执行 Trace**（**View Execution Trace**） 打开记录编辑器。**Show Agent Output** 打开该会话的输出摘要，便于从工具、错误和用量记录跳转到详细事件。
+在开发会话的操作菜单中选择 **显示 Agent 调试日志**（**Show Agent Debug Logs**），或从命令面板执行 **显示 Agent 调试日志**（**Show Agent Debug Logs**） 打开记录编辑器。**Show Agent Output** 打开该会话的输出摘要，便于从工具、错误和用量记录跳转到详细事件。
 
-当前界面没有独立的 Trace 活动栏入口或会话侧栏。查看记录不会自动开始新任务；具体检查方法见[执行 Trace](/docs/agents/trace.md)。
+当前界面没有独立的 Agent 调试日志活动栏入口或会话侧栏。查看记录不会自动开始新任务；具体检查方法见[Agent 调试日志](/docs/agents/trace.md)。
 
 ## 在 Code 中查看文件和更改
 

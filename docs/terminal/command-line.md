@@ -1,7 +1,7 @@
 ---
 ContentId: e5f4e518-9ec7-43cc-b3a8-3df5f21e60be
-DateApproved: 10/17/2026
-SourceRevision: 3ca3f4af37dfeb05ebcc27d2ffa769ab742aea84
+DateApproved: 10/19/2026
+SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
 MetaDescription: 使用 Ash Code 命令行启动终端或桌面、运行单次问答和非交互任务，保存 JSONL 与执行记录，并按退出码安全续接会话。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -177,7 +177,7 @@ exit "$status"
 
 给 `exec` 增加 `--trace-output ash-run/trace.json` 和 `--changes-output ash-run/changes.json` 可以另存诊断资料。先创建父目录，使用本次运行专属路径；同名文件会被覆盖。
 
-Trace 导出包含该会话的线程记录与可用诊断信息，不限于最后一条回答。变更导出是本轮记录到的变更集合 JSON，不是可直接应用的补丁，也不会自动提交或推送。阅读[查看执行 Trace](/docs/agents/trace.md)和[Git 更改与提交](/docs/sourcecontrol/overview.md)了解检查方式。
+Trace 导出包含该会话的线程记录与可用诊断信息，不限于最后一条回答。变更导出是本轮记录到的变更集合 JSON，不是可直接应用的补丁，也不会自动提交或推送。阅读[查看 Agent 调试日志](/docs/agents/trace.md)和[Git 更改与提交](/docs/sourcecontrol/overview.md)了解检查方式。
 
 导出发生在执行结果返回之后。导出失败仍会使命令返回失败，即使任务本身已完成；此时不要为了重取文件直接重跑整个任务。先检查错误和已有会话，避免重复操作。
 

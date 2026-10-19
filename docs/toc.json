@@ -42,6 +42,10 @@
         "/docs/editing/search-and-replace"
       ],
       [
+        "内置浏览器与网站密码",
+        "/docs/editing/browser"
+      ],
+      [
         "截图与标注",
         "/docs/editing/screenshots"
       ],
@@ -80,7 +84,7 @@
         "/docs/agents/advisor"
       ],
       [
-        "查看执行 Trace",
+        "查看 Agent 调试日志",
         "/docs/agents/trace"
       ]
     ]
