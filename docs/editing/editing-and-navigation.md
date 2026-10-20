@@ -1,7 +1,7 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
-DateApproved: 10/18/2026
-SourceRevision: c44bf155db312f4a2e1847988ea247b1699de8e5
+DateApproved: 10/20/2026
+SourceRevision: 54bfa432c6618bfd9d7076fd556669c2f8c08a9f
 MetaDescription: 在 Ash 中编辑和保存文件，在差异视图修改工作文件，查找替换、跳转代码、筛选问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -22,6 +22,14 @@ Keywords:
 
 按 `Ctrl+Shift+P`（macOS：`Cmd+Shift+P`）或 `F1` 打开命令面板。输入本文给出的命令名，再选择对应命令。
 
+### 检查 Code 编辑功能
+
+代码高亮、补全、诊断、括号处理、缩略图和其他增强编辑功能由内置 **Code** 扩展（`ash.code`）提供。它与终端里的 `ash code` 命令不是同一个入口。浏览器工作台也需要连接能够运行该扩展的已授权后端。
+
+如果这些功能同时消失，先运行 **打开扩展**（**Open Extensions**），检查 **Code** 是否启用以及后端是否正常。停用 Code 会撤下它提供的命令、快捷键和分析能力，但不会把已有文本、未保存修改或撤销历史转移到扩展中；基础文件编辑与保存仍由工作台管理。不要为了恢复高亮而丢弃草稿。
+
+普通文本和结构化文档使用不同能力。`.ash-doc`、Academic 论文和频道笔记还需要独立安装并授权 **学术论文（实验性）**扩展，步骤见[启用文档编辑器](/docs/editing/documents.md#启用文档编辑器)。
+
 ## 打开文件并保存一次修改
 
 1. 在文件资源管理器中打开目标文件。也可以运行 **Open File...** ，或按 `Ctrl+O`（macOS：`Cmd+O`）选择文件。
@@ -31,7 +39,7 @@ Keywords:
 
 保存成功后，当前编辑内容会写入该文件。需要新建文本时，运行 **New Untitled Text Editor**，或按 `Ctrl+N`（macOS：`Cmd+N`）；首次保存时选择文件名和位置。
 
-需要使用结构化文档时，运行 **新建文档**，保存为 `.ash-doc`。从 Markdown 或纯文本转换，以及导出为其他文本格式的步骤，见[创建和转换文档](/docs/editing/documents.md)。
+需要使用结构化文档时，先启用对应文档扩展，再运行 **新建文档**，保存为 `.ash-doc`。段落样式、分页，以及从 Markdown 或纯文本转换的步骤，见[创建、排版和转换文档](/docs/editing/documents.md)。
 
 一次替换或多光标编辑改错了，可以先撤销并检查恢复的内容，再保存。不要把关闭标签页当成确认保存成功的办法。
 
@@ -75,6 +83,8 @@ Keywords:
 如果只想切换已经打开的文件，运行 **Show All Editors**，选择对应标签页。查找文件中的文本则使用下面的文件内查找，或[项目搜索](/docs/editing/search-and-replace.md)。
 
 ## 在当前文件中查找和替换
+
+下面的选项用于 Code 文本编辑器。`.ash-doc`、Academic 论文和频道笔记使用独立的[文档查找与替换](/docs/editing/documents.md#查找和替换文档文字)，不提供这里的正则表达式和选区内查找选项。
 
 1. 单击编辑器，按 `Ctrl+F`（macOS：`Cmd+F`）打开 **Find**。
 2. 输入查找内容，查看高亮和匹配计数。

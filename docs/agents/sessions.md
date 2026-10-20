@@ -1,7 +1,7 @@
 ---
 ContentId: 73ca23b6-2ed1-4b8e-902e-0c92c7522c69
-DateApproved: 10/19/2026
-SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
+DateApproved: 10/20/2026
+SourceRevision: 54bfa432c6618bfd9d7076fd556669c2f8c08a9f
 MetaDescription: 在 Ash 中创建和恢复会话，保留未发送草稿，编辑请求、分叉对话，处理任务排队与连接恢复，并检查关联 PR 的 CI 结果。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -231,6 +231,8 @@ Ash 会发起独立的上下文压缩，并在会话中记录结果。后续模�
 工作区统计中的行数带 `*` 时，表示部分文件无法按文本比较。这些文件仍计入文件数，但不计入增删行数；二进制或过大的内容也不能当作完整文本差异审阅。
 
 这个入口用于复查净变更。需要按执行轮选择文件和提交时，使用会话的 **Changes**；需要暂存或提交工作区文件时，使用 [Git 侧栏](/docs/sourcecontrol/overview.md)。
+
+当前 Agent 通过 Code Mode 的嵌套工具写入文件时，部分改动可能没有完整归入执行轮，导致 **Changes** 无法选择它们提交。工具显示写入成功不代表更改捕获完整，也不表示文件丢失。遇到这种情况，先在工作目录核对实际差异，再按 [Git 指南](/docs/sourcecontrol/overview.md#选择要提交的内容)逐项检查和提交需要的内容；不要为了补统计而重跑已经完成的写入。
 
 ## 查看和处理 CI 检查
 
