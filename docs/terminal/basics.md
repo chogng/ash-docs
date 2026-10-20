@@ -1,7 +1,7 @@
 ---
 ContentId: 7ac83015-5022-447d-ac97-445913858062
 DateApproved: 10/20/2026
-SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
+SourceRevision: 937af130ec21b2c9a213250ce165eee722c078f2
 MetaDescription: 在 Ash 中运行和补全终端命令，切换与拆分终端，调整输入和显示，检查环境贡献，并管理进程、会话恢复和排障记录。
 MetaSocialImage: ../../og.png
 ---
@@ -380,6 +380,9 @@ Windows 执行端目前不支持此进程信号入口，会报告不支持；这
 桌面应用的 `terminal.integrated.enablePersistentSessions` 默认开启。使用 **Reload Window** 重新加载窗口时，Ash 尝试重新连接原来的本地或 SSH 终端，并恢复屏幕、待提交输入、分屏比例和焦点。
 
 这需要原后端和终端进程仍存活、重连仍有效。扩展自供 PTY 暂不支持这条重载恢复路径；提示无法保留进程时，先处理运行中的任务再重载。
+
+> [!IMPORTANT]
+> [故障提示中的 **重新打开**](/docs/support/troubleshooting.md#桌面窗口无响应，或关闭和重载卡住)不同于普通重载。即使终端已准备重载恢复数据，应急重新打开仍可能无法接回原终端，运行中的进程可能结束。优先选择 **继续等待**；恢复后先核对进程和实际文件结果，再决定是否重试命令。
 
 ### 退出应用后恢复终端
 
