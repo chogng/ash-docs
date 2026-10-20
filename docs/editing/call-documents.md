@@ -1,7 +1,7 @@
 ---
 ContentId: d81b4fc4-6856-40cb-b84b-f8f592614810
 DateApproved: 10/20/2026
-SourceRevision: 54bfa432c6618bfd9d7076fd556669c2f8c08a9f
+SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
 MetaDescription: 在 Ash 协作视图的 Calls 中关联共享文档，用独立文档邀请打开新编辑器，并区分文档权限与频道笔记权限。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -55,7 +55,7 @@ Keywords:
 
 每次打开都会使用新的未命名工作副本，不覆盖已经打开的本地文件。这份副本连接原来的共享文档，协作编辑仍会影响共享内容，并非脱离协作的独立备份。需要留存本地文件时，检查内容后另行保存。
 
-使用新增的[文档查找与替换](/docs/editing/documents.md#查找和替换文档文字)时，先与其他编辑者协调。当前跨不同字符格式的替换可能覆盖同段中他人刚输入的文字；先暂停共同编辑并确认同步，再替换和核对。
+[文档查找与替换](/docs/editing/documents.md#查找和替换文档文字)可以参与协作合并。若提示文档结构冲突，先保留尚未同步的本地修改，并与其他编辑者核对共享版本，不要反复重试替换或把本地内容当作已同步。
 
 等待加入时，不要先在新编辑器中输入内容。如果这时产生了本地修改，Ash 会停止加入以保护修改。保留需要的内容，再从通话列表重新打开一个新的副本；不要直接覆盖原草稿。
 
@@ -83,3 +83,4 @@ Keywords:
 
 * [协作频道与共享笔记](/docs/editing/channels.md)
 * [编辑文件与导航代码](/docs/editing/editing-and-navigation.md)
+

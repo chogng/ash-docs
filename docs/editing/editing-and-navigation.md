@@ -1,7 +1,7 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
 DateApproved: 10/20/2026
-SourceRevision: 54bfa432c6618bfd9d7076fd556669c2f8c08a9f
+SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
 MetaDescription: 在 Ash 中编辑和保存文件，在差异视图修改工作文件，查找替换、跳转代码、筛选问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -29,6 +29,8 @@ Keywords:
 如果这些功能同时消失，先运行 **打开扩展**（**Open Extensions**），检查 **Code** 是否启用以及后端是否正常。停用 Code 会撤下它提供的命令、快捷键和分析能力，但不会把已有文本、未保存修改或撤销历史转移到扩展中；基础文件编辑与保存仍由工作台管理。不要为了恢复高亮而丢弃草稿。
 
 普通文本和结构化文档使用不同能力。`.ash-doc`、Academic 论文和频道笔记还需要独立安装并授权 **学术论文（实验性）**扩展，步骤见[启用文档编辑器](/docs/editing/documents.md#启用文档编辑器)。
+
+阅读和批注 PDF 需要单独安装、启用并授权 **PDF 查看器**；RIS 和 `.ash-library` 文献库使用 **文献管理器**。它们不随 Code 内置。步骤与保存限制见[阅读 PDF 与管理文献](/docs/editing/pdf-and-references.md)。
 
 ## 打开文件并保存一次修改
 
@@ -210,3 +212,4 @@ $$
 
 * [跨文件搜索与替换](/docs/editing/search-and-replace.md)
 * [让 Agent 协助完成第一个任务](/docs/getstarted/first-task.md)
+
