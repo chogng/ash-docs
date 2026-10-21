@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
 DateApproved: 10/21/2026
-SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
+SourceRevision: 0c066ff5d4c1d134f784618f9daaa788670d711b
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -53,7 +53,7 @@ MetaSocialImage: ../../og.png
 2. 修改对应控件的值。
 3. 检查页面是否显示保存错误，并在编辑器里观察实际效果。
 
-搜索会过滤当前页面的设置；`@lang:` 还会选择后续编辑所用的语言。输入搜索本身不会修改配置。某些设置连接账号或服务，需要额外的管理操作；不要把所有设置行都理解成普通 JSON 值。
+搜索会跨分类查找当前目标中可用的设置，正文标题显示 **搜索结果**。选择左侧有匹配项的分类可定位相应结果；清空搜索后回到分类浏览。`@lang:` 还会选择后续编辑所用的语言。输入搜索本身不会修改配置。某些设置连接账号或服务，需要额外的管理操作；不要把所有设置行都理解成普通 JSON 值。
 
 ## 找回自己改过的设置
 
@@ -178,10 +178,12 @@ MetaSocialImage: ../../og.png
 
 | 值 | 显示方式 |
 | --- | --- |
-| `off` | 不自动换行，是默认值 |
+| `off` | 不自动换行，是基础默认值；语言可以提供不同默认值 |
 | `on` | 在编辑器可见宽度处换行 |
 | `wordWrapColumn` | 在 `editor.wordWrapColumn` 指定的列处换行 |
 | `bounded` | 在可见宽度和指定列两者中较窄的位置换行 |
+
+预装的 Markdown Language Features 扩展为 Markdown 提供 `on` 的语言默认值，因此 Markdown 源码通常按可见宽度换行。想单独关闭它，在搜索框输入 `@lang:markdown @id:editor.wordWrap`，将值设为 **Off**；这会保存 Markdown 语言覆盖，而不改其他语言。已有显式配置仍按配置层级生效。
 
 `editor.wordWrapColumn` 默认为 `80`，接受正整数。显示换行不会向文件插入换行符。
 

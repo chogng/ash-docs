@@ -1,7 +1,7 @@
 ---
 ContentId: 7ac83015-5022-447d-ac97-445913858062
 DateApproved: 10/21/2026
-SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
+SourceRevision: 0c066ff5d4c1d134f784618f9daaa788670d711b
 MetaDescription: 在 Ash 中运行和补全终端命令，切换与拆分终端，调整输入和显示，检查环境贡献，并管理进程、会话恢复和排障记录。
 MetaSocialImage: ../../og.png
 ---
@@ -114,6 +114,12 @@ Shell 集成正常工作时，Ash 默认会在键入命令或参数后，在光�
 2. 选择列表中的配置，例如 Bash、Zsh、PowerShell 或命令提示符。列表也可以包含已配置的 Shell 和扩展提供的终端配置，具体选项取决于当前执行环境。
 3. 等待新终端启动，再检查提示符和当前目录。
 
+Windows 执行环境还会列出当前执行用户已注册的 WSL 发行版，名称为 **发行版名称 (WSL)** 。这要求执行端已有 `wsl.exe` 和对应发行版；Ash 不会为你安装 WSL，打开配置菜单也不会启动发行版。选择后才创建该发行版的 Shell，首次使用可能仍需完成发行版自身的初始化。新注册的发行版未出现时，重启对应执行服务；本机环境可退出并重新打开 Ash。
+
+连接就绪时，列表提供 **智能体主机（本地）** （**Agent Host (Local)** ）；远程环境显示对应宿主标识。这是新建普通 Shell 的入口，不是启动一个 Agent 对话。它使用执行平台的 `terminal.integrated.agentHostProfile.windows`、`terminal.integrated.agentHostProfile.linux` 或 `terminal.integrated.agentHostProfile.osx`；未配置时使用普通交互式默认 Shell。更改这些设置不会替换已经运行的进程。
+
+已配置或由扩展提供的 Copilot、Claude 终端配置会在菜单中单独分组。显示配置不表示 Ash 已安装或登录相应 CLI。
+
 带 **默认** 标记的项是当前默认配置。选择配置会创建新终端，不会切换已有终端中的 Shell，也不会把它保存为新的默认配置。
 
 也可以运行 **终端：使用配置新建终端**（**Terminal: Create New Terminal With Profile**），通过快速选择器选择配置。取消选择不会创建终端。
@@ -149,6 +155,8 @@ Shell 集成正常工作时，Ash 默认会在键入命令或参数后，在光�
 切换实例会保留各自的屏幕内容和进程。隐藏终端面板也会保留实例，正在运行的命令不会因为面板隐藏而停止。
 
 使用 **将面板移到左侧**、**将面板移到右侧**、**将面板移到顶部** 或 **将面板移到底部** 调整面板位置时，终端保留进程、输出、待提交输入和分屏比例。顶部和底部面板中的窗格横向排列，左侧和右侧面板中的窗格纵向排列。
+
+终端标签通常显示实际可执行程序名称，例如 `bash`、`pwsh` 或 `wsl`，不一定与配置选择器中的名称相同。显式重命名或配置的 `overrideName` 可以固定标签名称。右侧列表中的拆分、关闭按钮在悬停对应行或列表获得键盘焦点时显示。
 
 标题栏的当前终端名称和拆分、终止按钮是否显示，还取决于 `terminal.integrated.tabs.showActiveTerminal` 和 `terminal.integrated.tabs.showActions`。找不到按钮时，可以使用实例菜单或命令面板。
 
