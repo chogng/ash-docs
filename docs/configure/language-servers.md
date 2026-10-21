@@ -1,7 +1,7 @@
 ---
 ContentId: c284f60a-f383-4a70-8b84-37c186e70db7
-DateApproved: 10/18/2026
-SourceRevision: ff00a9e3063613ddde2dc6226aaaa9a86addd983
+DateApproved: 10/21/2026
+SourceRevision: b577e6be6e9fd91402c9052111566db763440117
 MetaDescription: 在 Ash 中配置语言服务器，使用内置 Rust 支持，添加自己的可执行程序，并检查语言诊断、日志和配置范围。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -24,7 +24,7 @@ Keywords:
 
 命令 ID 是 `ash.languageServers.open`，聊天中的 `/lsp` 也打开同一页面。**语言 ID** 输入框用于在 Extensions 中查找相应语言的服务器，搜索本身不安装服务器。
 
-语言服务器配置属于所连接 App Server 的 profile。选择工作区目录只改变检查范围，不创建目录级配置。它与普通编辑器的用户设置 JSON 分开，不能把本页高级配置片段粘贴到 `settings.json` 后期待同样效果。
+本页的服务器启停、程序路径和高级配置属于所连接 App Server 的 profile。选择工作区目录只改变检查范围，不创建目录级服务器配置。不要把本页的完整高级配置片段粘贴到 `settings.json` 后期待同样效果；Rust 的语言选项另见下文。
 
 ## 使用 Rust 语言支持
 
@@ -38,6 +38,12 @@ Keywords:
 托管下载清单覆盖 macOS、Linux GNU 和 Windows MSVC 的 x64 与 arm64。其他平台需要自行准备兼容的服务器。下载 `rust-analyzer` 不会安装或修复 `cargo`、`rustc` 或项目依赖。
 
 仅查看服务器列表不会下载或启动进程。停用 Rust 扩展或 `rust-analyzer` 服务器会阻止探测和安装。其他服务器的默认启用规则不同，不能按 Rust 的行为推断。
+
+### 按工作区调整 Rust 选项
+
+Rust 集成会读取当前目录生效的 `rust-analyzer` 设置树，包括用户、工作区和文件夹设置，传给该目录的语言服务器。使用普通[设置](/docs/configure/settings.md)调整 Rust 语言选项时，先确认设置范围；多根工作区中的不同文件夹可以有不同的有效值。
+
+相关设置变化后，受影响的服务器会使用新配置重新启动；删除覆盖后重新采用剩余范围的有效值。Rust 初始化选项也会使用这些值，不只在服务器已经启动后发送。这里不改变服务器的启停、程序路径和安装来源，也不表示其他语言服务器自动支持同样的设置映射。
 
 ## 更改服务器配置
 
@@ -99,3 +105,4 @@ Keywords:
 * [调整编辑器设置](/docs/configure/settings.md)
 * [理解权限与批准](/docs/configure/permissions.md)
 * [调试程序](/docs/debugging/overview.md)
+

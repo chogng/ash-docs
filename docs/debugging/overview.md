@@ -1,7 +1,7 @@
 ---
 ContentId: 3ca52998-cb12-4e63-a706-1bd7ed93918d
-DateApproved: 10/19/2026
-SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
+DateApproved: 10/21/2026
+SourceRevision: b577e6be6e9fd91402c9052111566db763440117
 MetaDescription: 在 Ash 桌面应用的 Code 工作台中使用按需安装的 CodeLLDB 或自行配置的 DAP 调试适配器，设置断点、单步执行、查看变量，并排查启动问题。
 MetaSocialImage: ../../og.png
 ---
@@ -9,7 +9,7 @@ MetaSocialImage: ../../og.png
 
 在 Ash 桌面应用的 Code 工作台中，打开 **运行和调试** 侧栏，你可以启动程序，在断点处暂停，检查变量，再逐步执行。你可以使用可选内置 LLDB 扩展按需准备 CodeLLDB，也可以自行配置 DAP 调试适配器。本文带你准备 `.vscode/launch.json`，启动调试并排查常见问题。
 
-本文依据 2026 年 10 月 19 日的主分支源码，适用于具备调试执行能力、已连接运行环境的 Code 工作台。公开安装包的功能以实际发布版本为准。Academic 不提供这组调试功能。下文分别介绍按需安装的 CodeLLDB 和手动安装的 LLVM `lldb-dap`；两者使用不同的配置类型。
+本文依据 2026 年 10 月 21 日的主分支源码，适用于具备调试执行能力、已连接运行环境的 Code 工作台。公开安装包的功能以实际发布版本为准。Academic 不提供这组调试功能。下文分别介绍按需安装的 CodeLLDB 和手动安装的 LLVM `lldb-dap`；两者使用不同的配置类型。
 
 ## 准备调试适配器
 
@@ -211,6 +211,8 @@ Ash 要求 `version` 为 `0.2.0`，配置包含非空的 `name`、`type`，以�
 
 在 **筛选调试控制台** 中输入文字。逗号分隔的条件表示任选其一，`!文字` 排除匹配内容，例如 `timeout, failed, !expected`。Windows/Linux 可按 `Ctrl+F`、macOS 可按 `⌘+F` 聚焦筛选框。按 `Enter` 保存筛选历史，按 `Escape` 清空筛选，再按一次回到输出。
 
+需要在输出中定位文字而不是筛掉其他记录时，选择 **在调试控制台中查找**（**Find in Debug Console**），或按 `Ctrl+Alt+F`（macOS：`Cmd+Alt+F`）。在查找框中按 `Enter` 跳到下一项、`Shift+Enter` 跳到上一项，按 `Escape` 关闭并回到输出。查找与筛选是两个入口，不会清空原筛选条件或尚未提交的表达式。
+
 输出保留适配器提供的分组、对象和源码位置。使用左右方向键展开或折叠分组、对象，选择源码位置可打开对应文件。筛选只改变显示，表达式和求值结果仍保留；检查较早的对象时，如果暂停上下文已经失效，需要在当前暂停位置重新查看。
 
 选择 **清除控制台**（**Clear Console**）会清除当前控制台保留的输出，输入历史仍保留。输入和筛选历史按当前工作区保存，重载后可继续使用。
@@ -270,3 +272,4 @@ Ash 要求 `version` 为 `0.2.0`，配置包含非空的 `name`、`type`，以�
 * [使用集成终端](/docs/terminal/basics.md)。
 * [配置目录与执行权限](/docs/configure/permissions.md)。
 * [调整快捷键](/docs/configure/keyboard-shortcuts.md)。
+

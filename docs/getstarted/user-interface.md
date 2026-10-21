@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/21/2026
-SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
+SourceRevision: b577e6be6e9fd91402c9052111566db763440117
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -69,6 +69,8 @@ Keywords:
 - `workbench.activityBar.compact`：紧凑活动栏
 - `workbench.sideBar.location`：主侧栏在左侧还是右侧
 
+活动栏位于顶部或底部时，可以开启默认关闭的 `workbench.activityBar.autoHide`。主侧栏和辅助侧栏会分别在只有一组或没有可用功能视图时隐藏切换栏；出现多组时重新显示。它按功能视图组计数，不按展开的子窗格数计数，也不是鼠标移开后自动收起整个侧栏。此设置不用于 Agents 窗口的独立导航。
+
 隐藏活动栏后，可从命令面板执行 **Move Activity Bar to Side** 重新显示。
 
 需要移动某个功能视图时，右键它的活动栏图标，选择 **移到**（**Move To**），再选择 **主侧栏**（**Primary Side Bar**）、**辅助侧栏**（**Secondary Side Bar**）或 **面板**（**Panel**）。视图标题的右键菜单也提供此入口。移动的是这组功能视图，不是整个活动栏；位置会保留。
@@ -93,6 +95,8 @@ Keywords:
 | **隐藏辅助侧栏**（**Hide Secondary Side Bar**） | 收起辅助侧栏；侧栏标题中的关闭按钮执行同一操作 |
 | **最大化辅助侧栏**（**Maximize Secondary Side Bar**） | 临时隐藏编辑器、主侧栏和底部面板，把空间留给辅助侧栏 |
 | **还原辅助侧栏**（**Restore Secondary Side Bar**） | 恢复最大化前的布局 |
+
+辅助侧栏可以容纳多组功能视图，使用它自己的切换栏选择当前组。`workbench.activityBar.location` 为顶部或底部时，切换栏显示在对应位置；其他可见位置在标题栏显示切换入口。右键入口，或聚焦后按 `Shift+F10`，可使用 **移到** 更改该组视图的位置。
 
 辅助侧栏自己的标题栏也提供最大化和还原按钮。最大化只是临时布局；隐藏后重新显示，原有视图、未发送草稿和普通宽度仍保留。隐藏侧栏不会停止 Agent 任务或终端进程。
 
@@ -200,3 +204,4 @@ Agents 活动栏自己的右键菜单同样提供 **Activity Bar Position** 和�
 - [开始第一个任务](/docs/getstarted/first-task.md)
 - [管理会话与任务](/docs/agents/sessions.md)
 - [使用集成终端](/docs/terminal/basics.md)
+

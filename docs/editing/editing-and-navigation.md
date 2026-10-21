@@ -1,7 +1,7 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
 DateApproved: 10/21/2026
-SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
+SourceRevision: b577e6be6e9fd91402c9052111566db763440117
 MetaDescription: 在 Ash 中编辑和保存文件，在差异视图修改工作文件，查找替换、跳转代码、筛选问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -69,6 +69,14 @@ Keywords:
 如果出现无法保存的提示，当前更改仍保留在画布中。先检查目标文件和权限，再从右键菜单选择 **Retry saving**（重试保存）。桌面关闭流程会等待保存；保存失败时先处理错误，不要强制退出。自动保存不代替独立备份，也不会自动发布组件库。
 
 此行为适用于 **Design**。Creator 的其他画布工作空间仍使用各自的手动保存操作。
+
+## 格式化代码
+
+当前文件的语言支持提供格式化能力时，从命令面板运行 **格式化文档**（**Format Document**）；只处理选中区域时，运行 **格式化选定内容**（**Format Selection**）。只读文件和不支持格式化的语言不能通过这些命令修改。
+
+存在多个格式化程序且没有可用的默认选择时，显式格式化会让你选择一个。需要固定当前语言的选择时，在选择器中使用 **配置默认格式化程序…**（**Configure Default Formatter...**）；它保存该语言的 `editor.defaultFormatter` 设置。普通选择只用于当前操作。
+
+开启 `editor.formatOnType` 后，支持此能力的语言服务可以在输入其指定字符时格式化。它不等于每次输入都格式化，也不等于保存时格式化。输入时格式化按语言服务提供的触发字符选择能力，不使用上述默认文档格式化程序选择器。
 
 ## 按文件名找到项目文件
 
@@ -212,4 +220,5 @@ $$
 
 * [跨文件搜索与替换](/docs/editing/search-and-replace.md)
 * [让 Agent 协助完成第一个任务](/docs/getstarted/first-task.md)
+
 
