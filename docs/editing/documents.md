@@ -1,7 +1,7 @@
 ---
 ContentId: 5ed33ee2-c860-4f09-91ec-dd04a7c0e330
-DateApproved: 10/20/2026
-SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
+DateApproved: 10/21/2026
+SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
 MetaDescription: 在 Ash 中创建和排版文档，设置分节与页眉页脚，添加批注和块级修订，并导入导出 DOCX、导出 PDF 页面图像。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -20,7 +20,7 @@ Keywords:
 
 ## 启用文档编辑器
 
-普通 `.ash-doc`、Academic 论文和频道笔记都由 Academy 文档编辑器提供。它在扩展界面的名称仍是 **学术论文（实验性）**（Academic (Experimental)），扩展 ID 为 `ash.academic`。它已改为独立安装的扩展，不随 Ash 产品包内置；只有 Code 扩展不能打开这些结构化文档。
+普通 `.ash-doc`、Academic 论文和频道笔记都由 Academy 文档编辑器提供。它在扩展界面的名称仍是 **学术论文（实验性）**（Academic (Experimental)），扩展 ID 为 `ash.academic`。它已改为独立安装的扩展，不随 Ash 产品包内置；内置文本编辑能力不能代替 Academy 文档编辑器。
 
 1. 在命令面板运行 **打开扩展**（**Open Extensions**）。
 2. 搜索 `Academic`，检查是否有适用于当前 Ash 版本和后端平台的包。打开详情，核对来源、版本和说明，再选择 **安装**（**Install**）。对应发行包的 ID 为 `ash/academic`。

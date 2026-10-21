@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
-DateApproved: 10/19/2026
-SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
+DateApproved: 10/21/2026
+SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -157,6 +157,14 @@ MetaSocialImage: ../../og.png
 `dictation.model` 填的是模型包 ID，不是任意文件路径。更改它不会自动安装模型；先在模型列表中完成安装或导入，再选择 **使用模型**。
 
 旧键 `dictation.localModel` 会在读取设置时迁移到 `dictation.model`。新旧值相同会清理旧键；值冲突或旧值无效时，Ash 保留原文并报告问题。此时打开用户设置 JSON，将需要的有效模型 ID 保留在 `dictation.model` 中，移除旧键，再保存。不要把旧配置示例中的键继续加回去。
+
+### 在 Chat 中使用听写命令
+
+先聚焦当前可见的 Chat 或 Cowork 输入框，再运行 **听写消息**（**Dictate message**）。它把识别文字写入输入框，不会自动发送。停止后检查文字，再自行发送；隐藏或切换对话会取消本次录音。
+
+需要按住录音时，在[键盘快捷方式](/docs/configure/keyboard-shortcuts.md)中为 **听写：按住录音**（**Dictation: Hold to record**）设置快捷键。录音开始后，按住至少半秒再松开可完成转写；短按会丢弃录音。模型或麦克风仍在准备时松开也会取消，不会稍后自动录音。仅从命令面板执行这个按住命令不会开始录音。
+
+桌面的 **启动语音模式**（**Start Voice Mode**）是另一条入口：它在最近聚焦且仍可见的 Chat 中开启实时语音对话，而不是只把文字放进草稿。先确认目标对话与语音配置；听写模型设置不等于实时对话模型设置。
 
 ## 选择默认面板位置
 

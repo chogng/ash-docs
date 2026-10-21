@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
-DateApproved: 10/19/2026
-SourceRevision: 248e9727927a7c6809f83cbd30eb9ac13bf96073
+DateApproved: 10/21/2026
+SourceRevision: 5566e94df54b21c9458b3be0e6eb5a16a1f45d7f
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -40,6 +40,23 @@ Keywords:
 
 命令行右侧的齿轮 **配置快捷键** 会打开快捷键弹窗，并直接筛选该命令，不会执行命令。最近使用的命令还提供 **从命令历史记录中移除**，只移除历史记录。具体修改方式见[设置键盘快捷方式](/docs/configure/keyboard-shortcuts.md)。
 
+## 管理扩展
+
+从命令面板运行 **打开扩展**（**Open Extensions**）。编辑器和 Agents 窗口使用同一套分类：
+
+* **技能**（**Skills**）：Agent 完成任务的工作方法。
+* **插件**（**Plugins**）：编辑器、语言支持、调试或其他功能包。
+* **连接器**（**Connectors**）：外部账号和 MCP 工具服务器的连接。
+* **推荐**（**Recommended**）：当前工作区推荐的扩展，不会自动安装。
+
+顶部统一搜索框输入普通关键词时搜索 Marketplace。只查现有内容时，输入 `@installed` 加关键词，或用 **筛选扩展** 选择技能、插件、连接器、内置插件或推荐。选择 **清除搜索** 或在搜索框按 `Esc`，返回分类列表。
+
+**刷新扩展** 重新读取各分类。标题栏的更多操作提供扩展源管理，以及从工作区或 Git 安装的入口。窗格的添加操作会在鼠标悬停或键盘聚焦时显示；选择条目后在编辑器中查看详情。
+
+安装、启用、执行授权和账号连接是不同操作。Skill 的启停只影响这一项技能；断开连接不卸载其功能包。具体步骤见[管理技能](/docs/customize/skills.md)和[连接 MCP 服务器](/docs/customize/mcp-servers.md)。
+
+浏览器工作台可以查看内置后端 Provider 的状态，但不能启用或停用它们；管理这类功能需要具备权限的桌面或远程宿主。语言包仍通过显示语言设置管理。使用为 Ash 准备的扩展包，不要沿用 VSIX 或 Open VSX 的安装步骤。
+
 ## 调整编辑器布局
 
 ### 移动活动栏和主侧栏
@@ -53,6 +70,10 @@ Keywords:
 - `workbench.sideBar.location`：主侧栏在左侧还是右侧
 
 隐藏活动栏后，可从命令面板执行 **Move Activity Bar to Side** 重新显示。
+
+需要移动某个功能视图时，右键它的活动栏图标，选择 **移到**（**Move To**），再选择 **主侧栏**（**Primary Side Bar**）、**辅助侧栏**（**Secondary Side Bar**）或 **面板**（**Panel**）。视图标题的右键菜单也提供此入口。移动的是这组功能视图，不是整个活动栏；位置会保留。
+
+图标右键菜单中的 **配置快捷键**（**Configure Keybinding**）可以直接筛选该入口的快捷键。**隐藏主侧栏**（**Hide Primary Side Bar**）只收起主侧栏，不会关闭其中的功能。以上操作针对普通编辑器窗口，Agents 导航使用下文的独立布局。
 
 ### 显示或放大底部工具
 
