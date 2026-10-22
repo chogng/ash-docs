@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+SourceRevision: 58cc32b4bb67b4a139f0b293819a52a4a4cf3d7b
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -89,6 +89,14 @@ Keywords:
 
 图标右键菜单中的 **配置快捷键**（**Configure Keybinding**）可以直接筛选该入口的快捷键。**隐藏主侧栏**（**Hide Primary Side Bar**）只收起主侧栏，不会关闭其中的功能。以上操作针对普通编辑器窗口，Agents 导航使用下文的独立布局。
 
+### 移动和恢复单个视图
+
+在普通编辑器窗口中，从命令面板运行 **移动视图**（**Move View**），选择可移动的视图，再选择目标功能组，或新建主侧栏、辅助侧栏、面板入口。也可拖动该视图的标题。只有支持移动的视图会出现在选择器中；这与移动整组功能视图不同。
+
+移动后的位置按配置保存。移动到另一个功能组可能重新创建视图，不保证保留原有选区、滚动位置或临时状态。扩展提供的树视图还取决于扩展已启用且后端可用，视图出现不代表其中的操作已获得额外权限。
+
+只恢复一项时，在视图标题菜单选择 **重置位置**（**Reset Location**），或聚焦后运行 **重置焦点视图位置**（**Reset Focused View Location**）。运行 **重置视图位置**（**Reset View Locations**）会恢复所有视图的默认归属、功能组位置和入口顺序；不要用它代替临时隐藏侧栏。
+
 ### 显示或放大底部工具
 
 通过标题栏的面板按钮，或 **View** 菜单中的面板显隐操作，展开或收起底部面板。命令面板中的名称为 **Toggle Panel Visibility**；已展开时也提供 **Hide Panel**。
@@ -150,12 +158,13 @@ Agents 窗口的活动栏提供 **Chat** 和 **Code**：
 
 需要新任务或历史会话时，使用左侧会话列表，具体步骤见[会话与任务](/docs/agents/sessions.md)。
 
-## 打开 ChatGPT 和自动化
+## 打开项目、ChatGPT 和自动化
 
 Agents 活动栏还提供与 Chat、Code 分开的入口：
 
 | 入口 | 用途 |
 | --- | --- |
+| **项目**（**Projects**） | 按名称和目标组织文件、文件夹引用；操作步骤见[组织项目素材](/docs/editing/workspaces.md#在-agents-中组织项目资料) |
 | **ChatGPT** | 打开 ChatGPT 对话、置顶和项目分组，选择模型、添加附件或进行语音对话 |
 | **Automations** | 创建、查看和管理定时任务；是否出现取决于当前连接是否支持自动化 |
 

@@ -1,7 +1,7 @@
 ---
 ContentId: 3ca52998-cb12-4e63-a706-1bd7ed93918d
 DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+SourceRevision: 58cc32b4bb67b4a139f0b293819a52a4a4cf3d7b
 MetaDescription: 在 Ash Code 工作台调试 Rust、JavaScript 和其他程序，配置 Node.js 自动附加，使用断点、单步、变量和服务就绪操作。
 MetaSocialImage: ../../og.png
 ---
@@ -129,7 +129,7 @@ TypeScript 项目需要先生成 JavaScript 和 source map，把 `program` 指�
 
 只想暂时停止附加新程序时，选择 **临时禁用自动附加**。它不会修改设置或停止已有调试会话；选择 **重新启用自动附加** 后，同一终端以及暂停期间新建的终端都可以附加后来启动的程序。更改自动附加设置或重启扩展会清除临时暂停；这与切换模式后需要新建终端不同。
 
-当前自动附加要求本地 Inspector 使用 `127.0.0.1`。显式指定 `localhost` 等其他主机名的程序可能停在启动等待中；遇到这种情况，结束该程序，将自动附加设为 `disabled` 后**新建终端**再运行。临时暂停或修改设置不会清除旧终端继承的启动环境。
+当前自动附加要求本地 Inspector 使用 `127.0.0.1`。显式指定 `localhost` 等不受支持的 Inspector 地址时，Ash 跳过自动附加，不额外等待调试器；程序自身的 `--inspect-brk` 等启动暂停仍需单独处理。旧版本遇到启动等待时，可结束程序，将自动附加设为 `disabled` 后**新建终端**再运行。临时暂停或修改设置不会清除旧终端继承的启动环境。
 
 停止自动附加的调试会话只会分离调试器，不会结束终端程序。需要结束程序时，在对应终端按 `Ctrl+C`。
 
