@@ -186,6 +186,16 @@
     ]
   },
   {
+    "name": "工程博客",
+    "area": "blog",
+    "topics": [
+      [
+        "一次 diff 点击的性能复盘",
+        "/docs/blog/scm-diff-latency"
+      ]
+    ]
+  },
+  {
     "name": "参考",
     "area": "reference",
     "topics": [
