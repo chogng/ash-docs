@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
-DateApproved: 10/21/2026
-SourceRevision: 0c066ff5d4c1d134f784618f9daaa788670d711b
+DateApproved: 10/22/2026
+SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -132,6 +132,14 @@ MetaSocialImage: ../../og.png
 ```
 
 保留该对象中你仍需要的其他规则。删除这个 `false` 条目会重新启用默认隐藏规则。对整个 `files.exclude` 使用 **重置设置** 会移除当前目标的全部覆盖；其他层的规则仍可能生效，不会删除文件。
+
+## 预览和编辑主题
+
+从命令面板运行 **Open Theme Editor**（`workbench.action.openThemeEditor`）。当前窗口需要提供用户主题文件，所选主题也需要可读取的源码；打包主题可能以只读方式打开。
+
+预览区提供 **Workbench**、**Diff** 和 **Agent Window**。选择 **Diff** 可查看新增行、删除行和行内修改的颜色；搜索 `diffEditor.` 后调整相应颜色，比较视图会更新。切换预览会重置示例交互，不会修改项目文件。
+
+用左右方向键聚焦预览标签，按 `Enter` 或空格切换。**Save and Apply** 保存有效主题并应用到主窗口；旁边菜单的 **Save as** 用于创建副本，**Save** 只保存。只读主题先另存副本。关闭编辑器不等于应用主题。
 
 ## 修改显示语言
 

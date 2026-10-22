@@ -1,7 +1,7 @@
 ---
 ContentId: cf94b364-16ea-4eb7-97ee-b77377c139c3
-DateApproved: 10/21/2026
-SourceRevision: b577e6be6e9fd91402c9052111566db763440117
+DateApproved: 10/22/2026
+SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
 MetaDescription: 在 Ash 中编辑和保存文件，在差异视图修改工作文件，查找替换、跳转代码、筛选问题，预览 Markdown 公式，并了解 Design 自动保存。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -28,7 +28,7 @@ Keywords:
 
 语言补全、诊断和语义导航仍取决于对应语言服务及后端连接。基础编辑可用不代表语言服务器已经就绪；功能缺失时，先检查文件的语言模式和[语言服务器状态](/docs/configure/language-servers.md)，不要为了恢复高亮而丢弃未保存草稿。
 
-普通文本和结构化文档使用不同能力。`.ash-doc`、Academic 论文和频道笔记还需要独立安装并授权 **学术论文（实验性）**扩展，步骤见[启用文档编辑器](/docs/editing/documents.md#启用文档编辑器)。
+普通文本和结构化文档使用不同能力。`.ash-doc`、Academic 论文和频道笔记还需要独立安装并授权 **Academy（实验性）**扩展，步骤见[启用文档编辑器](/docs/editing/documents.md#启用文档编辑器)。
 
 阅读和批注 PDF 需要单独安装、启用并授权 **PDF 查看器**；RIS 和 `.ash-library` 文献库使用 **文献管理器**。它们不随产品预装。步骤与保存限制见[阅读 PDF 与管理文献](/docs/editing/pdf-and-references.md)。
 
@@ -164,6 +164,12 @@ Keywords:
 **Collapse All**（全部折叠）收起文件分组。**Copy Problems**（复制问题）将当前筛选结果复制为文本，包含文件路径、行列、严重级别、消息和诊断来源，适合粘贴到问题报告或 Agent 对话中。折叠文件分组不会把其中匹配的问题排除在复制结果之外。
 
 显示没有匹配项时，选择 **Clear Filters**（清除筛选），同时恢复文本和严重级别筛选。**当前没有问题**表示没有收到诊断，不表示已经运行所有测试；没有诊断且尚未打开项目时，列表会提示先打开文件夹。
+
+## 使用缩略图导航
+
+在设置中搜索 `editor.minimap`，启用缩略图后可点击或拖动缩略图，滚动到文件中的对应位置。`editor.minimap.autohide` 默认 `none`，始终显示；`mouseover` 仅在指针移入时显示，`scroll` 在滚动时显示。隐藏缩略图不隐藏正文。
+
+`editor.minimap.maxColumn` 控制绘制的最大列数，`editor.minimap.scale` 可设为 `1` 到 `3`。使用 `editor.minimap.showRegionSectionHeaders` 和 `editor.minimap.showMarkSectionHeaders` 控制章节标题；命名区域需要语言配置支持，MARK 标题取决于注释和匹配规则。可以通过 `sectionHeaderFontSize`、`sectionHeaderLetterSpacing` 和 `markSectionHeaderRegex` 对应的 `editor.minimap.*` 设置调整显示，不会修改源码。
 
 ## 预览 Markdown 和数学公式
 

@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/22/2026
-SourceRevision: 095b5d39556441dc3afe867078e9166f5c2d088b
+SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -46,16 +46,24 @@ Keywords:
 
 * **技能**（**Skills**）：Agent 完成任务的工作方法。
 * **插件**（**Plugins**）：编辑器、语言支持、调试或其他功能包。
-* **连接器**（**Connectors**）：外部账号和 MCP 工具服务器的连接。
+* **连接**（**Connections**）：外部账号和 MCP 工具服务器的连接。
 * **推荐**（**Recommended**）：当前工作区推荐的扩展，不会自动安装。
 
-顶部统一搜索框输入普通关键词时搜索 Marketplace。只查现有内容时，输入 `@installed` 加关键词，或用 **筛选扩展** 选择技能、插件、连接器、内置插件或推荐。选择 **清除搜索** 或在搜索框按 `Esc`，返回分类列表。
+顶部统一搜索框输入普通关键词时搜索 Marketplace。只查现有内容时，输入 `@installed` 加关键词，或用 **筛选扩展** 选择技能、插件、连接、内置插件或推荐。选择 **清除搜索** 或在搜索框按 `Esc`，返回分类列表。
 
 **刷新扩展** 重新读取各分类。标题栏的更多操作提供扩展源管理，以及从工作区或 Git 安装的入口。展开窗格后，添加等操作默认在鼠标悬停或键盘聚焦时显示；选择条目后在编辑器中查看详情。
 
 安装、启用、执行授权和账号连接是不同操作。Skill 的启停只影响这一项技能；断开连接不卸载其功能包。具体步骤见[管理技能](/docs/customize/skills.md)和[连接 MCP 服务器](/docs/customize/mcp-servers.md)。
 
 浏览器工作台可以查看内置后端 Provider 的状态，但不能启用或停用它们；管理这类功能需要具备权限的桌面或远程宿主。语言包仍通过显示语言设置管理。使用为 Ash 准备的扩展包，不要沿用 VSIX 或 Open VSX 的安装步骤。
+
+## 查看和管理通知
+
+从命令面板运行 **Show Notifications** 打开通知中心；**Hide Notifications** 只隐藏中心。普通弹出通知自动收起后，仍可在中心查看。**Clear All** 清除可关闭的通知，但保留正在显示进度的项目，不会取消对应任务。
+
+在中心标题中选择 **Configure Do Not Disturb...**，启用全局免打扰或调整已知来源；也可运行 **Toggle Do Not Disturb Mode By Source...**。免打扰减少普通提醒弹出，但错误和紧急通知仍可能显示，通知记录不会因此全部删除。
+
+通过 **Configure Notifications Position...** 选择右下、左下或右上位置；设置 `workbench.notifications.position` 默认 `bottom-right`。
 
 ## 调整视图标题操作
 

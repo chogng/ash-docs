@@ -1,7 +1,7 @@
 ---
 ContentId: 8dfb86fa-1d74-43bd-9a80-863c3377176a
-DateApproved: 10/20/2026
-SourceRevision: 937af130ec21b2c9a213250ce165eee722c078f2
+DateApproved: 10/22/2026
+SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
 MetaDescription: 在 Ash 中安装独立 PDF 查看器和文献管理器，保存 PDF 批注、导入 RIS 文献库，并在 Academic 论文中插入和更新引用。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -15,7 +15,7 @@ Keywords:
 
 在 Ash 中，你可以阅读和批注 PDF，将 RIS 文献记录整理为本地文献库，再把引用插入 Academic 论文。本页说明需要的独立扩展、文件保存方式，以及文献库与论文之间的连接。
 
-本页依据 2026 年 10 月 20 日的主分支实现。扩展市场、发行版本和后端平台是否提供对应包，以实际发布内容为准。
+本页依据 2026 年 10 月 22 日的主分支实现。扩展市场、发行版本和后端平台是否提供对应包，以实际发布内容为准。
 
 ## 安装需要的扩展
 
@@ -25,7 +25,7 @@ Keywords:
 | --- | --- | --- |
 | 阅读 PDF，添加高亮、墨迹和批注 | **PDF 查看器**（**PDF Viewer**） | `ash.pdf-viewer` |
 | 导入 RIS，管理文献库和 PDF 关联 | **文献管理器**（**Reference Manager**） | `ash.reference-manager` |
-| 编辑论文，接收文献库引用 | **学术论文（实验性）**（Academic (Experimental)） | `ash.academic` |
+| 编辑论文，接收文献库引用 | **Academy（实验性）**（Academy (Experimental)） | `ash.academy` |
 
 1. 运行 **打开扩展**（**Open Extensions**），搜索所需扩展。
 2. 核对来源、版本与后端平台，安装对应包。PDF 和文献管理器的发行包 ID 分别为 `ash/pdf-viewer`、`ash/reference-manager`。

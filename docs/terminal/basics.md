@@ -1,7 +1,7 @@
 ---
 ContentId: 7ac83015-5022-447d-ac97-445913858062
-DateApproved: 10/21/2026
-SourceRevision: b577e6be6e9fd91402c9052111566db763440117
+DateApproved: 10/22/2026
+SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
 MetaDescription: 在 Ash 中运行和补全终端命令，切换与拆分终端，调整输入和显示，检查环境贡献，并管理进程、会话恢复和排障记录。
 MetaSocialImage: ../../og.png
 ---
@@ -118,7 +118,7 @@ Windows 执行环境还会列出当前执行用户已注册的 WSL 发行版，�
 
 连接就绪时，列表提供 **智能体主机（本地）** （**Agent Host (Local)** ）；远程环境显示对应宿主标识。这是新建普通 Shell 的入口，不是启动一个 Agent 对话。它使用执行平台的 `terminal.integrated.agentHostProfile.windows`、`terminal.integrated.agentHostProfile.linux` 或 `terminal.integrated.agentHostProfile.osx`；未配置时使用普通交互式默认 Shell。更改这些设置不会替换已经运行的进程。
 
-已配置或由扩展提供的 Copilot、Claude 终端配置会在菜单中单独分组。显示配置不表示 Ash 已安装或登录相应 CLI。
+已配置和扩展提供的终端配置按列表顺序统一展示，不按 Copilot、Claude 等品牌单独分组。显示配置不表示 Ash 已安装或登录相应 CLI。
 
 带 **默认** 标记的项是当前默认配置。选择配置会创建新终端，不会切换已有终端中的 Shell，也不会把它保存为新的默认配置。
 
@@ -161,6 +161,12 @@ Windows 执行环境还会列出当前执行用户已注册的 WSL 发行版，�
 标题栏的当前终端名称和拆分、终止按钮是否显示，还取决于 `terminal.integrated.tabs.showActiveTerminal` 和 `terminal.integrated.tabs.showActions`。找不到按钮时，可以使用实例菜单或命令面板。
 
 使用键盘调整面板中的终端时，先选择要移动的终端，再运行 **终端：合并或调整终端顺序...** （**Terminal: Join or Reorder Terminals...** ）。选择目标终端及之前或之后的位置，按 `Enter` 确认。按 `Escape` 取消；移动保留原进程和输出，不会重新运行命令。
+
+### 查看终端进程信息
+
+悬停终端标题或右侧列表名称，可查看配置、进程 ID 和可用的启动命令信息。**Show Details** 展开 Shell 集成诊断、目录、退出码等可用信息；**Show Environment Contributions** 查看扩展环境贡献。键盘聚焦标题或列表项后，可按 `Alt+↓` 进入信息卡。
+
+字段取决于实际终端和后端，缺失不代表进程已经结束。“命令行”指启动命令，不是当前执行的每条命令；查看信息卡不会执行 Shell。详情可能包含启动参数或提示符输入，分享截图前先检查敏感内容。
 
 ### 按名称查找并切换
 
