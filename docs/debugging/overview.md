@@ -1,15 +1,15 @@
 ---
 ContentId: 3ca52998-cb12-4e63-a706-1bd7ed93918d
-DateApproved: 10/21/2026
-SourceRevision: b577e6be6e9fd91402c9052111566db763440117
-MetaDescription: 在 Ash 桌面应用的 Code 工作台中使用按需安装的 CodeLLDB 或自行配置的 DAP 调试适配器，设置断点、单步执行、查看变量，并排查启动问题。
+DateApproved: 10/22/2026
+SourceRevision: 095b5d39556441dc3afe867078e9166f5c2d088b
+MetaDescription: 在 Ash Code 工作台调试 Rust、JavaScript 和其他程序，配置 Node.js 自动附加，使用断点、单步、变量和服务就绪操作。
 MetaSocialImage: ../../og.png
 ---
 # 调试程序
 
-在 Ash 桌面应用的 Code 工作台中，打开 **运行和调试** 侧栏，你可以启动程序，在断点处暂停，检查变量，再逐步执行。你可以使用可选内置 LLDB 扩展按需准备 CodeLLDB，也可以自行配置 DAP 调试适配器。本文带你准备 `.vscode/launch.json`，启动调试并排查常见问题。
+在 Ash 桌面应用的 Code 工作台中，打开 **运行和调试** 侧栏，你可以启动程序，在断点处暂停，检查变量，再逐步执行。你可以使用可选内置 LLDB 扩展按需准备 CodeLLDB，使用 JavaScript 调试扩展，或自行配置 DAP 调试适配器。本文带你准备 `.vscode/launch.json`，启动调试并排查常见问题。
 
-本文依据 2026 年 10 月 21 日的主分支源码，适用于具备调试执行能力、已连接运行环境的 Code 工作台。公开安装包的功能以实际发布版本为准。Academic 不提供这组调试功能。下文分别介绍按需安装的 CodeLLDB 和手动安装的 LLVM `lldb-dap`；两者使用不同的配置类型。
+本文依据 2026 年 10 月 22 日的主分支源码，适用于具备调试执行能力、已连接运行环境的 Code 工作台。公开安装包的功能以实际发布版本为准。Academic 不提供这组调试功能。下文介绍按需安装的 CodeLLDB、手动安装的 LLVM `lldb-dap`，以及 JavaScript 调试；它们使用不同的配置类型。
 
 ## 准备调试适配器
 
@@ -17,7 +17,7 @@ MetaSocialImage: ../../og.png
 
 1. 已在 Ash 中打开项目文件夹，当前环境允许读取项目的可执行配置和执行进程。只运行你信任的配置。权限说明见[目录与执行权限](/docs/configure/permissions.md)。
 2. 待调试程序及其依赖已准备好。编译型项目需要带调试信息的可执行文件；修改源码后应重新构建。
-3. 选择适合项目的适配器来源：内置 LLDB 扩展、自行安装的适配器，或受支持的已安装调试扩展。
+3. 选择适合项目的适配器来源：内置 LLDB 或 JavaScript 调试扩展、自行安装的适配器，或受支持的已安装调试扩展。
 
 本地项目使用本地环境中的工具。SSH Remote 项目的适配器、运行包缓存、程序和路径都属于远端执行环境，不会回退到本机工具。
 
@@ -80,6 +80,56 @@ CodeLLDB 的运行包清单包含 Windows x64、Linux x64 与 arm64、macOS x64 
 ```
 
 选择这个配置后启动调试，首次启动会先准备 CodeLLDB。调试 C 或 C++ 时，将 `program` 改为相应可执行文件并移除 `sourceLanguages`。配置本身不会安装编译器，也不会自动构建目标程序。
+
+### 调试 Rust 测试
+
+从测试视图选择可调试的 Rust 用例后启动调试，Ash 会先保存所属项目文件夹内的未保存文件、重新发现用例，再构建带调试信息的测试程序。测试调试使用同一个 `lldb` 提供者和 CodeLLDB 设置，无需手动填写系统 `lldb-dap` 路径；首次使用仍可能需要下载 CodeLLDB。只调试所选用例，输出显示在调试控制台中。
+
+文档测试等不可调试的用例不能使用这条路径。缺少或停用 LLDB 扩展时，测试调试会报错，不会自动改用系统适配器。
+
+### 示例：调试 JavaScript 文件
+
+包含并启用了 JavaScript 调试扩展的版本支持 Node.js 启动和附加，也支持 Chrome／Edge 调试。适配器随 Ash 分发，使用 Ash 管理的 Node；无需安装 Rust、Cargo 或 VS Code 扩展。要使用项目所需的 Node 版本，可在配置中填写 `runtimeExecutable`。
+
+打开要运行的 JavaScript 文件，再使用以下配置：
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "启动 JavaScript 文件",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "sourceMaps": true
+    }
+  ]
+}
+```
+
+TypeScript 项目需要先生成 JavaScript 和 source map，把 `program` 指向编译产物，并用 `outFiles` 指向输出文件，例如 `["${workspaceFolder}/dist/**/*.js"]`。这份配置不会自动编译 TypeScript。
+
+支持的类型包括 `node`／`pwa-node`、`chrome`／`pwa-chrome`、`msedge`／`pwa-msedge`。浏览器调试仍需在相应执行环境准备浏览器；不要把类型可用理解为所有平台、SSH 环境和浏览器组合均已验证。
+
+### 从终端自动附加 Node.js
+
+自动附加默认关闭。在命令面板运行 **调试: 切换自动附加**（`ash.debug-javascript.toggleAutoAttach`），选择模式后**新建集成终端**，再在工作区目录内启动 Node.js 程序。也可以修改 `debug.javascript.autoAttachFilter`：
+
+| 模式 | 行为 |
+| --- | --- |
+| `always`（始终） | 附加到新终端中启动的 Node.js 程序 |
+| `smart`（智能） | 排除匹配 `debug.javascript.autoAttachSmartPattern` 的脚本，默认排除 `**/node_modules/**` |
+| `onlyWithFlag`（仅带标志时） | 只附加已经启用 Inspector 的程序 |
+| `disabled`（已禁用） | 关闭自动附加并隐藏状态栏项 |
+
+选择器可切换用户设置和工作区设置。已有工作区覆盖时默认修改工作区，否则修改用户设置。启用后，点击状态栏的 **自动附加** 可再次切换模式。
+
+只想暂时停止附加新程序时，选择 **临时禁用自动附加**。它不会修改设置或停止已有调试会话；选择 **重新启用自动附加** 后，同一终端以及暂停期间新建的终端都可以附加后来启动的程序。更改自动附加设置或重启扩展会清除临时暂停；这与切换模式后需要新建终端不同。
+
+停止自动附加的调试会话只会分离调试器，不会结束终端程序。需要结束程序时，在对应终端按 `Ctrl+C`。
 
 ### 示例：用 LLDB-DAP 调试一个 C 程序
 
@@ -179,11 +229,13 @@ Ash 要求 `version` 为 `0.2.0`，配置包含非空的 `name`、`type`，以�
 
 在 C 示例的断点处按一次 **单步跳过** 后，程序应移到后面的语句，`answer` 从 `40` 变成 `42`。如果修改了示例值，以当前源码及重新编译后的程序为准。
 
-**调用堆栈** 显示当前线程的栈帧。选择其他栈帧会切换查看的源码位置和变量；有多个线程时，可使用 **调试线程** 下拉框。有多个会话时，先通过 **活动调试会话** 选择目标，避免在另一个程序上单步或停止。
+**变量**、**监视**、**调用堆栈** 和 **断点** 是独立视图。**调用堆栈** 显示当前线程的栈帧。选择其他栈帧会切换查看的源码位置和变量；有多个线程时，可使用调用堆栈视图中的 **调试线程** 下拉框。有多个会话时，先通过顶部控制区的 **活动调试会话** 选择目标，避免在另一个程序上单步或停止。
 
 在 **变量** 区域中展开对象以查看子项。适配器支持修改变量、程序已暂停且该变量可写时，可选中变量按 `F2` 或双击，输入新值并按 `Enter` 提交；`Escape` 取消尚未提交的输入。失败时会保留输入并显示原因。
 
 修改变量会改变正在运行的程序。已提交的修改不能靠关闭输入框撤回。继续执行、切换栈帧或切换会话也会结束当前编辑；只读变量和尚未展开的延迟变量不能直接修改。
+
+适配器提供已加载源码列表时，可运行 **Debug: Open Loaded Script**（`workbench.action.debug.showLoadedScripts`）选择脚本。**Loaded Scripts** 视图默认隐藏；该功能也能打开适配器提供的虚拟源码，不保证每个脚本都有本地文件。
 
 ## 使用监视和调试控制台
 
@@ -227,6 +279,8 @@ Ash 要求 `version` 为 `0.2.0`，配置包含非空的 `name`、`type`，以�
 
 已有多个会话时，可以分别切换和控制；需要全部结束时，使用 **全部停止** 或命令 **停止所有调试**（Stop All Debugging）。切换工作区或失去执行环境连接会结束旧会话，不支持在另一进程中恢复它们。
 
+若希望关闭窗口、重载或退出前确认是否停止活动调试会话，可将 `debug.confirmOnExit` 设为 `always`；默认值为 `never`。
+
 如果项目已经定义了任务，可在某个调试配置中添加 `preLaunchTask` 或 `postDebugTask`，值为任务引用名称。启动前任务必须成功完成；找不到任务、名称歧义、失败或取消都会阻止调试启动。结束后任务在该会话结束时执行。仅写入任务名称不会创建任务。
 
 要一次启动多个已有配置，可在 `launch.json` 顶层添加 `compounds`，按配置名称引用。把下面的两个名称换成同一文件中已经存在的配置名称：
@@ -242,6 +296,24 @@ Ash 要求 `version` 为 `0.2.0`，配置包含非空的 `name`、`type`，以�
 ```
 
 这是顶层字段片段，需与 `version`、`configurations` 正确组合为一个 JSON 对象。选择侧栏里的复合配置再点击 **启动调试**。`stopAll: true` 表示其中一个会话结束或出错时，其余成员也会停止；启动中失败时，Ash 会停止本次已经启动的成员。
+
+### 服务就绪后打开页面或启动另一配置
+
+启用服务就绪扩展后，在服务端调试配置中加入 `serverReadyAction`，可以在所属调试会话或其集成终端输出匹配时执行后续操作。例如，服务输出 `listening on 3000` 时打开页面：
+
+```json
+"serverReadyAction": {
+  "action": "openExternally",
+  "pattern": "listening on (\\d+)",
+  "uriFormat": "http://localhost:%s"
+}
+```
+
+这是单个调试配置内的字段片段，不是完整的 `launch.json`。每次启动或重启只触发一次，不会扫描其他终端。打开网址只接受 HTTP(S)；`uriFormat` 若填写，必须恰好含一个 `%s`。省略它时，捕获的端口转为 `http://localhost:<端口>`，完整 HTTP(S) 地址则直接使用。
+
+`action` 还支持 `startDebugging`、`debugWithChrome` 和 `debugWithEdge`。使用 `startDebugging` 时，在 `name`（另一调试配置名称）与 `config`（内联配置）中选择一个；加上 `killOnServerStop: true` 可让子配置随服务端会话停止，默认则独立运行。浏览器调试需要前述 JavaScript 提供者和相应浏览器。
+
+`pattern` 使用 Rust `regex` 语法，至少需要一个捕获组，不支持反向引用或 lookaround。复制其他编辑器的表达式时，应先核对语法。SSH 场景还需自行确认所打开的网址从浏览器所在环境可达，不能把远端 `localhost` 当作本机服务。
 
 ## 排查常见问题
 

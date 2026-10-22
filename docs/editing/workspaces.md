@@ -1,7 +1,7 @@
 ---
 ContentId: 3487a64b-ff9e-4fb2-af02-632691c50d7e
-DateApproved: 10/20/2026
-SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
+DateApproved: 10/22/2026
+SourceRevision: 095b5d39556441dc3afe867078e9166f5c2d088b
 MetaDescription: 在 Ash 打开项目，管理桌面、SSH、浏览器本地目录和已授权服务器目录的多根工作区，并处理工作区恢复、目录权限和未保存内容。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -42,7 +42,9 @@ Keywords:
 
 状态栏中的 **只读文件夹**表示当前目录不可修改。**受限工作区**表示目录权限限制了部分功能。多根工作区中，各个目录的授权仍分别生效；把目录写进工作区文件不会自动授予访问权限。
 
-目录授权、Agent 的动作批准和沙箱限制各自生效。启用开发功能不代表后续所有动作都会自动获准，详见[权限与批准](/docs/configure/permissions.md)。
+选择状态栏的权限提示、横幅中的 **管理权限**，或运行 **管理工作区信任**（**Manage Workspace Trust**），可检查当前窗口的目录并确认更改权限。多根工作区需逐个选择文件夹；高级选项先保存为草稿，确认后才应用。详见[管理当前工作区的权限](/docs/configure/permissions.md#管理当前工作区的权限)。
+
+目录授权、Agent 的动作批准和沙箱限制各自生效。启用开发功能不代表后续所有动作都会自动获准。
 
 ## 返回最近打开的项目
 
