@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
 DateApproved: 10/23/2026
-SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
+SourceRevision: 4c1c0c50ae3c10a639879faa44b2409bcbc8c7f2
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -164,7 +164,7 @@ Agents 窗口标题栏的工作区切换器提供 **Chat / Agents** 和 **Code**
 
 这两个入口共用当前选择的会话、导航历史和未发送草稿。切换布局后可以继续同一任务，不必再次提交消息。**Back** 和 **Forward** 按钮用于返回之前查看的会话；只有存在可返回的记录时才可用。
 
-选择左侧的**新建**（**New**）会在当前 Chat 或 Code 工作区创建会话；连接多个宿主时先选择宿主，取消选择不会创建会话。查看历史时切换到 Chat 工作区的会话列表，具体步骤见[会话与任务](/docs/agents/sessions.md)。
+选择左侧的**新建**（**New**）会在当前 Chat 或 Code 工作区创建会话；连接多个宿主时先选择宿主，取消选择不会创建会话。Chat 和 Code 都有分组会话侧栏；也可以选择 **搜索** 按名称查找会话、项目和计划。具体步骤见[会话与任务](/docs/agents/sessions.md)。
 
 ## 打开项目、ChatGPT 和自动化
 

@@ -1,7 +1,7 @@
 ---
 ContentId: 81a4a2f0-cf0d-45c4-8f2b-6cc245c8b7b4
-DateApproved: 10/18/2026
-SourceRevision: ff00a9e3063613ddde2dc6226aaaa9a86addd983
+DateApproved: 10/23/2026
+SourceRevision: 4c1c0c50ae3c10a639879faa44b2409bcbc8c7f2
 MetaDescription: 按来源、命令或按键查找 Ash 快捷方式，在居中对话框中录制组合键，编辑 JSON，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -9,7 +9,7 @@ MetaSocialImage: ../../og.png
 
 用键盘快捷方式更快地执行常用操作。Ash 提供图形快捷键编辑器和独立的快捷键 JSON 文件；快捷键不写在普通 settings.json 中。
 
-本文依据 2026 年 10 月 18 日的主分支源码；公开安装包的功能以实际发布版本为准。
+本文依据当前主分支源码；公开安装包的功能以实际发布版本为准。
 
 ## 查找一个命令的快捷键
 
@@ -95,14 +95,18 @@ Ash 可按顺序记录最多四段组合键。例如先按一组键，再松开�
 
 ## 设置截图快捷键
 
-在快捷键页中搜索 **聊天：添加截图**（Chat: Add Screenshot），或输入 `@command:workbench.action.chat.attachScreenshot` 精确定位。
+在快捷键页中搜索 **截图：截取屏幕**（Screenshot: Capture Screen），或输入 `@command:workbench.action.chat.attachScreenshot` 精确定位。
 
 | 平台 | 默认快捷键 |
 | --- | --- |
 | Windows 和 Linux | `Ctrl+Alt+S` |
 | macOS | `Control+Command+A` |
 
-修改这条绑定后，应用内截图和全局截图使用同一组按键。桌面应用的全局截图默认关闭；需要在 Ash 处于后台时使用，先到设置中开启 `screenshot.globalShortcut`。浏览器开发界面不支持此全局快捷键。
+命令 ID 保持不变，已有自定义绑定仍对应屏幕截图。此入口独立截图，不先打开聊天；在选区画面中按 `Enter` 默认复制，加入聊天需另行选择。
+
+截图设置的 **屏幕截图** 和 **代码截图** 分组均显示当前快捷键。选择 **修改快捷键** 可打开对应命令；代码图片命令 `snapshot.code` 默认未设置按键，可以单独绑定。
+
+修改屏幕截图绑定后，应用内截图和全局截图使用同一组按键。桌面应用的全局截图默认关闭；需要在 Ash 处于后台时使用，先到设置中开启 `screenshot.globalShortcut`。浏览器开发界面不支持此全局快捷键。
 
 全局快捷键必须是系统支持的单组按键，不能使用连续组合键。若系统或其他应用已占用它，Ash 会显示通知。选择通知中的 **修改快捷键** 可直接打开对应命令。修改失败时，通知可能说明之前的快捷键仍可使用；不要把保存了新绑定理解成全局注册成功。
 

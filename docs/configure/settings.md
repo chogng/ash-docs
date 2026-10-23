@@ -1,7 +1,7 @@
 ---
 ContentId: 58729fcf-6f7b-4a34-81d1-34b24c97d0c0
-DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+DateApproved: 10/23/2026
+SourceRevision: 4c1c0c50ae3c10a639879faa44b2409bcbc8c7f2
 MetaDescription: 在 Ash 中选择用户、工作区和文件夹设置，按语言调整配置，切换图形与 JSON 编辑，并处理保存和生效问题。
 MetaSocialImage: ../../og.png
 ---
@@ -147,9 +147,11 @@ MetaSocialImage: ../../og.png
 
 ## 设置截图快捷键
 
-在设置中搜索 `screenshot.globalShortcut`，或打开 **截图** 分类。**全局截图** 默认关闭；开启后，桌面应用可在 Ash 处于后台时响应截图快捷键。
+在设置中搜索 `screenshot.globalShortcut`，或打开 **截图** 分类。**Ash 在后台时也可截图** 默认关闭；开启后，桌面应用可在 Ash 处于后台时响应截图快捷键。
 
-按键组合在 **键盘快捷方式** 中修改，命令名称是 **聊天：添加截图**。截图设置页只提供全局开关；屏幕权限指引在发起截图时出现。截图无障碍帮助位于 **辅助功能** 分类。具体操作参见[截图与标注](/docs/editing/screenshots.md)。
+截图设置分为 **屏幕截图** 和 **代码截图**，各自显示当前快捷键。选择 **修改快捷键** 会打开对应命令：**截图：截取屏幕** 或 **截图：生成代码图片**。代码截图还可调整边距、缩放、背景、行号、窗口装饰、文件名和透明背景。
+
+屏幕权限指引在发起屏幕截图时出现，生成代码图片不需要录屏权限。截图无障碍帮助位于 **辅助功能** 分类。具体操作参见[截图与标注](/docs/editing/screenshots.md)。
 
 ## 配置听写
 
