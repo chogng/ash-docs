@@ -1,7 +1,7 @@
 ---
 ContentId: d81b4fc4-6856-40cb-b84b-f8f592614810
-DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 协作视图的 Calls 中关联共享文档，用独立文档邀请打开新编辑器，并区分文档权限与频道笔记权限。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -18,7 +18,7 @@ Keywords:
 
 ## 开始前确认可用入口
 
-从命令面板执行 **Open Calls**（命令 ID 为 `ash.call.open`），打开侧边栏的 **协作**（**Collaboration**）并定位到 **通话**视图。当前窗口需要提供通话服务才会注册这个入口；没有该命令时，检查当前构建和后端服务是否支持通话。
+从命令面板执行 **Open Calls**（命令 ID 为 `ash.call.open`），打开侧边栏的 **协作**（**Collab**）并定位到 **通话**视图。当前窗口需要提供通话服务才会注册这个入口；没有该命令时，检查当前构建和后端服务是否支持通话。
 
 以下步骤从一个已连接的通话开始：
 

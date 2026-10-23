@@ -1,7 +1,7 @@
 ---
 ContentId: 6e7f590a-b53a-46a5-b42b-f9a60cb95dce
-DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 连接协作空间，创建频道、邀请成员、共同编辑频道笔记，并在桌面应用中加入频道通话。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -19,7 +19,7 @@ Keywords:
 
 ## 打开协作
 
-在侧边栏选择 **协作**（**Collaboration**），或从命令面板执行 **Open Collaboration**（`ash.collaboration.open`）。编辑器窗口和 Agent 窗口都提供这个入口。
+在侧边栏选择 **协作**（**Collab**），或从命令面板执行 **Open Collab**（`ash.collaboration.open`）。编辑器窗口和 Agents 窗口都提供这个命令。使用 Agents 左侧导航时，先在标题栏切换到 **Code**，再选择**协作**。
 
 **协作**中包含 **频道**（**Channels**）视图；提供通话服务的窗口还会显示 **通话**（**Calls**）视图。**Agent Teams** 用于组织 Agent 任务，不是这里的人员协作空间。
 

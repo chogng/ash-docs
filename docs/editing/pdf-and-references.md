@@ -1,7 +1,7 @@
 ---
 ContentId: 8dfb86fa-1d74-43bd-9a80-863c3377176a
-DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 中安装独立 PDF 查看器和文献管理器，保存 PDF 批注、导入 RIS 文献库，并在 Academic 论文中插入和更新引用。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -84,7 +84,7 @@ RIS 应使用 UTF-8 编码。单次导入最多 8 MiB、10,000 条记录；格�
 
 ## 在 Academic 论文中插入引用
 
-此流程用于 `.ash-academic` 和 `.ash-paper` 论文。普通 `.ash-doc` 文档和频道笔记不提供这个文献库引用接口。
+此流程用于当前 `.ash-academy` 和 `.ash-paper` 论文。普通 `.ash-doc` 文档和频道笔记不提供这个文献库引用接口。旧 Academic 文件的兼容限制见[文档编辑指南](/docs/editing/documents.md#启用文档编辑器)。
 
 1. 保存文献库，处理所有未保存状态和错误。
 2. 选择 **打开 Academy 文档**，在文献库旁打开要编辑的论文。

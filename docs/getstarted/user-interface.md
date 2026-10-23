@@ -1,7 +1,7 @@
 ---
 ContentId: 900938ac-f311-461e-8d2a-4f989712a0a5
-DateApproved: 10/22/2026
-SourceRevision: 58cc32b4bb67b4a139f0b293819a52a4a4cf3d7b
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 认识 Ash 编辑器和 Agents 窗口，切换 Chat 与 Code，显示文件和更改，并调整侧栏、面板和编辑器布局。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -49,9 +49,11 @@ Keywords:
 * **连接**（**Connections**）：外部账号和 MCP 工具服务器的连接。
 * **推荐**（**Recommended**）：当前工作区推荐的扩展，不会自动安装。
 
-顶部统一搜索框输入普通关键词时搜索 Marketplace。只查现有内容时，输入 `@installed` 加关键词，或用 **筛选扩展** 选择技能、插件、连接、内置插件或推荐。选择 **清除搜索** 或在搜索框按 `Esc`，返回分类列表。
+顶部统一搜索框输入普通关键词时，同时搜索 Marketplace 和已安装插件，包括内置语言服务器。例如，输入 `rust-analyzer` 可以查找内置 Rust 插件。只查现有内容时，输入 `@installed` 加关键词，或用 **筛选扩展** 选择技能、插件、连接、内置插件或推荐。选择 **清除搜索** 或在搜索框按 `Esc`，返回分类列表。
 
 **刷新扩展** 重新读取各分类。标题栏的更多操作提供扩展源管理，以及从工作区或 Git 安装的入口。展开窗格后，添加等操作默认在鼠标悬停或键盘聚焦时显示；选择条目后在编辑器中查看详情。
+
+插件列表主要显示名称和发布方。选择插件打开详情，再核对版本、标识符和权限，使用描述右侧的开关启用或停用；列表行内不再提供启停按钮。
 
 安装、启用、执行授权和账号连接是不同操作。Skill 的启停只影响这一项技能；断开连接不卸载其功能包。具体步骤见[管理技能](/docs/customize/skills.md)和[连接 MCP 服务器](/docs/customize/mcp-servers.md)。
 
@@ -64,6 +66,12 @@ Keywords:
 在中心标题中选择 **Configure Do Not Disturb...**，启用全局免打扰或调整已知来源；也可运行 **Toggle Do Not Disturb Mode By Source...**。免打扰减少普通提醒弹出，但错误和紧急通知仍可能显示，通知记录不会因此全部删除。
 
 通过 **Configure Notifications Position...** 选择右下、左下或右上位置；设置 `workbench.notifications.position` 默认 `bottom-right`。
+
+## 选择状态栏项目
+
+在普通编辑器窗口的状态栏上打开右键菜单，勾选要显示的项目，或隐藏当前项目。隐藏的是状态提示，不会停用对应功能或改变权限。选择按配置保存，重开窗口后仍保留；需要找回项目时再次打开同一菜单。
+
+使用键盘时，从命令面板执行 **Focus Status Bar**，用方向键移动到相邻项目，`Home` 和 `End` 到达首项和末项，`Shift+F10` 打开菜单。按 `Esc` 先回到状态栏容器，再按一次返回工作区域。Agents 窗口不显示这条普通状态栏。
 
 ## 调整视图标题操作
 
@@ -149,24 +157,24 @@ Keywords:
 
 ## 在 Chat 和 Code 之间切换
 
-Agents 窗口的活动栏提供 **Chat** 和 **Code**：
+Agents 窗口标题栏的工作区切换器提供 **Chat / Agents** 和 **Code**，不是左侧导航中的两个条目：
 
 * **Chat** 便于专注对话和会话列表。
 * **Code** 在对话旁显示文件编辑、文件列表、更改和开发工具面板。
 
 这两个入口共用当前选择的会话、导航历史和未发送草稿。切换布局后可以继续同一任务，不必再次提交消息。**Back** 和 **Forward** 按钮用于返回之前查看的会话；只有存在可返回的记录时才可用。
 
-需要新任务或历史会话时，使用左侧会话列表，具体步骤见[会话与任务](/docs/agents/sessions.md)。
+选择左侧的**新建**（**New**）会在当前 Chat 或 Code 工作区创建会话；连接多个宿主时先选择宿主，取消选择不会创建会话。查看历史时切换到 Chat 工作区的会话列表，具体步骤见[会话与任务](/docs/agents/sessions.md)。
 
 ## 打开项目、ChatGPT 和自动化
 
-Agents 活动栏还提供与 Chat、Code 分开的入口：
+左侧导航随标题栏选中的工作区改变：
 
 | 入口 | 用途 |
 | --- | --- |
-| **项目**（**Projects**） | 按名称和目标组织文件、文件夹引用；操作步骤见[组织项目素材](/docs/editing/workspaces.md#在-agents-中组织项目资料) |
-| **ChatGPT** | 打开 ChatGPT 对话、置顶和项目分组，选择模型、添加附件或进行语音对话 |
-| **Automations** | 创建、查看和管理定时任务；是否出现取决于当前连接是否支持自动化 |
+| Chat 中的**项目**（**Projects**） | 按名称和目标组织文件、文件夹引用；操作步骤见[组织项目素材](/docs/editing/workspaces.md#在-agents-中组织项目资料) |
+| Chat 中的 **ChatGPT** | 打开 ChatGPT 对话、置顶和项目分组，选择模型、添加附件或进行语音对话 |
+| Code 中的 **Automations** | 创建、查看和管理定时任务；是否出现取决于当前连接是否支持自动化 |
 
 ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历史，不是本地开发会话列表。搜索只筛选已经加载的历史。具体步骤见[使用 ChatGPT](/docs/agents/chatgpt.md)。
 
@@ -174,7 +182,7 @@ ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历�
 
 ## 打开协作频道和通话
 
-从活动栏选择 **Collaboration（协作）**，或从命令面板执行 **Open Collaboration**，打开协作侧栏。**Channels（频道）** 用于浏览频道和打开共享笔记，连接与权限说明见[协作频道与共享笔记](/docs/editing/channels.md)。
+在 Agents 窗口先切换到 **Code**，再从左侧导航选择**协作**（**Collab**）；也可以从命令面板执行 **Open Collab**。普通编辑器窗口仍从活动栏进入协作。**Channels（频道）** 用于浏览频道和打开共享笔记，连接与权限说明见[协作频道与共享笔记](/docs/editing/channels.md)。
 
 当前构建和窗口提供通话服务时，协作侧栏中还显示 **Calls（通话）**。命令 **Open Calls** 会打开协作侧栏并聚焦通话视图。已连接的通话中，所有者可以关联正在远程协作的文档，参与者可用独立的文档邀请打开它。具体步骤见[在通话中关联共享文档](/docs/editing/call-documents.md)。
 
@@ -205,11 +213,13 @@ ChatGPT 侧栏的 **Pinned**、各项目和 **Recent** 分组管理 ChatGPT 历�
 
 ## 调整 Agents 导航和空间
 
-标题栏的 **Show sidebar / Hide sidebar** 控制左侧栏。拖动区域之间的分隔线可以调整宽度；分隔线获得键盘焦点后，也可以用方向键调整大小。
+标题栏的 **Show sidebar / Hide sidebar** 控制整个左侧导航区域，包括导航条目、会话列表和其中的账号入口。收起后用同一按钮恢复；窗口较窄时部分标题栏操作可能收进菜单。隐藏或显示导航不会离开当前 Projects、Creator 或自动化页面。
 
-活动栏图标可以拖动排序。使用键盘时，聚焦图标，打开右键菜单，选择 **Move earlier** 或 **Move later**。导航顺序会保留，移动活动栏位置或重新启动后不必重新排列。
+导航的展开状态和宽度由窗口保留，切换页面不会恢复成该页面自己的侧栏宽度。拖动区域之间的分隔线可以调整宽度；分隔线获得键盘焦点后，也可以用方向键调整大小。
 
-Agents 活动栏自己的右键菜单同样提供 **Activity Bar Position** 和侧边状态下的 **Activity Bar Size**。它的布局偏好与编辑器窗口分别保存；不要用编辑器窗口的侧栏设置判断 Agents 当前布局。
+活动栏图标可以拖动排序。使用键盘时，聚焦图标，打开右键菜单，选择 **Move earlier** 或 **Move later**。Chat 与 Code 的导航顺序分别保存，移动导航位置或重新启动后不必重新排列。
+
+Agents 导航自己的右键菜单提供 **Activity Bar Position**，可选默认、顶部、底部或隐藏。默认位置显示带文字的导航；顶部和底部使用横向图标。当前 Agents 不再提供 **Activity Bar Size** 或紧凑导航选项。它的布局偏好与编辑器窗口分别保存，默认外观为 **Flat**；不要用编辑器窗口的侧栏设置判断 Agents 当前布局。
 
 ## 用键盘在区域之间移动
 

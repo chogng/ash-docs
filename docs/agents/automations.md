@@ -1,7 +1,7 @@
 ---
 ContentId: f1620609-46e0-4a69-813b-2eaa2030ea92
-DateApproved: 10/19/2026
-SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 中创建定时 Agent 任务，预览执行时间，查看结果和文件更改，暂停计划或停止运行，并了解后台运行与离线限制。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -24,7 +24,7 @@ Keywords:
 
 ## 创建第一个计划
 
-1. 在 Agents 窗口的活动栏选择时钟图标 **Automations**。
+1. 在 Agents 窗口标题栏切换到 **Code**，再从左侧导航选择时钟图标 **Automations**。
 2. 选择 **New automation**。也可以选择 **Daily briefing**、**Review changes** 或 **Weekly recap** 模板，再修改打开的表单。选模板不会立即创建任务。
 3. 在 **Name** 中填写容易辨认的名称，在 **Instructions** 中说明要检查的范围和期望结果。
 4. 先在 **Run on** 中选择执行宿主，再在 **Directory** 中填写该宿主上的项目完整路径。切换宿主会清空之前的目录和对话选择，需要重新填写。

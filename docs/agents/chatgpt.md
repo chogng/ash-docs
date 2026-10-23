@@ -1,7 +1,7 @@
 ---
 ContentId: 27be811e-746a-4b25-870c-0e840d10a72d
-DateApproved: 10/19/2026
-SourceRevision: 07b3dc0e2512d7163e14068c8d0ce3b6337d76be
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 桌面应用中使用 ChatGPT，选择模型与思考档位，添加文件、听写或进行语音对话，并管理已有会话与项目分组。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -18,7 +18,7 @@ Ash 桌面应用的 Agents 窗口提供独立的 ChatGPT 入口。你可以继�
 ## 打开并开始聊天
 
 1. 确认运行 Ash 桌面应用的机器已有有效的 Codex ChatGPT 登录。这个页面复用该登录，登录和续期在原应用中完成。
-2. 在 Agents 窗口的活动栏选择 **ChatGPT**，或在命令面板执行 **ChatGPT**（`sessions.open.chatgpt`）。
+2. 在 Agents 窗口标题栏切换到 **Chat / Agents**，再从左侧导航选择 **ChatGPT**，或在命令面板执行 **ChatGPT**（`sessions.open.chatgpt`）。
 3. 在侧栏选择**新聊天**，或打开已有会话。
 4. 在输入区选择模型，输入要求，按 `Enter` 或选择**发送**。用 `Shift+Enter` 换行。
 5. 等待回复，需要中断时选择**停止**。

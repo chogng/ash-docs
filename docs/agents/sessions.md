@@ -1,7 +1,7 @@
 ---
 ContentId: 73ca23b6-2ed1-4b8e-902e-0c92c7522c69
-DateApproved: 10/20/2026
-SourceRevision: c73936081bab0afdaf3df28aa20d3eb8afacc8bb
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 中创建和恢复会话，保留未发送草稿，编辑请求、分叉对话，处理任务排队与连接恢复，并检查关联 PR 的 CI 结果。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -20,6 +20,8 @@ Keywords:
 桌面操作依据当前主分支实现，已发布安装包的功能以实际版本为准。需要运行对应源码时，见[从源码运行](/docs/getstarted/run-from-source.md)。
 
 ## 创建或恢复会话
+
+在 Agents 窗口中，可用左侧**新建**（**New**）在当前 Chat 或 Code 工作区创建会话。连接多个宿主时，先在选择器中选择宿主；取消不会创建会话。查看会话列表时，在标题栏选择 **Chat / Agents**。
 
 | 操作 | 桌面工作台 | Ash Code 终端界面 |
 | --- | --- | --- |

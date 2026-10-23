@@ -1,7 +1,7 @@
 ---
 ContentId: c995fc35-1890-49be-a910-6668fc346384
-DateApproved: 10/22/2026
-SourceRevision: 2bfe0bb6f96030a02d4701ca6211e9c5f0f13720
+DateApproved: 10/23/2026
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 中添加 MCP 服务器，完成受支持的 OAuth 登录，启用并验证工具，区分断开、停用和本地退出。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -43,12 +43,14 @@ MCP 让 Ash 调用外部服务器提供的工具，例如读取知识库或查�
 1. 运行 **打开扩展**（**Open Extensions**），清空搜索框，将指针移到 **Connections** 分类标题，或用键盘聚焦该标题，在标题操作中选择 **Add connection**，再选择 **Custom MCP server**。当前窗口不支持自定义 MCP 管理时，不显示这一项。
 2. 选择 **HTTP server** 或 **Local process (stdio)** ，填写显示名称和端点或程序路径。服务器 ID 填不含空格或冒号的名称，例如 `team-tools`；Ash 会生成 `user:mcp:team-tools`。
 3. stdio 参数使用 JSON 字符串数组，例如 `["--port", "3000"]`。**Credential reference** 只接受已保存凭据的引用名称，不填密码或 token；不需要已有引用时留空。
-4. 初次添加默认不启用。先选择 **Save**，核对详情，再按需要选择 **Enable** 和 **Connect**。
+4. 初次添加默认不启用。先选择 **Save**，核对详情，再打开描述右侧的 **启用 MCP 服务器**（**Enable MCP server**）开关，并按需要选择 **Connect**。
 5. 等待新的运行状态和工具列表，并用一项只读任务验证结果。
 
-详情中的 **Edit MCP server** 修改声明，**Enable** 或 **Disable** 保存启用状态。**Connect** 和 **Disconnect** 只控制当前后端进程中的连接，不删除声明、卸载包或撤销服务账号授权。**Remove MCP server** 经确认后删除用户声明。由安装包提供的能力不一定有这些用户声明操作，应回到所属包管理。
+详情中的 **Edit MCP server** 修改声明，描述右侧的开关保存启用状态。用 `Tab` 聚焦开关后，可按 `Space` 切换。**Connect** 和 **Disconnect** 只控制当前后端进程中的连接，不删除声明、卸载包或撤销服务账号授权。**Remove MCP server** 经确认后删除用户声明。由安装包提供的能力不一定有这些用户声明操作，应回到所属包管理。
 
 **Add connection** 也提供 **Service account**。选择服务后，只显示该服务支持的 **Sign in** 或 **Connect with API token**；没有可选服务时，先安装提供服务账号的插件。关联的 MCP 服务器在该服务详情中查看，不会重复列为独立连接。服务账号的 token 表单与自定义 MCP 的 **Credential reference** 不是同一字段。
+
+服务账号详情中的 **连接服务**（**Connect service**）开关保留已有账号授权和凭据。已有有效授权时，关闭开关会停用连接，重新打开可复用授权；这不等于 **Sign out**，也不会撤回已完成的外部操作。尚未授权时，打开开关会进入服务支持的登录或 API token 连接流程。账号授权与关联 MCP 服务器的运行状态仍需分别检查。
 
 保存、连接请求已接收和工具可用是不同状态。遇到错误时检查详情中的诊断，不要只凭按钮恢复可用就判断连接成功。
 

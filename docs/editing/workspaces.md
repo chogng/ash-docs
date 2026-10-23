@@ -1,7 +1,7 @@
 ---
 ContentId: 3487a64b-ff9e-4fb2-af02-632691c50d7e
 DateApproved: 10/23/2026
-SourceRevision: 82d5a50e7be6410d7be7ae76bc4e64c051c19ad5
+SourceRevision: 651cde77fa0c33b1afe1d60e068a8e98c824ef4c
 MetaDescription: 在 Ash 打开文件夹、管理多根工作区与目录权限，并在 Agents 的项目中整理目标和文件资料引用。
 MetaSocialImage: ../../og.png
 Keywords:
@@ -60,7 +60,7 @@ Keywords:
 
 ## 在 Agents 中组织项目资料
 
-Agents 活动栏中的**项目**（**Projects**）把项目名称、目标和资料列表放在一起。它不是编辑器的多根工作区，也不是 [ChatGPT 的项目分组](/docs/agents/chatgpt.md#查找并整理会话)。创建项目不会打开新的执行目录，添加资料也不会把文件作为聊天附件发送。
+在 Agents 窗口标题栏选择 **Chat / Agents** 后，左侧导航中的**项目**（**Projects**）把项目名称、目标和资料列表放在一起。它不是编辑器的多根工作区，也不是 [ChatGPT 的项目分组](/docs/agents/chatgpt.md#查找并整理会话)。创建项目不会打开新的执行目录，添加资料也不会把文件作为聊天附件发送。
 
 本节对应已合入 `main` 的当前源码，不代表某个已发布安装包已包含这些入口。当前项目入口使用 `sessions.open.projects` 和 `sessions.show.projects`，无障碍提示设置为 `accessibility.verbosity.projects`。旧 `library` 命令和设置不是这些入口的别名；已有自定义快捷键需改用当前命令。若重开 Agents 窗口时保存的入口命令已不存在，会回到**聊天**，再从活动栏进入**项目**；这不是对旧入口的自动迁移。
 
