@@ -84,12 +84,22 @@
         "/docs/agents/automations"
       ],
       [
-        "Advisor 顾问",
-        "/docs/agents/advisor"
-      ],
-      [
         "查看 Agent 调试日志",
         "/docs/agents/trace"
+      ]
+    ]
+  },
+  {
+    "name": "工具",
+    "area": "tools",
+    "topics": [
+      [
+        "工具概览",
+        "/docs/reference/tools"
+      ],
+      [
+        "Advisor 顾问",
+        "/docs/agents/advisor"
       ]
     ]
   },
@@ -192,16 +202,6 @@
       [
         "一次 diff 点击的性能复盘",
         "/docs/blog/scm-diff-latency"
-      ]
-    ]
-  },
-  {
-    "name": "参考",
-    "area": "reference",
-    "topics": [
-      [
-        "工具",
-        "/docs/reference/tools"
       ]
     ]
   },
